@@ -1,19 +1,21 @@
-import defaultTheme from 'tailwindcss/defaultTheme';
+import defaultTheme from "tailwindcss/defaultTheme";
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+    darkMode: "media",
+
     content: [
-      "./resources/**/*.blade.php",
-      "./resources/**/*.js",
-      "./resources/**/*.vue",
-      "./node_modules/flowbite/**/*.js"
+        "./resources/**/*.blade.php",
+        "./resources/**/*.js",
+        "./resources/**/*.vue",
+        "./node_modules/flowbite/**/*.js",
     ],
     theme: {
-      extend: {},
+        extend: {},
     },
     plugins: [
-        require('flowbite/plugin')({
+        require("flowbite/plugin")({
             datatables: true,
-        })
+        }),
     ],
-  }
+};

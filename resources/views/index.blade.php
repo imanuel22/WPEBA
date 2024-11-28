@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>{{ $title ?? 'home' }}</title>
 </head>
+
 <body>
-    aa
-    @foreach ($users as $user)
-        <p>{{ $user['name']}}</p>
-    @endforeach
-    
+    <a href="/login">login</a>
 </body>
+
 </html>
