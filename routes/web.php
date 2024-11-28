@@ -14,7 +14,7 @@ Route::get('/',function ()  {
 });
 
 Route::get('/login',[AuthController::class,'login']);
-Route::post('/dologin',[AuthController::class,'dologin'])->name('dologin');
+Route::post('/login',[AuthController::class,'dologin'])->name('login');
 
 // admin
 Route::prefix('/admin')->group(function(){

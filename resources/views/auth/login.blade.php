@@ -2,7 +2,7 @@
 
 @section('main')
     <div class="">
-        <form action="{{ route('dologin') }}" method="post">
+        <form action="{{ route('login') }}" method="post">
             @csrf
 
             <form class="max-w-sm mx-auto">
