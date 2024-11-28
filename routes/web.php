@@ -16,3 +16,20 @@ Route::get('/main',function ()  {
 
 Route::get('/login',[AuthController::class,'login']);
 Route::post('/dologin',[AuthController::class,'dologin'])->name('dologin');
+
+// admin
+Route::prefix('/admin')->group(function(){
+    Route::get('/');
+    Route::get('/dashboard');
+});
+
+// organizer
+Route::prefix('/organizer')->group(function(){
+    Route::get('/');
+    Route::get('/dashboard');
+});
+
+Route::prefix('/partisipan')->group(function(){
+    Route::get('/');
+    Route::get('/dashboard');
+});
