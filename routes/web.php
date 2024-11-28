@@ -1,17 +1,16 @@
 <?php
 
-use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Http;
 
-// Route::get('/login', function () {
-//     $res=Http::get(env('APP_API_URL').'/users');
-//     $json=$res->json();
-//     return view('welcome',['users'=>$json['data']]);
-// });
+use App\Http\Controllers\{
+    AdminController,
+    AuthController,
+    OrganizerController,
+    PartisipanController,
+};
 
-Route::get('/main',function ()  {
-    return view('admin.dashboard');
+Route::get('/',function ()  {
+    return view('index');
 });
 
 Route::get('/login',[AuthController::class,'login']);
@@ -19,17 +18,17 @@ Route::post('/dologin',[AuthController::class,'dologin'])->name('dologin');
 
 // admin
 Route::prefix('/admin')->group(function(){
-    Route::get('/');
-    Route::get('/dashboard');
+    // Route::get('/',);
+    Route::get('/dashboard',[AdminController::class,'index']);
 });
 
 // organizer
 Route::prefix('/organizer')->group(function(){
-    Route::get('/');
-    Route::get('/dashboard');
+    // Route::get('/');
+    Route::get('/dashboard',[OrganizerController::class,'index']);
 });
 
 Route::prefix('/partisipan')->group(function(){
-    Route::get('/');
-    Route::get('/dashboard');
+    // Route::get('/');
+    Route::get('/dashboard',[PartisipanController::class,'index']);
 });
