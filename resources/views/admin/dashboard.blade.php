@@ -1,4 +1,4 @@
-@extends('partials.main')
+@extends('admin.partials.main')
 
 @section('main')
 <script src="https://cdn.jsdelivr.net/npm/simple-datatables@9.0.3"></script>

@@ -19,16 +19,16 @@ Route::post('/login',[AuthController::class,'dologin'])->name('login');
 // admin
 Route::prefix('/admin')->group(function(){
     // Route::get('/',);
-    Route::get('/dashboard',[AdminController::class,'index']);
+    Route::get('/dashboard',[AdminController::class,'dashboard']);
 });
 
 // organizer
 Route::prefix('/organizer')->group(function(){
     // Route::get('/');
-    Route::get('/dashboard',[OrganizerController::class,'index']);
+    Route::get('/dashboard',[OrganizerController::class,'dashboard']);
 });
 
 Route::prefix('/partisipan')->group(function(){
     // Route::get('/');
-    Route::get('/dashboard',[PartisipanController::class,'index']);
+    Route::get('/dashboard',[PartisipanController::class,'dashboard']);
 });
