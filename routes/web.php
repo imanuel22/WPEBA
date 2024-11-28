@@ -20,6 +20,7 @@ Route::post('/login',[AuthController::class,'dologin'])->name('login');
 Route::prefix('/admin')->group(function(){
     // Route::get('/',);
     Route::get('/dashboard',[AdminController::class,'dashboard']);
+    Route::get('/events',[AdminController::class,'events']);
 });
 
 // organizer
