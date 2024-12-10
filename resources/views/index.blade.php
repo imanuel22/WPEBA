@@ -58,7 +58,7 @@
                         @endif
                     </header>
 
-                    {{-- <main class="mt-6">
+                    <main class="mt-6">
                         <div class="grid gap-6 lg:grid-cols-2 lg:gap-8">
                             <a
                                 href="https://laravel.com/docs"
@@ -164,12 +164,6 @@
                                 </div>
                             </div>
                         </div>
-                    </main> --}}
-
-                    <main class="mt-6">
-                        <div>
-                            helklo
-                        </div>
                     </main>
 
                     <footer class="py-16 text-center text-sm text-black dark:text-white/70">
@@ -180,3 +174,4 @@
         </div>
     </body>
 </html>
+
