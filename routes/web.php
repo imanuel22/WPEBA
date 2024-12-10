@@ -21,10 +21,25 @@ Route::get('/tiket',function ()  {
     return view('admin.tiket');
 });
 
-Route::get('/dokumentasi',function ()  {
+Route::get('/admindokumentasi',function ()  {
     return view('admin.dokumentasi');
 });
 
+Route::get('/organizer_dashboard',function ()  {
+    return view('organizer.dashboard');
+});
+
+Route::get('/organizer_dokumentasi',function ()  {
+    return view('organizer.dokumentasi');
+});
+
+Route::get('/participant_dashboard',function ()  {
+    return view('participant.dashboard');
+});
+
+Route::get('/participant_event',function ()  {
+    return view('participant.event');
+});
 
 
 Route::get('/login',[AuthController::class,'login']);
