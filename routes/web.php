@@ -26,15 +26,27 @@ Route::get('/dokumentasi',function ()  {
 });
 
 
-
-Route::get('/login',[AuthController::class,'login']);
-Route::post('/login',[AuthController::class,'dologin'])->name('login');
-
 // admin
 Route::prefix('/admin')->group(function(){
     // Route::get('/',);
     Route::get('/dashboard',[AdminController::class,'dashboard']);
     Route::get('/events',[AdminController::class,'events']);
+    // Event Management
+    Route::post('/admin/events', [AdminController::class, 'storeEvent'])->name('admin.events.store');
+    Route::put('/admin/events/{id}', [AdminController::class, 'updateEvent'])->name('admin.events.update');
+    Route::delete('/admin/events/{id}', [AdminController::class, 'deleteEvent'])->name('admin.events.delete');
+
+    // Ticket Management
+    Route::get('/admin/tickets', [AdminController::class, 'manageTickets'])->name('admin.tickets');
+    Route::delete('/admin/tickets/{id}', [AdminController::class, 'deleteTicket'])->name('admin.tickets.delete');
+
+    // Feedback Management
+    Route::get('/admin/feedback', [AdminController::class, 'manageFeedback'])->name('admin.feedback');
+    Route::delete('/admin/feedback/{id}', [AdminController::class, 'deleteFeedback'])->name('admin.feedback.delete');
+
+    // User Management
+    Route::get('/admin/users', [AdminController::class, 'manageUsers'])->name('admin.users');
+    Route::delete('/admin/users/{id}', [AdminController::class, 'deleteUser'])->name('admin.users.delete');
 });
 
 // organizer
