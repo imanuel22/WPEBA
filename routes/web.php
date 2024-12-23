@@ -31,8 +31,10 @@ Route::get('/login',[AuthController::class,'login']);
 Route::post('/login',[AuthController::class,'dologin'])->name('login');
 
 // admin
-Route::prefix('/admin')->group(function(){
-    // Route::get('/',);
+Route::prefix('/admin')->middleware(['role:admin'])->group(function(){
+    Route::get('/',function(){
+        echo 'halaman admin';
+    });
     Route::get('/dashboard',[AdminController::class,'dashboard']);
     Route::get('/events',[AdminController::class,'events']);
     Route::get('/tickets', [AdminController::class, 'manageTickets']);
@@ -54,12 +56,16 @@ Route::prefix('/admin')->group(function(){
 });
 
 // organizer
-Route::prefix('/organizer')->group(function(){
-    // Route::get('/');
+Route::prefix('/organizer')->middleware(['role:organizer'])->group(function(){
+    Route::get('/',function(){
+        echo 'halaman organizer';
+    });
     Route::get('/dashboard',[OrganizerController::class,'dashboard']);
 });
 
-Route::prefix('/partisipan')->group(function(){
-    // Route::get('/');
+Route::prefix('/partisipan')->middleware(['role:partisipan'])->group(function(){
+    Route::get('/',function(){
+        echo 'halaman partisipan';
+    });
     Route::get('/dashboard',[PartisipanController::class,'dashboard']);
 });

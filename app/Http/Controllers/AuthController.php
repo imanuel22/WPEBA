@@ -32,7 +32,7 @@ class AuthController extends Controller
                 return redirect('/admin/dashboard');
             }
             if($userData['role']=='organizer'){
-                return redirect('organizer/dashbord') ;  
+                return redirect('/organizer/dashboard') ;  
             }
             if($userData['role']=='partisipan'){
                 return redirect('/partisipan/dashboard');
