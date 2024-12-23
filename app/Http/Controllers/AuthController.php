@@ -26,6 +26,7 @@ class AuthController extends Controller
                 'email'=>$userData['email'],
                 'profile'=>$userData['profile'],
                 'role'=>$userData['role'],
+                'id'=>$userData['id'],
             ]);
 
             if($userData['role']=='admin'){
