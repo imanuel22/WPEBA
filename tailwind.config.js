@@ -2,7 +2,7 @@ import defaultTheme from "tailwindcss/defaultTheme";
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-    darkMode: "media",
+    darkMode: "selection",
 
     content: [
         "./resources/**/*.blade.php",
