@@ -73,6 +73,7 @@ Route::prefix('/organizer')->middleware(['role:organizer'])->group(function(){
         Route::get('/feedback',[OrganizerController::class,'feedbackIndex']);
         Route::get('/documentations',[OrganizerController::class,'documentationsIndex']);
         Route::get('/registrations',[OrganizerController::class,'registrationsIndex']);
+        Route::patch('/registrations/verification/{id}',[OrganizerController::class,'registrationsVerification']);
     });
 });
 
