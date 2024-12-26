@@ -171,21 +171,34 @@ class OrganizerController extends Controller
         return view('organizer.documentations.index',$data);
     }
 
-    function registrationsIndex($event_id){
-    $data = [];
-    $res = Http::withToken(session('token'))->get(config('services.api.url').'/registrations');
+    function registrationsIndex(Request $request,$event_id){
+        $data = [];
+        $status = $request->get('status');
 
-    if($res->successful()){
-        $json = $res->json();
+        $res = Http::withToken(session('token'))->get(config('services.api.url').'/registrations');
+        if($res->successful()){
+            $json = $res->json();
 
-        $filteredRegistrations = array_filter($json['data'], function($registration) use ($event_id) {
-            return isset($registration['ticket']['event_id']) && $registration['ticket']['event_id'] == $event_id;
-        });
+            $filteredRegistrations = array_filter($json['data'], function($registration) use ($event_id,$status) {
+                return isset($registration['ticket']['event_id'],$registration['status']) 
+                && $registration['ticket']['event_id'] == $event_id 
+                && $registration['status'] == $status;
+            });
 
-        $data['registrations'] = $filteredRegistrations;
+            $data['registrations'] = $filteredRegistrations;
+        }
+
+        return view('organizer.registrations.index', $data);
     }
-
-    return view('organizer.registrations.index', $data);
-}
+    function registrationsVerification(Request $request,$event_id,$id){
+        $validate = $request->validate([
+            'status' => 'required|in:confirmed,cancelled',
+        ]);
+        $res = Http::withToken(session('token'))->patch(config('services.api.url').'/registrations/verification/'.$id,$validate);
+        if ($res->successful()) {
+            $json = $res->json();
+            return redirect('/organizer/event/'.$event_id.'/registrations')->with('message',$json['message']);
+        }
+    }
 
 }
