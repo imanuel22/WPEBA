@@ -65,19 +65,26 @@ Route::prefix('/organizer')->middleware(['role:organizer'])->group(function(){
     Route::post('/event/create',[OrganizerController::class,'eventStore']);
     Route::get('/event/create',[OrganizerController::class,'eventCreate']);
     Route::prefix('/event/{event_id}')->group(function(){
+        //event
         Route::get('/',[OrganizerController::class,'eventShow']);
-
-        Route::get('/information',[OrganizerController::class,'eventIndex']);
-        Route::get('/ticket',[OrganizerController::class,'eventIndex']);
-        Route::get('/feedback',[OrganizerController::class,'eventIndex']);
-        Route::get('/documentations',[OrganizerController::class,'eventIndex']);
-        Route::get('/categories',[OrganizerController::class,'eventIndex']);
         Route::get('/edit',[OrganizerController::class,'eventEdit']);
         Route::put('/edit',[OrganizerController::class,'eventUpdate']);
+
+        //information
         Route::get('/information',[OrganizerController::class,'informationIndex']);
+        Route::delete('/information/{id}',[OrganizerController::class,'informationDelete']);
+        Route::post('/information',[OrganizerController::class,'informationStore']);
+        Route::put('/information/{id}',[OrganizerController::class,'informationUpdate']);
+        //ticket
         Route::get('/ticket',[OrganizerController::class,'ticketIndex']);
+
+        //feedback
         Route::get('/feedback',[OrganizerController::class,'feedbackIndex']);
+
+        //documentation
         Route::get('/documentations',[OrganizerController::class,'documentationsIndex']);
+
+        //registration
         Route::get('/registrations',[OrganizerController::class,'registrationsIndex']);
         Route::patch('/registrations/verification/{id}',[OrganizerController::class,'registrationsVerification']);
     });

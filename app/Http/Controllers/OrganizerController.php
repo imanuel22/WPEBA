@@ -118,7 +118,7 @@ class OrganizerController extends Controller
         $res = Http::withToken(session('token'))->patch(config('services.api.url').'/events/'.$id,$validate);
         if ($res->successful()) {
             $json = $res->json();
-            redirect('/organizer/event/'.$id)->with('message',$json['message']);
+            return redirect('/organizer/event/'.$id)->with('message',$json['message']);
         }
     }
 
@@ -135,6 +135,52 @@ class OrganizerController extends Controller
         }
         return view('organizer.information.index',$data);
     }
+
+    function informationStore(Request $request,$event_id) {
+         $validate = $request->validate([
+            'whatapps'=>'nullable|numeric',
+            'telephone'=>'nullable|numeric',
+            'facebook'=>'nullable|string|max:100',
+            'instagram'=>'nullable|string|max:100',
+            'email'=>'nullable|string|max:100',
+            'website'=>'nullable|string|max:100',
+        ]);
+
+        $validate['event_id']=$event_id;
+        $res = Http::withToken(session('token'))->post(config('services.api.url').'/information',$validate);
+        if ($res->successful()) {
+            $json = $res->json();
+            return redirect('/organizer/event/'.$event_id.'/information')->with('message',$json['message']);
+        }
+
+    }
+    function informationUpdate(Request $request,$event_id,$id) {
+         $validate = $request->validate([
+            'whatapps'=>'nullable|numeric',
+            'telephone'=>'nullable|numeric',
+            'facebook'=>'nullable|string|max:100',
+            'instagram'=>'nullable|string|max:100',
+            'email'=>'nullable|string|max:100',
+            'website'=>'nullable|string|max:100',
+        ]);
+
+        $validate['event_id']=$event_id;
+        $res = Http::withToken(session('token'))->patch(config('services.api.url').'/information/'.$id,$validate);
+        if ($res->successful()) {
+            $json = $res->json();
+            return redirect('/organizer/event/'.$event_id.'/information')->with('message',$json['message']);
+        }
+    }
+
+
+    function informationDelete($event_id,$id) {
+        $res = Http::withToken(session('token'))->delete(config('services.api.url').'/information/'.$id);
+        if ($res->successful()) {
+            $json = $res->json();
+            return redirect('/organizer/event/'.$event_id.'/information')->with('message',$json['message']);
+        }
+    }
+
     //feedback
     function feedbackIndex($event_id){
         $data = [];
