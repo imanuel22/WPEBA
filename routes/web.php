@@ -77,13 +77,17 @@ Route::prefix('/organizer')->middleware(['role:organizer'])->group(function(){
         Route::put('/information/{id}',[OrganizerController::class,'informationUpdate']);
         //ticket
         Route::get('/ticket',[OrganizerController::class,'ticketIndex']);
-
+        Route::delete('/ticket/{id}',[OrganizerController::class,'ticketDelete']);
+        Route::post('/ticket',[OrganizerController::class,'ticketStore']);
+        Route::put('/ticket/{id}',[OrganizerController::class,'ticketUpdate']);
         //feedback
         Route::get('/feedback',[OrganizerController::class,'feedbackIndex']);
 
         //documentation
         Route::get('/documentations',[OrganizerController::class,'documentationsIndex']);
-
+        Route::delete('/documentations/{id}',[OrganizerController::class,'documentationsDelete']);
+        Route::post('/documentations',[OrganizerController::class,'documentationsStore']);
+        Route::put('/documentations/{id}',[OrganizerController::class,'documentationsUpdate']);
         //registration
         Route::get('/registrations',[OrganizerController::class,'registrationsIndex']);
         Route::patch('/registrations/verification/{id}',[OrganizerController::class,'registrationsVerification']);

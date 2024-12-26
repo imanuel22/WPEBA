@@ -205,6 +205,55 @@ class OrganizerController extends Controller
         return view('organizer.ticket.index',$data);
     }
 
+    function ticketStore(Request $request,$event_id) {
+        $validate = $request->validate([
+            'name'=>'required|string',
+            'price'=>'required|numeric',
+            'quantity'=>'required|numeric',
+            'image'=>'required|image|mimes:png,jpg,jpeg',
+        ]);
+   
+        $validate['event_id']=$event_id;
+        $res = Http::withToken(session('token'))->attach(
+            'image', file_get_contents($_FILES['image']['tmp_name']), $_FILES['image']['name']
+        )->post(config('services.api.url').'/tickets',$validate);
+        if ($res->successful()) {
+            $json = $res->json();
+            return redirect('/organizer/event/'.$event_id.'/ticket')->with('message',$json['message']);
+        }
+
+    }
+    function ticketUpdate(Request $request,$event_id,$id) {
+         $validate = $request->validate([
+            'name'=>'nullable|string',
+            'price'=>'nullable|numeric',
+            'quantity'=>'nullable|numeric',
+            'image'=>'nullable|image|mimes:png,jpg,jpeg',
+        ]);
+
+        $validate['event_id']=$event_id;
+
+        if($_FILES['image']['error'] === 4){
+            $res = Http::withToken(session('token'))->patch(config('services.api.url').'/tickets/'.$id,$validate);
+        }else{
+            $res = Http::withToken(session('token'))->attach(
+                'image', file_get_contents($_FILES['image']['tmp_name']), $_FILES['image']['name']
+            )->patch(config('services.api.url').'/tickets/'.$id,$validate);
+        }
+        if ($res->successful()) {
+            $json = $res->json();
+            return redirect('/organizer/event/'.$event_id.'/ticket')->with('message',$json['message']);
+        }
+    }
+
+    function ticketDelete($event_id,$id) {
+        $res = Http::withToken(session('token'))->delete(config('services.api.url').'/tickets/'.$id);
+        if ($res->successful()) {
+            $json = $res->json();
+            return redirect('/organizer/event/'.$event_id.'/ticket')->with('message',$json['message']);
+        }
+    }
+
     //documentations
     function documentationsIndex($event_id){
         $data = [];
@@ -216,6 +265,51 @@ class OrganizerController extends Controller
         }
         return view('organizer.documentations.index',$data);
     }
+
+    function documentationsStore(Request $request,$event_id) {
+        $validate = $request->validate([
+            'description'=>'required|string',
+            'image'=>'required|image|mimes:png,jpg,jpeg',
+        ]);
+   
+        $validate['event_id']=$event_id;
+        $res = Http::withToken(session('token'))->attach(
+            'image', file_get_contents($_FILES['image']['tmp_name']), $_FILES['image']['name']
+        )->post(config('services.api.url').'/documentation',$validate);
+        if ($res->successful()) {
+            $json = $res->json();
+            return redirect('/organizer/event/'.$event_id.'/documentations')->with('message',$json['message']);
+        }
+
+    }
+    function documentationsUpdate(Request $request,$event_id,$id) {
+         $validate = $request->validate([
+            'description'=>'nullable|string',
+            'image'=>'nullable|image|mimes:png,jpg,jpeg',
+        ]);
+
+        $validate['event_id']=$event_id;
+        if($_FILES['image']['error'] === 4){
+            $res = Http::withToken(session('token'))->patch(config('services.api.url').'/documentation/'.$id,$validate);
+        }else{
+            $res = Http::withToken(session('token'))->attach(
+                'image', file_get_contents($_FILES['image']['tmp_name']), $_FILES['image']['name']
+            )->patch(config('services.api.url').'/documentation/'.$id,$validate);
+        }
+        if ($res->successful()) {
+            $json = $res->json();
+            return redirect('/organizer/event/'.$event_id.'/documentations')->with('message',$json['message']);
+        }
+    }
+
+    function documentationsDelete($event_id,$id) {
+        $res = Http::withToken(session('token'))->delete(config('services.api.url').'/documentation/'.$id);
+        if ($res->successful()) {
+            $json = $res->json();
+            return redirect('/organizer/event/'.$event_id.'/documentations')->with('message',$json['message']);
+        }
+    }
+    //regostrations
 
     function registrationsIndex(Request $request,$event_id){
         $data = [];
