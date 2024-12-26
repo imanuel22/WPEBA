@@ -31,7 +31,7 @@ Route::get('/login',[AuthController::class,'login']);
 Route::post('/login',[AuthController::class,'dologin'])->name('login');
 
 // admin
-Route::prefix('/admin')->middleware(['role:admin'])->group(function(){
+Route::prefix('/admin')->group(function(){
     Route::get('/',function(){
         redirect('/admin/dashboard');
     });
@@ -62,6 +62,8 @@ Route::prefix('/organizer')->middleware(['role:organizer'])->group(function(){
     });
     Route::get('/dashboard',[OrganizerController::class,'dashboard']);
     Route::get('/event',[OrganizerController::class,'eventIndex']);
+    Route::post('/event/create',[OrganizerController::class,'eventStore']);
+    Route::get('/event/create',[OrganizerController::class,'eventCreate']);
     Route::prefix('/event/{event_id}')->group(function(){
         Route::get('/',[OrganizerController::class,'eventShow']);
 
@@ -70,6 +72,13 @@ Route::prefix('/organizer')->middleware(['role:organizer'])->group(function(){
         Route::get('/feedback',[OrganizerController::class,'eventIndex']);
         Route::get('/documentations',[OrganizerController::class,'eventIndex']);
         Route::get('/categories',[OrganizerController::class,'eventIndex']);
+        Route::get('/edit',[OrganizerController::class,'eventEdit']);
+        Route::put('/edit',[OrganizerController::class,'eventUpdate']);
+        Route::get('/information',[OrganizerController::class,'informationIndex']);
+        Route::get('/ticket',[OrganizerController::class,'ticketIndex']);
+        Route::get('/feedback',[OrganizerController::class,'feedbackIndex']);
+        Route::get('/documentations',[OrganizerController::class,'documentationsIndex']);
+        Route::get('/registrations',[OrganizerController::class,'registrationsIndex']);
     });
 });
 

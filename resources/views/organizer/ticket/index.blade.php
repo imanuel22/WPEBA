@@ -1,46 +1,37 @@
 @extends('organizer.partials.main')
 
 @section('main')
-    @if (empty($information[0]))
+    @if (empty($ticket[0]))
         <div class="">
-            <a href="">Add Informatin</a>
+            <a href="">Add Ticket</a>
         </div>
     @endif
 
     <div class="">
-        <table id="information-table">
+        <table id="ticket-table">
             <thead>
                 <tr>
                     <th>
                         <span class="flex items-center">
-                            whatapps
+                            Name
                         </span>
                     </th>
                     <th>
                         <span class="flex items-center">
-                            telephone
+                            price
                         </span>
                     </th>
                     <th>
                         <span class="flex items-center">
-                            facebook
+                            quantity
                         </span>
                     </th>
                     <th>
                         <span class="flex items-center">
-                            instagram
+                            image
                         </span>
                     </th>
-                    <th>
-                        <span class="flex items-center">
-                            email
-                        </span>
-                    </th>
-                    <th>
-                        <span class="flex items-center">
-                            website
-                        </span>
-                    </th>
+
                     <th>
                         <span class="flex items-center">
 
@@ -49,14 +40,12 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($information as $row)
+                @foreach ($ticket as $row)
                     <tr>
-                        <td>{{ $row['whatapps'] ?? '-' }}</td>
-                        <td>{{ $row['telephone'] ?? '-' }}</td>
-                        <td>{{ $row['facebook'] ?? '-' }}</td>
-                        <td>{{ $row['instagram'] ?? '-' }}</td>
-                        <td>{{ $row['email'] ?? '-' }}</td>
-                        <td>{{ $row['website'] ?? '-' }}</td>
+                        <td>{{ $row['name'] ?? '-' }}</td>
+                        <td>{{ $row['price'] ?? '-' }}</td>
+                        <td>{{ $row['quantity'] ?? '-' }}</td>
+                        <td>{{ $row['image'] ?? '-' }}</td>
                         <td class="flex items-center justify-center">
                             <a href=""
                                 class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">Edit</a>
@@ -72,8 +61,8 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@9.0.3"></script>
     <script>
-        if (document.getElementById("information-table") && typeof simpleDatatables.DataTable !== 'undefined') {
-            const dataTable = new simpleDatatables.DataTable("#information-table", {
+        if (document.getElementById("ticket-table") && typeof simpleDatatables.DataTable !== 'undefined') {
+            const dataTable = new simpleDatatables.DataTable("#ticket-table", {
                 searchable: true,
                 sortable: false
             });
