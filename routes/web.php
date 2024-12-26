@@ -36,7 +36,7 @@ Route::prefix('/admin')->group(function(){
         redirect('/admin/dashboard');
     });
     Route::get('/dashboard',[AdminController::class,'dashboard']);
-    Route::get('/events',[AdminController::class,'events']);
+    Route::get('/event',[AdminController::class,'event']);
     Route::get('/tickets', [AdminController::class, 'manageTickets']);
     Route::get('/documents', [AdminController::class, 'manageDocuments']);
     Route::get('/feedbacks', [AdminController::class, 'manageFeedbacks']);
