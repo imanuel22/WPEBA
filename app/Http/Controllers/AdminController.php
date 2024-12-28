@@ -25,7 +25,13 @@ class AdminController extends Controller
         return view('admin.feedbacks');
     }
     function admins_account() {
-        return view('admin.admins_account');
+        $data = [];
+        $res = Http::get(config('services.api.url').'/users');
+        if($res->successful()){
+            $json=$res->json();
+            $data['users'] = $json['data'];
+        }
+        return view('admin.admins_account',$data);
     }
     function organizer_account() {
         return view('admin.organizer_account');
