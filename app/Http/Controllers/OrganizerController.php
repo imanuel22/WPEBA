@@ -12,6 +12,7 @@ class OrganizerController extends Controller
     }
 
     function eventIndex(Request $request){
+        $data = [];
         $search = $request->input('search');
         $res = Http::withToken(session('token'))->get(config('services.api.url').'/events');
         if($res->successful()){
@@ -56,26 +57,62 @@ class OrganizerController extends Controller
         return view('organizer.event.create',$data);
     }
 
-    public function eventStore(Request $request){
-        $validate = $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'images.*' => 'nullable|file|mimes:jpeg,png,jpg', // Validasi array gambar
-            'start_datetime' => 'nullable|date',
-            'duration' => 'nullable|integer',
-            'location' => 'nullable|string',
-            'event_category_ids' => 'nullable|array',
-        ]);
-        
-        $validate['user_id']=session('id');
-        $validate['status']='upcoming';
-        
-        $res = Http::withToken(session('token'))->post(config('services.api.url').'/events',$validate);
-        if ($res->successful()) {
-            $json = $res->json();
-            redirect('/organizer/event/')->with('message',$json['message']);
+    public function eventStore(Request $request)
+{
+    // Validasi input
+    $validate = $request->validate([
+        'title' => 'required|string|max:255',
+        'description' => 'nullable|string',
+        'images.*' => 'nullable|file|mimes:jpeg,png,jpg|max:2048', // Validasi array gambar
+        'start_datetime' => 'nullable|date',
+        'duration' => 'nullable|integer',
+        'location' => 'nullable|string',
+        'event_category_ids' => 'nullable|array',
+    ]);
+
+    // Tambahkan data tambahan
+    $validate['user_id'] = session('id');
+    $validate['status'] = 'upcoming';
+
+    // Inisialisasi HTTP Client
+    $http = Http::withToken(session('token'));
+
+    // Tambahkan data non-file sebagai bagian multipart
+    foreach ($validate as $key => $value) {
+        if (is_array($value)) {
+            foreach ($value as $arrayValue) {
+                $http = $http->attach("{$key}[]", (string)$arrayValue); // Pastikan dikirim sebagai string
+            }
+        } else {
+            $http = $http->attach($key, (string)$value); // Kirim data sebagai string
         }
     }
+
+    // Lampirkan file gambar
+    if ($request->hasFile('images')) {
+        foreach ($request->file('images') as $image) {
+            $http = $http->attach(
+                'images[]',
+                file_get_contents($image->getRealPath()), // Baca konten file
+                $image->getClientOriginalName() // Gunakan nama asli file
+            );
+        }
+    }
+
+    // Kirim permintaan POST ke API
+    $res = $http->post(config('services.api.url') . '/events');
+
+    // Tindak lanjut berdasarkan respons
+    if ($res->successful()) {
+        $json = $res->json();
+        return redirect('/organizer/event')->with('message', $json['message']);
+    } else {
+        dd($res->body());
+        // Jika terjadi error, kembalikan ke halaman sebelumnya dengan pesan error
+        return back()->withErrors(['error' => $res->body()])->withInput();
+    }
+}
+
 
     public function eventEdit(Request $request,$id){
         $res = Http::withToken(session('token'))->get(config('services.api.url').'/events/'.$id);

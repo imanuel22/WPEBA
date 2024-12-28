@@ -58,7 +58,7 @@ Route::prefix('/admin')->group(function(){
 // organizer
 Route::prefix('/organizer')->middleware(['role:organizer'])->group(function(){
     Route::get('/',function(){
-        redirect('/organizer/dashboard');
+        return redirect('/organizer/dashboard');
     });
     Route::get('/dashboard',[OrganizerController::class,'dashboard']);
     Route::get('/event',[OrganizerController::class,'eventIndex']);
