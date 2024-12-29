@@ -5,195 +5,186 @@
 <!-- Include Simple-DataTables Library -->
 <script src="https://cdn.jsdelivr.net/npm/simple-datatables@9.0.3"></script>
 
+<div class="mb-4">
+    <button type="submit" data-modal-target="tambah" data-modal-toggle="tambah" class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
+        Tambah Data
+    </button>
+</div>
 
-    <table id="export-table">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-                <th scope="col" class="px-6 py-3">
-                    <span class="flex items-center">
-                        Name
-                        <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4" />
-                        </svg>
-                    </span>
-                </th>
-                <th scope="col" class="px-6 py-3" data-type="date" data-format="YYYY/DD/MM">
-                    <span class="flex items-center">
-                        Email
-                        <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4" />
-                        </svg>
-                    </span>
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    <span class="flex items-center">
-                        Profile
-                        <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4" />
-                        </svg>
-                    </span>
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    <span class="flex items-center">
-                        Aksi
-                    </span>
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
-                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Flowbite</td>
-                <td>participant@gmail.com</td>
-                <td>img</td>
-                <td class="px-6 py-4">
-                    {{-- CRUD Dropdown Button WITH MODAL --}}
-                        {{-- DropDown --}}
-                        <button id="dropdownMenuIconHorizontalButton" data-dropdown-toggle="dropdownDotsHorizontal" class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-900 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none dark:text-white focus:ring-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-600" type="button">
-                        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
-                            <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"/>
-                        </svg>
-                        </button>
-
-                        <!-- Dropdown menu -->
-                        <div id="dropdownDotsHorizontal" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
-                            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownMenuIconHorizontalButton">
-                            <li>
-                                <p data-modal-target="edit" data-modal-toggle="edit" class="block text-black hover:bg-yellow-200 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
-                                    Edit
-                                </p>
-                            </li>
-                            <li>
-                                <p data-modal-target="delete" data-modal-toggle="delete" class="block text-black hover:bg-red-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
-                                    Hapus
-                                </p>
-                            </li>
-                            </ul>
-                        </div>
-                        {{-- End DropDown --}}
-                </td>
-            </tr>
-            <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
-                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">React</td>
-                <td>email@gmail.com</td>
-                <td>img.jpg</td>
-                <td>24%</td>
-            </tr>
-            <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
-                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Angular</td>
-                <td>2010/20/09</td>
-                <td>2800000</td>
-                <td>17%</td>
-            </tr>
-            <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
-                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Vue</td>
-                <td>2014/12/02</td>
-                <td>3600000</td>
-                <td>30%</td>
-            </tr>
-            <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
-                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Svelte</td>
-                <td>2016/26/11</td>
-                <td>1200000</td>
-                <td>57%</td>
-            </tr>
-            <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
-                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Ember</td>
-                <td>2011/08/12</td>
-                <td>500000</td>
-                <td>44%</td>
-            </tr>
-            <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
-                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Backbone</td>
-                <td>2010/13/10</td>
-                <td>300000</td>
-                <td>9%</td>
-            </tr>
-            <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
-                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">jQuery</td>
-                <td>2006/28/01</td>
-                <td>6000000</td>
-                <td>5%</td>
-            </tr>
-            <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
-                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Bootstrap</td>
-                <td>2011/19/08</td>
-                <td>1800000</td>
-                <td>12%</td>
-            </tr>
-            <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
-                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Foundation</td>
-                <td>2011/23/09</td>
-                <td>700000</td>
-                <td>8%</td>
-            </tr>
-            <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
-                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Bulma</td>
-                <td>2016/24/10</td>
-                <td>500000</td>
-                <td>7%</td>
-            </tr>
-            <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
-                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Next.js</td>
-                <td>2016/25/10</td>
-                <td>2300000</td>
-                <td>45%</td>
-            </tr>
-            <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
-                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Nuxt.js</td>
-                <td>2016/16/10</td>
-                <td>900000</td>
-                <td>50%</td>
-            </tr>
-            <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
-                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Meteor</td>
-                <td>2012/17/01</td>
-                <td>1000000</td>
-                <td>10%</td>
-            </tr>
-            <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
-                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Aurelia</td>
-                <td>2015/08/07</td>
-                <td>200000</td>
-                <td>20%</td>
-            </tr>
-            <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
-                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Inferno</td>
-                <td>2016/27/09</td>
-                <td>100000</td>
-                <td>35%</td>
-            </tr>
-            <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
-                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Preact</td>
-                <td>2015/16/08</td>
-                <td>600000</td>
-                <td>28%</td>
-            </tr>
-            <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
-                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Lit</td>
-                <td>2018/28/05</td>
-                <td>400000</td>
-                <td>60%</td>
-            </tr>
-            <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
-                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Alpine.js</td>
-                <td>2019/02/11</td>
-                <td>300000</td>
-                <td>70%</td>
-            </tr>
-            <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
-                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Stimulus</td>
-                <td>2018/06/03</td>
-                <td>150000</td>
-                <td>25%</td>
-            </tr>
-            <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
-                <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Solid</td>
-                <td>2021/05/07</td>
-                <td>250000</td>
-                <td>80%</td>
-            </tr>
-        </tbody>
-    </table>
+<table id="selection-table">
+    <thead>
+        <tr>
+            <th>
+                <span class="flex items-center">
+                    Name
+                    <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4"/>
+                    </svg>
+                </span>
+            </th>
+            <th data-type="date" data-format="YYYY/DD/MM">
+                <span class="flex items-center">
+                    Email
+                    <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4"/>
+                    </svg>
+                </span>
+            </th>
+            <th>
+                <span class="flex items-center">
+                    Profile
+                    <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4"/>
+                    </svg>
+                </span>
+            </th>
+            <th>
+                <span class="flex items-center">
+                    Aksi
+                    <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4"/>
+                    </svg>
+                </span>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
+            <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Flowbite</td>
+            <td>2021/25/09</td>
+            <td>269000</td>
+            <td>
+                <button type="button" data-modal-target="edit" data-modal-toggle="edit" class="focus:outline-none text-white bg-yellow-500 hover:bg-yellow-800 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">
+                    Edit
+                </button>
+                <button type="button" class="focus:outline-none text-white bg-red-500 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800" onclick="return confirm('Apakah anda ingin menghapus akun ini?')">
+                    Hapus
+                </button>
+            </td>
+        </tr>
+        <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
+            <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">React</td>
+            <td>2013/24/05</td>
+            <td>4500000</td>
+            <td>24%</td>
+        </tr>
+        <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
+            <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Angular</td>
+            <td>2010/20/09</td>
+            <td>2800000</td>
+            <td>17%</td>
+        </tr>
+        <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
+            <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Vue</td>
+            <td>2014/12/02</td>
+            <td>3600000</td>
+            <td>30%</td>
+        </tr>
+        <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
+            <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Svelte</td>
+            <td>2016/26/11</td>
+            <td>1200000</td>
+            <td>57%</td>
+        </tr>
+        <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
+            <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Ember</td>
+            <td>2011/08/12</td>
+            <td>500000</td>
+            <td>44%</td>
+        </tr>
+        <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
+            <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Backbone</td>
+            <td>2010/13/10</td>
+            <td>300000</td>
+            <td>9%</td>
+        </tr>
+        <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
+            <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">jQuery</td>
+            <td>2006/28/01</td>
+            <td>6000000</td>
+            <td>5%</td>
+        </tr>
+        <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
+            <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Bootstrap</td>
+            <td>2011/19/08</td>
+            <td>1800000</td>
+            <td>12%</td>
+        </tr>
+        <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
+            <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Foundation</td>
+            <td>2011/23/09</td>
+            <td>700000</td>
+            <td>8%</td>
+        </tr>
+        <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
+            <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Bulma</td>
+            <td>2016/24/10</td>
+            <td>500000</td>
+            <td>7%</td>
+        </tr>
+        <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
+            <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Next.js</td>
+            <td>2016/25/10</td>
+            <td>2300000</td>
+            <td>45%</td>
+        </tr>
+        <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
+            <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Nuxt.js</td>
+            <td>2016/16/10</td>
+            <td>900000</td>
+            <td>50%</td>
+        </tr>
+        <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
+            <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Meteor</td>
+            <td>2012/17/01</td>
+            <td>1000000</td>
+            <td>10%</td>
+        </tr>
+        <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
+            <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Aurelia</td>
+            <td>2015/08/07</td>
+            <td>200000</td>
+            <td>20%</td>
+        </tr>
+        <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
+            <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Inferno</td>
+            <td>2016/27/09</td>
+            <td>100000</td>
+            <td>35%</td>
+        </tr>
+        <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
+            <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Preact</td>
+            <td>2015/16/08</td>
+            <td>600000</td>
+            <td>28%</td>
+        </tr>
+        <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
+            <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Lit</td>
+            <td>2018/28/05</td>
+            <td>400000</td>
+            <td>60%</td>
+        </tr>
+        <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
+            <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Alpine.js</td>
+            <td>2019/02/11</td>
+            <td>300000</td>
+            <td>70%</td>
+        </tr>
+        <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
+            <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Stimulus</td>
+            <td>2018/06/03</td>
+            <td>150000</td>
+            <td>25%</td>
+        </tr>
+        <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
+            <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Solid</td>
+            <td>2021/05/07</td>
+            <td>250000</td>
+            <td>80%</td>
+        </tr>
+    </tbody>
+</table>
 
     {{-- Start Modal Tambah --}}
     <div id="tambah" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -203,9 +194,9 @@
                 <!-- Modal header -->
                 <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                     <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                        tambah Akun
+                        Tambah Akun
                     </h3>
-                    <button type="button" class="end-2.5 text-red-400 bg-transparent hover:bg-red-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="tambah">
+                    <button type="button" class="end-2.5 text-yellow-400 bg-transparent hover:bg-yellow-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="tambah">
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
                         </svg>
@@ -247,7 +238,7 @@
                     <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
                         Edit Akun
                     </h3>
-                    <button type="button" class="end-2.5 text-red-400 bg-transparent hover:bg-red-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="edit">
+                    <button type="button" class="end-2.5 text-yellow-400 bg-transparent hover:bg-yellow-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="edit">
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
                         </svg>
@@ -280,172 +271,72 @@
     {{-- End Modal Edit --}}
 
 
-    {{-- Start Modal Delete --}}
-    <div id="delete" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-        <div class="relative p-4 w-full max-w-md max-h-full">
-            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                <button type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="delete">
-                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                    </svg>
-                    <span class="sr-only">Close modal</span>
-                </button>
-                <div class="p-4 md:p-5 text-center">
-                    <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
-                    </svg>
-                    <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Apakah kamu ingin menghapus akun?</h3>
-                    <button data-modal-hide="delete" type="button" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
-                        Ya, hapus akun
-                    </button>
-                    <button data-modal-hide="delete" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-green-900 focus:outline-none bg-green rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-green-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
-                        Tidak
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    {{-- End Modal Delete --}}
-
     <!-- Script Table -->
     <script>
 
+    if (document.getElementById("selection-table") && typeof simpleDatatables.DataTable !== 'undefined') {
 
-    if (document.getElementById("export-table") && typeof simpleDatatables.DataTable !== 'undefined') {
+    let multiSelect = true;
+    let rowNavigation = false;
+    let table = null;
 
-    const exportCustomCSV = function(dataTable, userOptions = {}) {
-        // A modified CSV export that includes a row of minuses at the start and end.
-        const clonedUserOptions = {
-            ...userOptions
+    const resetTable = function() {
+        if (table) {
+            table.destroy();
         }
-        clonedUserOptions.download = false
-        const csv = simpleDatatables.exportCSV(dataTable, clonedUserOptions)
-        // If CSV didn't work, exit.
-        if (!csv) {
-            return false
-        }
-        const defaults = {
-            download: true,
-            lineDelimiter: "\n",
-            columnDelimiter: ";"
-        }
+
         const options = {
-            ...defaults,
-            ...clonedUserOptions
-        }
-        const separatorRow = Array(dataTable.data.headings.filter((_heading, index) => !dataTable.columns.settings[index]?.hidden).length)
-            .fill("+")
-            .join("+"); // Use "+" as the delimiter
-
-        const str = separatorRow + options.lineDelimiter + csv + options.lineDelimiter + separatorRow;
-
-        if (userOptions.download) {
-            // Create a link to trigger the download
-            const link = document.createElement("a");
-            link.href = encodeURI("data:text/csv;charset=utf-8," + str);
-            link.download = (options.filename || "datatable_export") + ".txt";
-            // Append the link
-            document.body.appendChild(link);
-            // Trigger the download
-            link.click();
-            // Remove the link
-            document.body.removeChild(link);
+            rowRender: (row, tr, _index) => {
+                if (!tr.attributes) {
+                    tr.attributes = {};
+                }
+                if (!tr.attributes.class) {
+                    tr.attributes.class = "";
+                }
+                if (row.selected) {
+                    tr.attributes.class += " selected";
+                } else {
+                    tr.attributes.class = tr.attributes.class.replace(" selected", "");
+                }
+                return tr;
+            }
+        };
+        if (rowNavigation) {
+            options.rowNavigation = true;
+            options.tabIndex = 1;
         }
 
-        return str
+        table = new simpleDatatables.DataTable("#selection-table", options);
+
+        // Mark all rows as unselected
+        table.data.data.forEach(data => {
+            data.selected = false;
+        });
+
+        table.on("datatable.selectrow", (rowIndex, event) => {
+            event.preventDefault();
+            const row = table.data.data[rowIndex];
+            if (row.selected) {
+                row.selected = false;
+            } else {
+                if (!multiSelect) {
+                    table.data.data.forEach(data => {
+                        data.selected = false;
+                    });
+                }
+                row.selected = true;
+            }
+            table.update();
+        });
+    };
+
+    // Row navigation makes no sense on mobile, so we deactivate it and hide the checkbox.
+    const isMobile = window.matchMedia("(any-pointer:coarse)").matches;
+    if (isMobile) {
+        rowNavigation = false;
     }
-    const table = new simpleDatatables.DataTable("#export-table", {
-        template: (options, dom) => "<div class='" + options.classes.top + "'>" +
-            "<div class='flex flex-col sm:flex-row sm:items-center space-y-4 sm:space-y-0 sm:space-x-3 rtl:space-x-reverse w-full sm:w-auto'>" +
-            (options.paging && options.perPageSelect ?
-                "<div class='" + options.classes.dropdown + "'>" +
-                    "<label>" +
-                        "<select class='" + options.classes.selector + "'></select> " + options.labels.perPage +
-                    "</label>" +
-                "</div>" : ""
-            ) + "<button id='exportDropdownButton' type='button' color-green data-modal-target='tambah' data-modal-toggle='tambah' class='flex w-full items-center justify-center rounded-lg border border-green-200 bg-green px-3 py-2 text-sm font-medium text-green-900 hover:bg-green-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:green-4 focus:ring-green-100 dark:border-green-600 dark:bg-green-800 dark:text-green-400 dark:hover:bg-green-700 dark:hover:text-white dark:focus:ring-green-700 sm:w-auto'>" +
-            "Tambah Data" +
-        "</button>" +
-        "<div id='exportDropdown' class='z-10 hidden w-52 divide-y divide-gray-100 rounded-lg bg-white shadow dark:bg-gray-700' data-popper-placement='bottom'>" +
-            "<ul class='p-2 text-left text-sm font-medium text-gray-500 dark:text-gray-400' aria-labelledby='exportDropdownButton'>" +
-                "<li>" +
-                    "<button id='export-csv' class='group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white'>" +
-                        "<svg class='me-1.5 h-4 w-4 text-gray-400 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white' aria-hidden='true' xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='currentColor' viewBox='0 0 24 24'>" +
-                            "<path fill-rule='evenodd' d='M9 2.221V7H4.221a2 2 0 0 1 .365-.5L8.5 2.586A2 2 0 0 1 9 2.22ZM11 2v5a2 2 0 0 1-2 2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2 2 2 0 0 0 2 2h12a2 2 0 0 0 2-2 2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2V4a2 2 0 0 0-2-2h-7Zm1.018 8.828a2.34 2.34 0 0 0-2.373 2.13v.008a2.32 2.32 0 0 0 2.06 2.497l.535.059a.993.993 0 0 0 .136.006.272.272 0 0 1 .263.367l-.008.02a.377.377 0 0 1-.018.044.49.49 0 0 1-.078.02 1.689 1.689 0 0 1-.297.021h-1.13a1 1 0 1 0 0 2h1.13c.417 0 .892-.05 1.324-.279.47-.248.78-.648.953-1.134a2.272 2.272 0 0 0-2.115-3.06l-.478-.052a.32.32 0 0 1-.285-.341.34.34 0 0 1 .344-.306l.94.02a1 1 0 1 0 .043-2l-.943-.02h-.003Zm7.933 1.482a1 1 0 1 0-1.902-.62l-.57 1.747-.522-1.726a1 1 0 0 0-1.914.578l1.443 4.773a1 1 0 0 0 1.908.021l1.557-4.773Zm-13.762.88a.647.647 0 0 1 .458-.19h1.018a1 1 0 1 0 0-2H6.647A2.647 2.647 0 0 0 4 13.647v1.706A2.647 2.647 0 0 0 6.647 18h1.018a1 1 0 1 0 0-2H6.647A.647.647 0 0 1 6 15.353v-1.706c0-.172.068-.336.19-.457Z' clip-rule='evenodd'/>" +
-                        "</svg>" +
-                        "<span>Export CSV</span>" +
-                    "</button>" +
-                "</li>" +
-                "<li>" +
-                    "<button id='export-json' class='group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white'>" +
-                        "<svg class='me-1.5 h-4 w-4 text-gray-400 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white' aria-hidden='true' xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='currentColor' viewBox='0 0 24 24'>" +
-                            "<path fill-rule='evenodd' d='M9 2.221V7H4.221a2 2 0 0 1 .365-.5L8.5 2.586A2 2 0 0 1 9 2.22ZM11 2v5a2 2 0 0 1-2 2H4v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-7Zm-.293 9.293a1 1 0 0 1 0 1.414L9.414 14l1.293 1.293a1 1 0 0 1-1.414 1.414l-2-2a1 1 0 0 1 0-1.414l2-2a1 1 0 0 1 1.414 0Zm2.586 1.414a1 1 0 0 1 1.414-1.414l2 2a1 1 0 0 1 0 1.414l-2 2a1 1 0 0 1-1.414-1.414L14.586 14l-1.293-1.293Z' clip-rule='evenodd'/>" +
-                        "</svg>" +
-                        "<span>Export JSON</span>" +
-                    "</button>" +
-                "</li>" +
-                "<li>" +
-                    "<button id='export-txt' class='group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white'>" +
-                        "<svg class='me-1.5 h-4 w-4 text-gray-400 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white' aria-hidden='true' xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='currentColor' viewBox='0 0 24 24'>" +
-                            "<path fill-rule='evenodd' d='M9 2.221V7H4.221a2 2 0 0 1 .365-.5L8.5 2.586A2 2 0 0 1 9 2.22ZM11 2v5a2 2 0 0 1-2 2H4v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-7ZM8 16a1 1 0 0 1 1-1h6a1 1 0 1 1 0 2H9a1 1 0 0 1-1-1Zm1-5a1 1 0 1 0 0 2h6a1 1 0 1 0 0-2H9Z' clip-rule='evenodd'/>" +
-                        "</svg>" +
-                        "<span>Export TXT</span>" +
-                    "</button>" +
-                "</li>" +
-                "<li>" +
-                    "<button id='export-sql' class='group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white'>" +
-                        "<svg class='me-1.5 h-4 w-4 text-gray-400 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white' aria-hidden='true' xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='currentColor' viewBox='0 0 24 24'>" +
-                            "<path d='M12 7.205c4.418 0 8-1.165 8-2.602C20 3.165 16.418 2 12 2S4 3.165 4 4.603c0 1.437 3.582 2.602 8 2.602ZM12 22c4.963 0 8-1.686 8-2.603v-4.404c-.052.032-.112.06-.165.09a7.75 7.75 0 0 1-.745.387c-.193.088-.394.173-.6.253-.063.024-.124.05-.189.073a18.934 18.934 0 0 1-6.3.998c-2.135.027-4.26-.31-6.3-.998-.065-.024-.126-.05-.189-.073a10.143 10.143 0 0 1-.852-.373 7.75 7.75 0 0 1-.493-.267c-.053-.03-.113-.058-.165-.09v4.404C4 20.315 7.037 22 12 22Zm7.09-13.928a9.91 9.91 0 0 1-.6.253c-.063.025-.124.05-.189.074a18.935 18.935 0 0 1-6.3.998c-2.135.027-4.26-.31-6.3-.998-.065-.024-.126-.05-.189-.074a10.163 10.163 0 0 1-.852-.372 7.816 7.816 0 0 1-.493-.268c-.055-.03-.115-.058-.167-.09V12c0 .917 3.037 2.603 8 2.603s8-1.686 8-2.603V7.596c-.052.031-.112.059-.165.09a7.816 7.816 0 0 1-.745.386Z'/>" +
-                        "</svg>" +
-                        "<span>Export SQL</span>" +
-                    "</button>" +
-                "</li>" +
-            "</ul>" +
-        "</div>" + "</div>" +
-            (options.searchable ?
-                "<div class='" + options.classes.search + "'>" +
-                    "<input class='" + options.classes.input + "' placeholder='" + options.labels.placeholder + "' type='search' title='" + options.labels.searchTitle + "'" + (dom.id ? " aria-controls='" + dom.id + "'" : "") + ">" +
-                "</div>" : ""
-            ) +
-        "</div>" +
-        "<div class='" + options.classes.container + "'" + (options.scrollY.length ? " style='height: " + options.scrollY + "; overflow-Y: auto;'" : "") + "></div>" +
-        "<div class='" + options.classes.bottom + "'>" +
-            (options.paging ?
-                "<div class='" + options.classes.info + "'></div>" : ""
-            ) +
-            "<nav class='" + options.classes.pagination + "'></nav>" +
-        "</div>"
 
-    })
-    const $exportButton = document.getElementById("exportDropdownButton");
-    const $exportDropdownEl = document.getElementById("exportDropdown");
-    const dropdown = new Dropdown($exportDropdownEl, $exportButton);
-    console.log(dropdown)
-
-    document.getElementById("export-csv").addEventListener("click", () => {
-        simpleDatatables.exportCSV(table, {
-            download: true,
-            lineDelimiter: "\n",
-            columnDelimiter: ";"
-        })
-    })
-    document.getElementById("export-sql").addEventListener("click", () => {
-        simpleDatatables.exportSQL(table, {
-            download: true,
-            tableName: "export_table"
-        })
-    })
-    document.getElementById("export-txt").addEventListener("click", () => {
-        simpleDatatables.exportTXT(table, {
-            download: true
-        })
-    })
-    document.getElementById("export-json").addEventListener("click", () => {
-        simpleDatatables.exportJSON(table, {
-            download: true,
-            space: 3
-        })
-    })
+    resetTable();
     }
 
     </script>
