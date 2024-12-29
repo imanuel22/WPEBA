@@ -35,6 +35,7 @@ Route::prefix('/admin')->group(function(){
     Route::get('/',function(){
         redirect('/admin/dashboard');
     });
+    
     Route::get('/dashboard',[AdminController::class,'dashboard']);
     Route::get('/event',[AdminController::class,'event']);
     Route::get('/tiket', [AdminController::class, 'tiket']);

@@ -164,7 +164,7 @@ class OrganizerController extends Controller
     //information
     function informationIndex($event_id){
         $data = [];
-        $res = Http::withToken(session('token'))->get(config('services.api.url').'/information');
+        $res = Http::get(config('services.api.url').'/information');
         if($res->successful()){
             $json=$res->json();
             $information = collect($json['data'])->where('event_id',$event_id);
@@ -240,7 +240,10 @@ class OrganizerController extends Controller
             $data['ticket'] = $ticket;
         }
         return view('organizer.ticket.index',$data);
+
+
     }
+
 
     function ticketStore(Request $request,$event_id) {
         $validate = $request->validate([
