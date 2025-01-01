@@ -9,5 +9,5 @@ Route::get('/', function () {
 });
 
 Route::get('/event', [GuestController::class,'events']);
-Route::get('/ticket', [GuestController::class, 'tickets']);
+Route::get('/ticket', [GuestController::class,'tickets']);
 Route::get('/landing', [GuestController::class,'landing']);
