@@ -4,17 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Http;
 
-class AdminController extends Controller
+class GuestController extends Controller
 {
-    function dashboard() {
-        return view('admin.dashboard');
+    function landing() {
+        return view('guest.landing');
     }
-
     function tickets() {
-        return view('admin.tiket');
+        return view('guest.ticket');
     }
-    function event() {
-        return view('admin.event');
+    function events() {
+        return view('guest.events');
     }
     // function events() {
     //     $res = Http::get(env('APP_API_URL').'/events');
@@ -22,6 +21,6 @@ class AdminController extends Controller
     //         $json = $res->json();
     //         $data=['events'=>$json['data']];
     //     };
-    //     return view('admin.events.index',$data);
+    //     return view('guest.events.index',$data);
     // }
 }
