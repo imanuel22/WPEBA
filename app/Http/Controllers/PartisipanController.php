@@ -6,7 +6,15 @@ use Illuminate\Http\Request;
 
 class PartisipanController extends Controller
 {
-    function index() {
-        
+    function tickets() {
+        return view('participant.ticket');
     }
+    function events() {
+        return view('participant.events');
+    }
+
+    function dashboard() {
+        return view('participant.dashboard');
+    }
+
 }

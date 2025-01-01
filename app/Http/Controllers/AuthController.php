@@ -16,23 +16,25 @@ class AuthController extends Controller
         $credentials = $request->only(['email', 'password']);
 
         $res=Http::post(env('APP_API_URL').'/login',$credentials);
+        // dd($res->body());
         if ($res->successful()) {
             $json = $res->json();
             $userData=$json['data'];
-       
+
             Session::put([
                 'token'=>$json['token'],
                 'name'=>$userData['name'],
                 'email'=>$userData['email'],
                 'profile'=>$userData['profile'],
                 'role'=>$userData['role'],
+                'id'=>$userData['id'],
             ]);
 
             if($userData['role']=='admin'){
                 return redirect('/admin/dashboard');
             }
             if($userData['role']=='organizer'){
-                return redirect('organizer/dashbord') ;  
+                return redirect('/organizer/dashboard') ;
             }
             if($userData['role']=='partisipan'){
                 return redirect('/user/dashboard');
