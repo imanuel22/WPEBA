@@ -27,6 +27,7 @@
 
         </div>
     </div>
+    {{-- @dd($event) --}}
     <div class="grid grid-cols-1 gap-4 mt-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2">
         @foreach ($event as $row)
             <div class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -34,36 +35,15 @@
                     <div id="gallery" class="relative w-full" data-carousel="slide">
                         <!-- Carousel wrapper -->
                         <div class="relative h-56 overflow-hidden">
-                            <!-- Item 1 -->
-                            <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                                <img src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg"
-                                    class="absolute block h-auto max-w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                                    alt="">
-                            </div>
-                            <!-- Item 2 -->
-                            <div class="hidden duration-700 ease-in-out" data-carousel-item="active">
-                                <img src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg"
-                                    class="absolute block h-auto max-w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                                    alt="">
-                            </div>
-                            <!-- Item 3 -->
-                            <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                                <img src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg"
-                                    class="absolute block h-auto max-w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                                    alt="">
-                            </div>
-                            <!-- Item 4 -->
-                            <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                                <img src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg"
-                                    class="absolute block h-auto max-w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                                    alt="">
-                            </div>
-                            <!-- Item 5 -->
-                            <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                                <img src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-5.jpg"
-                                    class="absolute block h-auto max-w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                                    alt="">
-                            </div>
+                            @if ($row['images'])
+                                @foreach ($row['images'] as $image)
+                                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                                        <img src="{{ env('APP_API_IMG_URL') }}/event/{{ $image['filename'] }}"
+                                            class="absolute block h-auto max-w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                                            alt="{{ $image['filename'] }}">
+                                    </div>
+                                @endforeach
+                            @endif
                         </div>
                     </div>
                 </a>
@@ -88,26 +68,5 @@
                 </div>
             </div>
         @endforeach
-
-
     </div>
-
-    <table>
-        <thead></thead>
-        <tbody>
-            @for ($i=0;$i<=10;$i++)
-                <tr>
-                    <td></td>
-                </tr>
-
-
-                <div class="">
-                    modal
-                </div>
-            @endfor
-        </tbody>
-    </table>
-
-
-    
 @endsection
