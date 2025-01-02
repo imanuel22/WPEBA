@@ -91,4 +91,23 @@
 
 
     </div>
+
+    <table>
+        <thead></thead>
+        <tbody>
+            @for ($i=0;$i<=10;$i++)
+                <tr>
+                    <td></td>
+                </tr>
+
+
+                <div class="">
+                    modal
+                </div>
+            @endfor
+        </tbody>
+    </table>
+
+
+    
 @endsection
