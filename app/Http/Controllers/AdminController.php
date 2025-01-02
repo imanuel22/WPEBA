@@ -11,7 +11,9 @@ class AdminController extends Controller
         
         return view('admin.dashboard');
     }
-    function event() {
+
+    //events
+    function eventIndex() {
         $res = Http::withToken(session('token'))->get(config('services.api.url').'/events');
         if($res->successful()){
             $json = $res->json();
@@ -28,21 +30,107 @@ class AdminController extends Controller
         }
         
     }
-    function dokumentasi() {
-        return view('admin.dokumentasi');
+
+    //category
+    function categoryIndex() {
+        $res = Http::withToken(session('token'))->get(config('services.api.url').'/category');
+        if($res->successful()){
+            $json = $res->json();
+            $data['category']=$json['data'];
+
+        }
+    
+        return view('admin.category.index',$data);
     }
-    function tiket() {
-        return view('admin.tiket');
+    
+    function categoryStore(Request $request) {
+         $validate = $request->validate([
+            'name'=>'nullable|string',
+        ]);
+
+        $res = Http::withToken(session('token'))->post(config('services.api.url').'/category',$validate);
+        if ($res->successful()) {
+            $json = $res->json();
+            return redirect('/admin/category')->with('message',$json['message']);
+        }
+
     }
-    function admins() {
-        return view('admin.admins');
+    function categoryUpdate(Request $request,$id) {
+         $validate = $request->validate([
+            'name'=>'nullable|string'
+        ]);
+
+        $res = Http::withToken(session('token'))->patch(config('services.api.url').'/category/'.$id,$validate);
+        if ($res->successful()) {
+            $json = $res->json();
+            return redirect('/admin/category')->with('message',$json['message']);
+        }
     }
-    function feedbacks() {
-        return view('admin.feedbacks');
+    function  categoryDelete($id)  {
+        $res = Http::withToken(session('token'))->delete(config('services.api.url').'/category/'.$id);
+        if ($res->successful()) {
+            $json = $res->json();
+            return redirect('/admin/category')->with('message',$json['message']);
+        }
+    }
+    
+    
+    //documentation
+    function documentationIndex() {
+        $res = Http::withToken(session('token'))->get(config('services.api.url').'/documentation');
+        if($res->successful()){
+            $json = $res->json();
+            $data['documentation']=$json['data'];
+
+        }
+        return view('admin.dokumentasi',$data);
     }
 
-    //account
-    function accountIndex($role)  {
+    function documentationDelete($id)  {
+        $res = Http::withToken(session('token'))->delete(config('services.api.url').'/documentation/'.$id);
+        if ($res->successful()) {
+            $json = $res->json();
+            return redirect('/admin/documentation')->with('message',$json['message']);
+        }        
+    }
+
+    //ticket
+    function ticketIndex() {
+        $res = Http::withToken(session('token'))->get(config('services.api.url').'/tickets');
+        if($res->successful()){
+            $json = $res->json();
+            $data['ticket']=$json['data'];
+        }
+        return view('admin.tiket',$data);
+    }
+   function ticketDelete($id)  {
+        $res = Http::withToken(session('token'))->delete(config('services.api.url').'/tickets/'.$id);
+        if ($res->successful()) {
+            $json = $res->json();
+            return redirect('/admin/ticket')->with('message',$json['message']);
+        }
+        
+    }
+    //feedback
+    function feedbackIndex() {
+        $res = Http::get(config('services.api.url').'/feedback');
+        if($res->successful()){
+            $json=$res->json();
+            $data['feedback'] = $json['data'];
+        }
+        return view('admin.feedbacks',$data);
+    }
+    function feedbackDelete($id)  {
+        $res = Http::withToken(session('token'))->delete(config('services.api.url').'/feedback/'.$id);
+        if ($res->successful()) {
+            $json = $res->json();
+            return redirect('/admin/feedbacks')->with('message',$json['message']);
+        }
+        
+    }
+
+    //user
+    function userIndex($role)  {
         $data = [];
         if (!$role || !in_array($role, ['admin', 'organizer', 'participant'])) {
             abort(403);
@@ -57,7 +145,7 @@ class AdminController extends Controller
         return view('admin.user.account',$data);
     }
 
-    function accountStore(Request $request)  {
+    function userStore(Request $request)  {
        $validate = $request->validate([
             'name'=>'required|string',
             'profile'=>'required|image|mimes:png,jpg,jpeg',
@@ -74,7 +162,7 @@ class AdminController extends Controller
         } 
     }
     
-    function accountUpdate(Request $request,$id) {
+    function userUpdate(Request $request,$id) {
 
          $validate = $request->validate([
             'name'=>'nullable|string',
@@ -90,19 +178,4 @@ class AdminController extends Controller
     
 
 
-    // function admins_account() {
-    //     $data = [];
-    //     $res = Http::get(config('services.api.url').'/users');
-    //     if($res->successful()){
-    //         $json=$res->json();
-    //         $data['users'] = $json['data'];
-    //     }
-    //     return view('admin.admins_account',$data);
-    // }
-    // function organizer_account() {
-    //     return view('admin.organizer_account');
-    // }
-    // function participant_account() {
-    //     return view('admin.participant_account');
-    // }
 }

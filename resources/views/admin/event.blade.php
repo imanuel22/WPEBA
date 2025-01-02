@@ -50,7 +50,7 @@
                 </th>
                 <th>
                     <span class="flex items-center">
-                        Contact Person
+                        Organizer
                         <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
                             height="24" fill="none" viewBox="0 0 24 24">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -83,12 +83,12 @@
         <tbody>
             @foreach ($events as $row)
                 <tr class="cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800">
-                    <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">Flowbite</td>
-                    <td>event</td>
-                    <td>adda</td>
-                    <td>aa</td>
-                    <td>aa</td>
-                    <td>sajfhakjfh</td>
+                    <td><img src="{{ env('APP_API_IMG_URL') }}/events/{{ $row['image'] }}" alt="{{ $row['title'] }}"></td>
+                    <td>{{ $row['title'] }}</td>
+                    <td>{{ $row['status'] }}</td>
+                    <td>{{ $row['duration'] }}</td>
+                    <td>{{ $row['user']['name'] }}</td>
+                    <td>{{ $row['description'] }}</td>
                     <td>
                         <form action="/admin/event/{{ $row['id'] }}" method="post">
                             @csrf
