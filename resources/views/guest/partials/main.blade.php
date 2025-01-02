@@ -11,12 +11,12 @@
 
 <body>
     <div class="w-full">
-        <div class="absolute">
-            @include('guest.partials.navbarLogin')
+        <div class=" relative">
+            @include('guest.partials.navbar')
         </div>
-        <div class="bg-slate-300 w-screen  ">
-            <div class="">
-                @yield('mainLogin')
+        <div class="bg-slate-300 w-screen  mb-96 ">
+            <div class="s">
+                @yield('main')
             </div>
         </div>
         <div class="sticky top-100vh">

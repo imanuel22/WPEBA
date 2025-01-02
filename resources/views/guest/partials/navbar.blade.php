@@ -1,5 +1,5 @@
     <div class="navbar">
-        <nav class="bg-transparent dark:bg-gray-800 fixed w-full z-20 top-0 start-0 border-gray-200 dark:border-gray-600">
+        <nav class="bg-transparent dark:bg-transparent fixed w-full z-20 top-0 start-0 border-gray-200 dark:border-gray-600">
             <div class="max-w-screen-xl flex  items-center justify-between mx-auto p-4">
                 <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
                     <span class="self-center text-2xl font-semibold whitespace-nowrap text-lime-950 dark:text-lime-500">WEBPBA</span>
@@ -14,6 +14,9 @@
                     </li>
                     <li>
                     <a href="#" class="block py-2 px-3 text-lime-500 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-lime-500 dark:hover:bg-lime-700 dark:hover:text-lime-700 md:dark:hover:bg-transparent">TICKET</a>
+                    </li>
+                    <li>
+                    <a href="#" class="block py-2 px-3 text-lime-500 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-lime-500 dark:hover:bg-lime-700 dark:hover:text-lime-700 md:dark:hover:bg-transparent">LOGIN</a>
                     </li>
                 </ul>
             </div>

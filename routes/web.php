@@ -1,15 +1,12 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GuestController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\OrganizerController;
 
-use App\Http\Controllers\{
-    AdminController,
-    AuthController,
-    OrganizerController,
-    PartisipanController,
-};
-
-Route::get('/',function ()  {
+Route::get('/', function () {
     return view('index');
 });
 
@@ -107,8 +104,20 @@ Route::prefix('/partisipan')->middleware(['role:partisipan'])->group(function(){
     Route::get('/',function(){
         redirect('/partisipan/dashboard');
     });
-    Route::get('/dashboard',[PartisipanController::class,'dashboard']);
+    Route::get('/dashboard',[GuestController::class,'dashborad']);
 });
+
+Route::get('/landing',function ()  {
+    return view('guest.landing');
+});
+
+Route::get('/tickets',function ()  {
+    return view('guest.ticket');
+});
+Route::get('/events',function ()  {
+    return view('guest.events');
+});
+
 
 // Route::prefix('account')->middleware(['role:admin','role:organizer','role:partisipan'])->group(function(){
 //     Route::get('/profile', function () {
