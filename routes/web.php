@@ -41,7 +41,8 @@ Route::prefix('/admin')->middleware(['role:admin'])->group(function(){
     //accounts
     Route::get('/account/{role}',[AdminController::class,'userIndex']);
     Route::patch('/account/{id}',[AdminController::class,'userUpdate']);
-    Route::post('/account',[AdminController::class,'userUpdate']);
+    Route::delete('/account/{id}',[AdminController::class,'userDelete']);
+    Route::post('/account',[AdminController::class,'userStore']);
 
     //feedback
     Route::get('/feedbacks', [AdminController::class, 'feedbackIndex']);

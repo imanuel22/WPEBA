@@ -66,16 +66,19 @@
                 <tr class="cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800">
                     <td class="font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $row['name'] }}</td>
                     <td>{{ $row['email'] }}</td>
-                    <td><img src="{{ env('APP_API_IMG_URL') }}/users/{{ $row['id'] }}" alt="{{ $row['name'] }}"></td>
+                    <td><img class="w-40" src="{{ env('APP_API_IMG_URL') }}/user/{{ $row['profile'] }}"
+                            alt="{{ $row['name'] }}"></td>
                     <td>
                         <button type="button" data-modal-target="edit-{{ $row['id'] }}"
                             data-modal-toggle="edit-{{ $row['id'] }}"
                             class="focus:outline-none text-white bg-yellow-500 hover:bg-yellow-800 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">
                             Edit
                         </button>
-                        <form action="">
-
-                            <button type="button"
+                        <form action="/admin/account/{{ $row['id'] }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <input type="hidden" name="role" value="{{ $row['role'] }}">
+                            <button type="submit"
                                 class="focus:outline-none text-white bg-red-500 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
                                 onclick="return confirm('Apakah anda ingin menghapus akun ini?')">
                                 Hapus
@@ -108,10 +111,11 @@
                             </div>
                             <!-- Modal body -->
                             <div class="p-4 md:p-5">
-                                <form class="space-y-4" method="POST"
-                                    action="/admin/account/{{ request()->route('role') }}/{{ $row['id'] }}">
+                                <form class="space-y-4" method="POST" enctype="multipart/form-data"
+                                    action="/admin/account/{{ $row['id'] }}">
                                     @csrf
                                     @method('PATCH')
+                                    <input type="hidden" name="role" value="{{ request()->route('role') }}">
                                     <div class="mb-3">
                                         <label for="name"
                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama</label>
@@ -173,11 +177,14 @@
                 </div>
                 <!-- Modal body -->
                 <div class="p-4 md:p-5">
-                    <form class="space-y-4" action="#">
+                    <form class="space-y-4" action="/admin/account" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" name="role" value="{{ request()->route('role') }}">
                         <div>
+
                             <label for="name"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama</label>
-                            <input type="name" name="name" id="email"
+                            <input type="text" name="name" id="name"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                 placeholder="nama" required />
                         </div>
@@ -189,13 +196,20 @@
                                 placeholder="email@gmail.com" required />
                         </div>
                         <div>
+                            <label for="password"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">password</label>
+                            <input type="password" name="password" id="password"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                placeholder="password" required />
+                        </div>
+                        <div>
                             <label for="profile" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                                 for="file_input">Foto Profile</label>
                             <input
                                 class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                                id="file_input" type="file">
+                                id="file_input" type="file" name="profile">
                         </div>
-                        <button
+                        <button type="submit"
                             class="text-white inline-flex w-full justify-center bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                             Tambah Akun
                         </button>

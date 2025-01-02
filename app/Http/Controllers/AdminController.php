@@ -150,12 +150,14 @@ class AdminController extends Controller
             'name'=>'required|string',
             'profile'=>'required|image|mimes:png,jpg,jpeg',
             'email'=>'required|email',
+            'password'=>'required',
             'role'=>'required'
         ]);
         
         $res = Http::withToken(session('token'))->attach(
-            'image', file_get_contents($_FILES['image']['tmp_name']), $_FILES['image']['name']
-        )->post(config('services.api.url').'/tickets',$validate);
+            'profile', file_get_contents($_FILES['profile']['tmp_name']), $_FILES['profile']['name']
+        )->post(config('services.api.url').'/users',$validate);
+        
         if ($res->successful()) {
             $json = $res->json();
             return redirect('/admin/account/'.$request->role)->with('message',$json['message']);
@@ -175,7 +177,14 @@ class AdminController extends Controller
             return redirect('/admin/account/'.$request->role)->with('message',$json['message']);
         }
     }
-    
+    function userDelete(Request $request,$id)  {
+        $res = Http::withToken(session('token'))->delete(config('services.api.url').'/users/'.$id);
+        if ($res->successful()) {
+            $json = $res->json();
+            return redirect('/admin/account/'.$request->role)->with('message',$json['message']);
+        }
+        
+    }
 
 
 }
