@@ -30,6 +30,7 @@ class OrganizerController extends Controller
     
     function eventShow($id){
         $data = [];
+
         $res = Http::withToken(session('token'))->get(config('services.api.url').'/events/'.$id);
         if($res->successful()){
             $json=$res->json();
@@ -49,8 +50,7 @@ class OrganizerController extends Controller
         $res = Http::withToken(session('token'))->get(config('services.api.url').'/category');
         if($res->successful()){
             $json=$res->json();
-            $categories = $json['data'];
-            $data['categories'] = $categories;
+            $data['categories'] = $json['data'];
         }else{
             abort(404);
         }
@@ -101,13 +101,11 @@ class OrganizerController extends Controller
 
     // Kirim permintaan POST ke API
     $res = $http->post(config('services.api.url') . '/events');
-    dd($res->body());
     // Tindak lanjut berdasarkan respons
     if ($res->successful()) {
         $json = $res->json();
-        return redirect('/organizer/event')->with('message', $json['message']);
+        return redirect('/organizer/event')->with(['status'=>$json['success'],'message'=> $json['message']]);
     } else {
-        dd($res->body());
         // Jika terjadi error, kembalikan ke halaman sebelumnya dengan pesan error
         return back()->withErrors(['error' => $res->body()])->withInput();
     }
