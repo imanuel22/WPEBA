@@ -91,8 +91,8 @@ Route::prefix('/organizer')->group(function(){
         Route::patch('/registrations/verification/{id}',[OrganizerController::class,'registrationsVerification']);
     });
 });
-// 
-Route::prefix('/partisipan')->middleware(['role:partisipan'])->group(function(){
+// middleware(['role:partisipan'])->
+Route::prefix('/partisipan')->group(function(){
     Route::get('/',function(){
         redirect('/partisipan/dashboard');
     });

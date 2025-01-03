@@ -28,45 +28,65 @@
             <div id="detailed-pricing" class="mx-28 w-2/4 overflow-x-auto">
                 <div class="overflow-hidden min-w-max flex">
                     <div class="ml-10 my-10">
-                        <figure class="relative max-w-sm transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0">
-                            <a href="#">
-                            <img class="rounded-lg" src="{{ asset('storage/img/3.jpeg') }}" alt="image description">
+                        <figure class="relative max-w-sm transition-all duration-300 cursor-pointer filter">
+                            <a >
+                            <img class="rounded-lg w-96 h-96 object-cover" src="{{ asset('storage/img/3.jpeg') }}" alt="image description">
                             </a>
-                            <figcaption class="absolute px-4 text-lg text-lime-500 bottom-6">
-                                <p>JUDUL EVENT NYAA/ DETAIL EVENT</p>
-                            </figcaption>
                         </figure>
                     </div>
-                    <div class="mx-10 my-10">
-                        <figure class="relative max-w-sm transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0">
-                            <a href="#">
-                            <img class="rounded-lg" src="{{ asset('storage/img/3.jpeg') }}" alt="image description">
+                    <div class="ml-10 my-10">
+                        <figure class="relative max-w-sm transition-all duration-300 cursor-pointer filter">
+                            <a >
+                            <img class="rounded-lg w-96 h-96 object-cover" src="{{ asset('storage/img/2.jpeg') }}" alt="image description">
                             </a>
-                            <figcaption class="absolute px-4 text-lg text-lime-500 bottom-6">
-                                <p>JUDUL EVENT NYAA/ DETAIL EVENT</p>
-        
-                            </figcaption>
+                        </figure>
+                    </div><div class="ml-10 my-10">
+                        <figure class="relative max-w-sm transition-all duration-300 cursor-pointer filter">
+                            <a >
+                            <img class="rounded-lg w-96 h-96 object-cover" src="{{ asset('storage/img/4.jpeg') }}" alt="image description">
+                            </a>
                         </figure>
                     </div>
-                    <div class="mr-10 my-10">
-                        <figure class="relative max-w-sm transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0">
-                            <a href="#">
-                            <img class="rounded-lg" src="{{ asset('storage/img/3.jpeg') }}" alt="image description">
+                    <div class="ml-10 my-10">
+                        <figure class="relative max-w-sm transition-all duration-300 cursor-pointer filter">
+                            <a >
+                            <img class="rounded-lg w-96 h-96 object-cover" src="{{ asset('storage/img/3.jpeg') }}" alt="image description">
                             </a>
-                            <figcaption class="absolute px-4 text-lg text-lime-500 bottom-6">
-                                <p>JUDUL EVENT NYAA/ DETAIL EVENT</p>
-        
-                            </figcaption>
                         </figure>
                     </div>
-                    <div class="my-10">
-                        <figure class="relative max-w-sm transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0">
-                            <a href="#">
-                            <img class="rounded-lg" src="{{ asset('storage/img/3.jpeg') }}" alt="image description">
+                    <div class="ml-10 my-10">
+                        <figure class="relative max-w-sm transition-all duration-300 cursor-pointer filter">
+                            <a >
+                            <img class="rounded-lg w-96 h-96 object-cover" src="{{ asset('storage/img/2.jpeg') }}" alt="image description">
                             </a>
-                            <figcaption class="absolute px-4 text-lg text-lime-500 bottom-6">
-                                <p>JUDUL EVENT NYAA/ DETAIL EVENT</p>
-                            </figcaption>
+                        </figure>
+                    </div>
+                    <div class="ml-10 my-10">
+                        <figure class="relative max-w-sm transition-all duration-300 cursor-pointer filter">
+                            <a >
+                            <img class="rounded-lg w-96 h-96 object-cover" src="{{ asset('storage/img/1.jpg') }}" alt="image description">
+                            </a>
+                        </figure>
+                    </div>
+                    <div class="ml-10 my-10">
+                        <figure class="relative max-w-sm transition-all duration-300 cursor-pointer filter">
+                            <a >
+                            <img class="rounded-lg w-96 h-96 object-cover" src="{{ asset('storage/img/4.jpeg') }}" alt="image description">
+                            </a>
+                        </figure>
+                    </div>
+                    <div class="ml-10 my-10">
+                        <figure class="relative max-w-sm transition-all duration-300 cursor-pointer filter">
+                            <a >
+                            <img class="rounded-lg w-96 h-96 object-cover" src="{{ asset('storage/img/3.jpeg') }}" alt="image description">
+                            </a>
+                        </figure>
+                    </div>
+                    <div class="ml-10 my-10">
+                        <figure class="relative max-w-sm transition-all duration-300 cursor-pointer filter">
+                            <a >
+                            <img class="rounded-lg w-96 h-96 object-cover" src="{{ asset('storage/img/2.jpeg') }}" alt="image description">
+                            </a>
                         </figure>
                     </div>
                 </div>
@@ -155,7 +175,7 @@
         {{-- <div class="flex ">
             <div class="ml-28 my-10">
                 <figure class="relative max-w-sm transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0">
-                    <a href="#">
+                    <a >
                     <img class="rounded-lg" src="{{ asset('storage/img/3.jpeg') }}" alt="image description">
                     </a>
                     <figcaption class="absolute px-4 text-lg text-lime-500 bottom-6">

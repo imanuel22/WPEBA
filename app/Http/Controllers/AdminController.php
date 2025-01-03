@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Http;
 class AdminController extends Controller
 {
     function dashboard() {
-        
+
         return view('admin.dashboard');
     }
 
@@ -28,7 +28,7 @@ class AdminController extends Controller
             $json = $res->json();
             return redirect('/admin/event')->with('message',$json['message']);
         }
-        
+
     }
 
     //category
@@ -39,10 +39,10 @@ class AdminController extends Controller
             $data['category']=$json['data'];
 
         }
-    
+
         return view('admin.category.index',$data);
     }
-    
+
     function categoryStore(Request $request) {
          $validate = $request->validate([
             'name'=>'nullable|string',
@@ -73,8 +73,8 @@ class AdminController extends Controller
             return redirect('/admin/category')->with('message',$json['message']);
         }
     }
-    
-    
+
+
     //documentation
     function documentationIndex() {
         $res = Http::withToken(session('token'))->get(config('services.api.url').'/documentation');
@@ -91,7 +91,7 @@ class AdminController extends Controller
         if ($res->successful()) {
             $json = $res->json();
             return redirect('/admin/documentation')->with('message',$json['message']);
-        }        
+        }
     }
 
     //ticket
@@ -109,7 +109,7 @@ class AdminController extends Controller
             $json = $res->json();
             return redirect('/admin/ticket')->with('message',$json['message']);
         }
-        
+
     }
     //feedback
     function feedbackIndex() {
@@ -126,7 +126,7 @@ class AdminController extends Controller
             $json = $res->json();
             return redirect('/admin/feedbacks')->with('message',$json['message']);
         }
-        
+
     }
 
     //user
@@ -146,23 +146,26 @@ class AdminController extends Controller
     }
 
     function userStore(Request $request)  {
+
        $validate = $request->validate([
             'name'=>'required|string',
             'profile'=>'required|image|mimes:png,jpg,jpeg',
             'email'=>'required|email',
             'password'=>'required',
             'role'=>'required'
+
         ]);
-        
+
         $res = Http::withToken(session('token'))->attach(
             'profile', file_get_contents($_FILES['profile']['tmp_name']), $_FILES['profile']['name']
         )->post(config('services.api.url').'/users',$validate);
         if ($res->successful()) {
             $json = $res->json();
             return redirect('/admin/account/'.$request->role)->with('message',$json['message']);
-        } 
+        }
+        
     }
-    
+
     function userUpdate(Request $request,$id) {
 
          $validate = $request->validate([
@@ -182,7 +185,7 @@ class AdminController extends Controller
             $json = $res->json();
             return redirect('/admin/account/'.$request->role)->with('message',$json['message']);
         }
-        
+
     }
 
 

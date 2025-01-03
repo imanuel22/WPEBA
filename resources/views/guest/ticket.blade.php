@@ -33,7 +33,7 @@
                             <figure
                                 class="relative max-w-sm transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0">
                                 <div>
-                                    <img class="rounded-lg"
+                                    <img class="rounded-lg w-96 h-96 object-cover"
                                         src="{{ env('APP_API_IMG_URL') }}/documentations/{{ $documentations['image'] }}"
                                         alt="image description">
                                 </div>
