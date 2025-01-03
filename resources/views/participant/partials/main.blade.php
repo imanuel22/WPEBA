@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <div class="w-full">
+    <div class="w-screen mx-auto">
         <div class="absolute">
             @include('participant.partials.navbar')
         </div>

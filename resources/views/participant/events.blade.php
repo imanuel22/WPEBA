@@ -1,11 +1,11 @@
 @extends('participant.partials.main')
 
 @section('main')
-    <div class="mt-20 mx-20 py-10 grid grid-cols-4 md:grid-cols-4 gap-10    ">
+    <div class=" mx-20 pt-20 py-10 grid grid-cols-4 md:grid-cols-4 gap-10 relative   ">
         <div class="p-0">
             <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <a href="#">
-                    <img class="rounded-t-lg" src="{{ asset('storage/img/1.jpg') }}" alt="" />
+                    <img class="rounded-t-lg w-96 h-64 object-cover w-96 h-64 object-cover" src="{{ asset('storage/img/2.jpeg') }}" alt="" />
                 </a>
                 <div class="p-5">
                     <a href="#">
@@ -24,7 +24,7 @@
         <div class="">
             <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <a href="#">
-                    <img class="rounded-t-lg" src="{{ asset('storage/img/1.jpg') }}" alt="" />
+                    <img class="rounded-t-lg w-96 h-64 object-cover" src="{{ asset('storage/img/1.jpg') }}" alt="" />
                 </a>
                 <div class="p-5">
                     <a href="#">
@@ -43,7 +43,7 @@
         <div class="">
             <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <a href="#">
-                    <img class="rounded-t-lg" src="{{ asset('storage/img/1.jpg') }}" alt="" />
+                    <img class="rounded-t-lg w-96 h-64 object-cover" src="{{ asset('storage/img/4.jpeg') }}" alt="" />
                 </a>
                 <div class="p-5">
                     <a href="#">
@@ -62,7 +62,7 @@
         <div class="">
             <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <a href="">
-                    <img class="rounded-t-lg" src="{{ asset('storage/img/1.jpg') }}" alt="" />
+                    <img class="rounded-t-lg w-96 h-64 object-cover" src="{{ asset('storage/img/1.jpg') }}" alt="" />
                 </a>
                 <div class="p-5">
                     <a href="#">
@@ -81,7 +81,7 @@
         <div class="">
             <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <a href="#">
-                    <img class="rounded-t-lg" src="{{ asset('storage/img/1.jpg') }}" alt="" />
+                    <img class="rounded-t-lg w-96 h-64 object-cover" src="{{ asset('storage/img/3.jpeg') }}" alt="" />
                 </a>
                 <div class="p-5">
                     <a href="#">
@@ -100,7 +100,7 @@
         <div class="">
             <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <a href="#">
-                    <img class="rounded-t-lg" src="{{ asset('storage/img/1.jpg') }}" alt="" />
+                    <img class="rounded-t-lg w-96 h-64 object-cover" src="{{ asset('storage/img/2.jpeg') }}" alt="" />
                 </a>
                 <div class="p-5">
                     <a href="#">
@@ -119,7 +119,7 @@
         <div class="">
             <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <a href="#">
-                    <img class="rounded-t-lg" src="{{ asset('storage/img/1.jpg') }}" alt="" />
+                    <img class="rounded-t-lg w-96 h-64 object-cover" src="{{ asset('storage/img/1.jpeg') }}" alt="" />
                 </a>
                 <div class="p-5">
                     <a href="#">
@@ -138,7 +138,7 @@
         <div class="">
             <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <a href="#">
-                    <img class="rounded-t-lg" src="{{ asset('storage/img/1.jpg') }}" alt="" />
+                    <img class="rounded-t-lg w-96 h-64 object-cover" src="{{ asset('storage/img/4.jpeg') }}" alt="" />
                 </a>
                 <div class="p-5">
                     <a href="#">
@@ -157,7 +157,7 @@
         <div class="">
             <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <a href="#">
-                    <img class="rounded-t-lg" src="{{ asset('storage/img/1.jpg') }}" alt="" />
+                    <img class="rounded-t-lg w-96 h-64 object-cover" src="{{ asset('storage/img/3.jpeg') }}" alt="" />
                 </a>
                 <div class="p-5">
                     <a href="#">
@@ -176,7 +176,7 @@
         <div class="">
             <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <a href="#">
-                    <img class="rounded-t-lg" src="{{ asset('storage/img/1.jpg') }}" alt="" />
+                    <img class="rounded-t-lg w-96 h-64 object-cover" src="{{ asset('storage/img/1.jpg') }}" alt="" />
                 </a>
                 <div class="p-5">
                     <a href="#">
@@ -195,7 +195,7 @@
         <div class="">
             <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <a href="#">
-                    <img class="rounded-t-lg" src="{{ asset('storage/img/1.jpg') }}" alt="" />
+                    <img class="rounded-t-lg w-96 h-64 object-cover" src="{{ asset('storage/img/2.jpeg') }}" alt="" />
                 </a>
                 <div class="p-5">
                     <a href="#">
@@ -214,7 +214,7 @@
         <div class="">
             <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <a href="#">
-                    <img class="rounded-t-lg" src="{{ asset('storage/img/1.jpg') }}" alt="" />
+                    <img class="rounded-t-lg w-96 h-64 object-cover" src="{{ asset('storage/img/1.jpeg') }}" alt="" />
                 </a>
                 <div class="p-5">
                     <a href="#">
