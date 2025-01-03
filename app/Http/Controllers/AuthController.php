@@ -40,7 +40,7 @@ class AuthController extends Controller
                 return redirect('/user/dashboard');
             }
         }else{
-
+dd($res->body());
         }
     }
 }
