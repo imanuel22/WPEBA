@@ -12,15 +12,15 @@
 <body>
     <div class="w-full">
         <div class="absolute">
-            @include('guest.partials.navbarLogin')
+            @include('participant.partials.navbar')
         </div>
         <div class="bg-slate-300 w-screen  ">
             <div class="">
-                @yield('mainLogin')
+                @yield('main')
             </div>
         </div>
         <div class="sticky top-100vh">
-            @include('guest.partials.footer')
+            @include('participant.partials.footer')
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>

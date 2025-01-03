@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\OrganizerController;
+use App\Http\Controllers\PartisipanController;
 
 Route::get('/', function () {
     return view('index');
@@ -28,45 +29,32 @@ Route::get('/login',[AuthController::class,'login']);
 Route::post('/login',[AuthController::class,'dologin'])->name('login');
 
 // admin
-Route::prefix('/admin')->middleware(['role:admin'])->group(function(){
+Route::prefix('/admin')->group(function(){
     Route::get('/',function(){
         redirect('/admin/dashboard');
     });
-    
     Route::get('/dashboard',[AdminController::class,'dashboard']);
-    //event
-    Route::get('/event',[AdminController::class,'eventIndex']);
-    Route::delete('/event/{id}',[AdminController::class,'eventDelete']);
-    
-    //accounts
-    Route::get('/account/{role}',[AdminController::class,'userIndex']);
-    Route::patch('/account/{id}',[AdminController::class,'userUpdate']);
-    Route::delete('/account/{id}',[AdminController::class,'userDelete']);
-    Route::post('/account',[AdminController::class,'userStore']);
+    Route::get('/event',[AdminController::class,'event']);
+    Route::get('/tiket', [AdminController::class, 'tiket']);
+    Route::get('/dokumentasi', [AdminController::class, 'dokumentasi']);
+    Route::get('/feedbacks', [AdminController::class, 'feedbacks']);
+    Route::get('/organizer_account', [AdminController::class, 'organizer_account']);
+    Route::get('/participant_account', [AdminController::class, 'participant_account']);
+    Route::get('/profile', [AdminController::class, 'manageProfile']);
+    Route::get('/admins_account', [AdminController::class, 'admins_account']);
+    Route::get('/categories', [AdminController::class, 'manageCategories'])->name('admin.categories');
+    Route::post('/categories/add', [AdminController::class, 'addCategory'])->name('admin.addCategory');
+    Route::get('/categories/edit/{id}', [AdminController::class, 'editCategory'])->name('admin.editCategory');
+    Route::delete('/categories/delete/{id}', [AdminController::class, 'deleteCategory'])->name('admin.deleteCategory');
 
-    //feedback
-    Route::get('/feedbacks', [AdminController::class, 'feedbackIndex']);
-    Route::delete('/feedbacks/{id}', [AdminController::class, 'feedbackDelete']);
-    //ticket
-    Route::get('/ticket', [AdminController::class, 'ticketIndex']);
-    Route::delete('/ticket/{id}', [AdminController::class, 'ticketDelete']);
-
-    //dokumentasi
-    Route::get('/documentations', [AdminController::class, 'documentationIndex']);
-    Route::delete('/documentations/{id}', [AdminController::class, 'documentationDelete']);
-
-    //category
-    Route::get('/category', [AdminController::class, 'categoryIndex']);
-    Route::post('/category', [AdminController::class, 'categoryStore']);
-    Route::put('/category/{id}', [AdminController::class, 'categoryUpdate']);
-    Route::delete('/category/{id}', [AdminController::class, 'categoryDelete']);
-
-    
-    
+    // Routes untuk registrations
+    Route::get('/registrations', [AdminController::class, 'manageRegistrations'])->name('admin.registrations');
+    Route::get('/registrations/edit/{id}', [AdminController::class, 'editRegistration'])->name('admin.editRegistration');
+    Route::delete('/registrations/delete/{id}', [AdminController::class, 'deleteRegistration'])->name('admin.deleteRegistration');
 });
 
 // organizer
-Route::prefix('/organizer')->middleware(['role:organizer'])->group(function(){
+Route::prefix('/organizer')->group(function(){
     Route::get('/',function(){
         return redirect('/organizer/dashboard');
     });
@@ -103,18 +91,20 @@ Route::prefix('/organizer')->middleware(['role:organizer'])->group(function(){
         Route::patch('/registrations/verification/{id}',[OrganizerController::class,'registrationsVerification']);
     });
 });
-
-Route::prefix('/partisipan')->middleware(['role:partisipan'])->group(function(){
+// middleware(['role:partisipan'])->
+Route::prefix('/partisipan')->group(function(){
     Route::get('/',function(){
         redirect('/partisipan/dashboard');
     });
-    Route::get('/dashboard',[GuestController::class,'dashborad']);
+    Route::get('/dashboard',[PartisipanController::class,'dashboard']);
+    Route::get('/events',[PartisipanController::class,'events']);
+    Route::get('/tickets',[PartisipanController::class,'tickets']);
+    
 });
 
 Route::get('/landing',function ()  {
     return view('guest.landing');
 });
-
 Route::get('/tickets',function ()  {
     return view('guest.ticket');
 });
