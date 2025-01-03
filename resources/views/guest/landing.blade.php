@@ -1,14 +1,14 @@
 @extends('guest.partials.main')
 
 @section('main')
-    <div class="bg-slate-300 relative mb-auto">
+    <div class="relative mb-auto bg-slate-300">
         <div class="relative w-full">
             <img src="{{ asset('storage/img/1.jpg') }}" class="object-cover w-full max-w-full h-md md:h-[calc(100vh-200px)]"
                 alt="">
-            <div class="absolute top-0 flex xl:mx-56 p-4 xl:px-0 flex-col justify-center h-full  py-10 text-white space-y-4 ">
+            <div class="absolute top-0 flex flex-col justify-center h-full p-4 py-10 space-y-4 text-white xl:mx-56 xl:px-0 ">
                 <h1 class="text-6xl text-lime-400">EVENT ORGANIZER </h1>
                 <h1 class="text-6xl">POLITEKNIK NEGERI BALI </h1>
-                <div class=" flex justify-end 2xl:-mr-28">
+                <div class="flex justify-end 2xl:-mr-28">
                 </div>
             </div>
         </div>
@@ -101,8 +101,8 @@
                 </div>
             </div>
         </div>
-        
-            
-  
+
+
+
     </div>
 @endsection

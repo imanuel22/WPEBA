@@ -30,6 +30,7 @@ class OrganizerController extends Controller
     
     function eventShow($id){
         $data = [];
+
         $res = Http::withToken(session('token'))->get(config('services.api.url').'/events/'.$id);
         if($res->successful()){
             $json=$res->json();
@@ -49,8 +50,7 @@ class OrganizerController extends Controller
         $res = Http::withToken(session('token'))->get(config('services.api.url').'/category');
         if($res->successful()){
             $json=$res->json();
-            $categories = $json['data'];
-            $data['categories'] = $categories;
+            $data['categories'] = $json['data'];
         }else{
             abort(404);
         }
@@ -101,13 +101,11 @@ class OrganizerController extends Controller
 
     // Kirim permintaan POST ke API
     $res = $http->post(config('services.api.url') . '/events');
-
     // Tindak lanjut berdasarkan respons
     if ($res->successful()) {
         $json = $res->json();
-        return redirect('/organizer/event')->with('message', $json['message']);
+        return redirect('/organizer/event')->with(['status'=>$json['success'],'message'=> $json['message']]);
     } else {
-        dd($res->body());
         // Jika terjadi error, kembalikan ke halaman sebelumnya dengan pesan error
         return back()->withErrors(['error' => $res->body()])->withInput();
     }
@@ -250,24 +248,29 @@ class OrganizerController extends Controller
             'name'=>'required|string',
             'price'=>'required|numeric',
             'quantity'=>'required|numeric',
+            'payment_method'=>'required|string',
+            'payment_number'=>'required|string',
+            'payment_name'=>'required|string',
             'image'=>'required|image|mimes:png,jpg,jpeg',
         ]);
-   
+        
         $validate['event_id']=$event_id;
         $res = Http::withToken(session('token'))->attach(
             'image', file_get_contents($_FILES['image']['tmp_name']), $_FILES['image']['name']
-        )->post(config('services.api.url').'/tickets',$validate);
+            )->post(config('services.api.url').'/tickets',$validate);
         if ($res->successful()) {
             $json = $res->json();
             return redirect('/organizer/event/'.$event_id.'/ticket')->with('message',$json['message']);
         }
-
     }
     function ticketUpdate(Request $request,$event_id,$id) {
          $validate = $request->validate([
             'name'=>'nullable|string',
             'price'=>'nullable|numeric',
             'quantity'=>'nullable|numeric',
+            'payment_method'=>'required|string',
+            'payment_number'=>'required|string',
+            'payment_name'=>'required|string',
             'image'=>'nullable|image|mimes:png,jpg,jpeg',
         ]);
 
