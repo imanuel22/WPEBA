@@ -15,7 +15,7 @@
         <div class="flex ">
             <div class="ml-28 my-10">
                 <figure class="relative max-w-sm transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0">
-                    <a href="#">
+                    <a href="/tickets">
                     <img class="rounded-lg" src="storage/img/3.jpeg" alt="image description">
                     </a>
                     <figcaption class="absolute px-4 text-lg text-lime-500 bottom-6">
@@ -25,7 +25,7 @@
             </div>
             <div class="mx-10 my-10">
                 <figure class="relative max-w-sm transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0">
-                    <a href="#">
+                    <a href="/tickets">
                     <img class="rounded-lg" src="storage/img/3.jpeg" alt="image description">
                     </a>
                     <figcaption class="absolute px-4 text-lg text-lime-500 bottom-6">
@@ -36,7 +36,7 @@
             </div>
             <div class="mr-10 my-10">
                 <figure class="relative max-w-sm transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0">
-                    <a href="#">
+                    <a href="/tickets">
                     <img class="rounded-lg" src="storage/img/3.jpeg" alt="image description">
                     </a>
                     <figcaption class="absolute px-4 text-lg text-lime-500 bottom-6">
