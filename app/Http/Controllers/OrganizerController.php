@@ -101,7 +101,7 @@ class OrganizerController extends Controller
 
     // Kirim permintaan POST ke API
     $res = $http->post(config('services.api.url') . '/events');
-
+    dd($res->body());
     // Tindak lanjut berdasarkan respons
     if ($res->successful()) {
         $json = $res->json();
@@ -164,7 +164,7 @@ class OrganizerController extends Controller
     //information
     function informationIndex($event_id){
         $data = [];
-        $res = Http::withToken(session('token'))->get(config('services.api.url').'/information');
+        $res = Http::get(config('services.api.url').'/information');
         if($res->successful()){
             $json=$res->json();
             $information = collect($json['data'])->where('event_id',$event_id);
@@ -240,31 +240,39 @@ class OrganizerController extends Controller
             $data['ticket'] = $ticket;
         }
         return view('organizer.ticket.index',$data);
+
+
     }
+
 
     function ticketStore(Request $request,$event_id) {
         $validate = $request->validate([
             'name'=>'required|string',
             'price'=>'required|numeric',
             'quantity'=>'required|numeric',
+            'payment_method'=>'required|string',
+            'payment_number'=>'required|string',
+            'payment_name'=>'required|string',
             'image'=>'required|image|mimes:png,jpg,jpeg',
         ]);
-   
+        
         $validate['event_id']=$event_id;
         $res = Http::withToken(session('token'))->attach(
             'image', file_get_contents($_FILES['image']['tmp_name']), $_FILES['image']['name']
-        )->post(config('services.api.url').'/tickets',$validate);
+            )->post(config('services.api.url').'/tickets',$validate);
         if ($res->successful()) {
             $json = $res->json();
             return redirect('/organizer/event/'.$event_id.'/ticket')->with('message',$json['message']);
         }
-
     }
     function ticketUpdate(Request $request,$event_id,$id) {
          $validate = $request->validate([
             'name'=>'nullable|string',
             'price'=>'nullable|numeric',
             'quantity'=>'nullable|numeric',
+            'payment_method'=>'required|string',
+            'payment_number'=>'required|string',
+            'payment_name'=>'required|string',
             'image'=>'nullable|image|mimes:png,jpg,jpeg',
         ]);
 

@@ -1,58 +1,56 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GuestController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\OrganizerController;
+use App\Http\Controllers\PartisipanController;
 
-use App\Http\Controllers\{
-    AdminController,
-    AuthController,
-    OrganizerController,
-    PartisipanController,
-};
-
-Route::get('/',function ()  {
-    return view('index');
+Route::get('/', function () {
+    return view('guest.landing');
 });
-
-Route::get('/event',function ()  {
-    return view('admin.event');
-});
-
-Route::get('/tiket',function ()  {
-    return view('admin.tiket');
-});
-
-Route::get('/dokumentasi',function ()  {
-    return view('admin.dokumentasi');
-});
-
 
 
 Route::get('/login',[AuthController::class,'login']);
 Route::post('/login',[AuthController::class,'dologin'])->name('login');
 
 // admin
-Route::prefix('/admin')->group(function(){
+Route::prefix('/admin')->middleware(['role:admin'])->group(function(){
     Route::get('/',function(){
         redirect('/admin/dashboard');
     });
+    
     Route::get('/dashboard',[AdminController::class,'dashboard']);
-    Route::get('/event',[AdminController::class,'event']);
-    Route::get('/tiket', [AdminController::class, 'tiket']);
-    Route::get('/dokumentasi', [AdminController::class, 'dokumentasi']);
-    Route::get('/feedbacks', [AdminController::class, 'feedbacks']);
-    Route::get('/organizer_account', [AdminController::class, 'organizer_account']);
-    Route::get('/participant_account', [AdminController::class, 'participant_account']);
-    Route::get('/profile', [AdminController::class, 'manageProfile']);
-    Route::get('/admins_account', [AdminController::class, 'admins_account']);
-    Route::get('/categories', [AdminController::class, 'manageCategories'])->name('admin.categories');
-    Route::post('/categories/add', [AdminController::class, 'addCategory'])->name('admin.addCategory');
-    Route::get('/categories/edit/{id}', [AdminController::class, 'editCategory'])->name('admin.editCategory');
-    Route::delete('/categories/delete/{id}', [AdminController::class, 'deleteCategory'])->name('admin.deleteCategory');
+    //event
+    Route::get('/event',[AdminController::class,'eventIndex']);
+    Route::delete('/event/{id}',[AdminController::class,'eventDelete']);
+    
+    //accounts
+    Route::get('/account/{role}',[AdminController::class,'userIndex']);
+    Route::patch('/account/{id}',[AdminController::class,'userUpdate']);
+    Route::delete('/account/{id}',[AdminController::class,'userDelete']);
+    Route::post('/account',[AdminController::class,'userStore']);
 
-    // Routes untuk registrations
-    Route::get('/registrations', [AdminController::class, 'manageRegistrations'])->name('admin.registrations');
-    Route::get('/registrations/edit/{id}', [AdminController::class, 'editRegistration'])->name('admin.editRegistration');
-    Route::delete('/registrations/delete/{id}', [AdminController::class, 'deleteRegistration'])->name('admin.deleteRegistration');
+    //feedback
+    Route::get('/feedbacks', [AdminController::class, 'feedbackIndex']);
+    Route::delete('/feedbacks/{id}', [AdminController::class, 'feedbackDelete']);
+    //ticket
+    Route::get('/ticket', [AdminController::class, 'ticketIndex']);
+    Route::delete('/ticket/{id}', [AdminController::class, 'ticketDelete']);
+
+    //dokumentasi
+    Route::get('/documentations', [AdminController::class, 'documentationIndex']);
+    Route::delete('/documentations/{id}', [AdminController::class, 'documentationDelete']);
+
+    //category
+    Route::get('/category', [AdminController::class, 'categoryIndex']);
+    Route::post('/category', [AdminController::class, 'categoryStore']);
+    Route::put('/category/{id}', [AdminController::class, 'categoryUpdate']);
+    Route::delete('/category/{id}', [AdminController::class, 'categoryDelete']);
+
+    
+    
 });
 
 // organizer
@@ -93,13 +91,21 @@ Route::prefix('/organizer')->group(function(){
         Route::patch('/registrations/verification/{id}',[OrganizerController::class,'registrationsVerification']);
     });
 });
-
+// 
 Route::prefix('/partisipan')->middleware(['role:partisipan'])->group(function(){
     Route::get('/',function(){
         redirect('/partisipan/dashboard');
     });
     Route::get('/dashboard',[PartisipanController::class,'dashboard']);
+    Route::get('/events',[PartisipanController::class,'events']);
+    Route::get('/tickets',[PartisipanController::class,'tickets']);
+    
 });
+
+Route::get('/landing',[GuestController::class,'landing']);
+Route::get('/events',[GuestController::class,'events']);
+Route::get('/event/{id}',[GuestController::class,'tickets']);
+
 
 // Route::prefix('account')->middleware(['role:admin','role:organizer','role:partisipan'])->group(function(){
 //     Route::get('/profile', function () {
@@ -113,3 +119,4 @@ Route::prefix('/partisipan')->middleware(['role:partisipan'])->group(function(){
 //     });
 
 // });
+

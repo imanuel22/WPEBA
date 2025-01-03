@@ -1,5 +1,5 @@
     <div class="navbar">
-        <nav class="bg-transparent dark:bg-gray-800 fixed w-full z-20 top-0 start-0 border-gray-200 dark:border-gray-600">
+        <nav class="bg-gray-800 fixed w-full z-20 top-0 start-0 border-gray-200 dark:border-gray-600">
             <div class="max-w-screen-xl flex  items-center justify-between mx-auto p-4">
                 <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
                     <span class="self-center text-2xl font-semibold whitespace-nowrap text-lime-400 dark:text-lime-500">WEBPBA</span>
@@ -7,12 +7,14 @@
             <div class="items-center justify-center hidden w-full md:flex md:w-auto " id="navbar-sticky">
                 <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium  rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0">
                     <li>
-                    <a href="/partisipan/dashboard" class="block py-2 px-3 text-lime-500 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-lime-500 dark:hover:bg-lime-700 dark:hover:text-lime-700 md:dark:hover:bg-transparent">HOME</a>
+                    <a href="/landing" class="block py-2 px-3 text-lime-500 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-lime-500 dark:hover:bg-lime-700 dark:hover:text-lime-700 md:dark:hover:bg-transparent">HOME</a>
                     </li>
                     <li>
-                    <a href="/partisipan/events" class="block py-2 px-3 text-lime-500 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-lime-500 dark:hover:bg-lime-700 dark:hover:text-lime-700 md:dark:hover:bg-transparent">EVENT</a>
+                    <a href="/events" class="block py-2 px-3 text-lime-500 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-lime-500 dark:hover:bg-lime-700 dark:hover:text-lime-700 md:dark:hover:bg-transparent">EVENT</a>
                     </li>
-                    
+                    <li>
+                        <a href="/login" class="block py-2 px-3 text-lime-500 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-lime-500 dark:hover:bg-lime-700 dark:hover:text-lime-700 md:dark:hover:bg-transparent">LOGIN</a>
+                    </li>
                 </ul>
             </div>
             <div class="flex justify-end">
