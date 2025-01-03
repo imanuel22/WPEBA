@@ -157,7 +157,6 @@ class AdminController extends Controller
         $res = Http::withToken(session('token'))->attach(
             'profile', file_get_contents($_FILES['profile']['tmp_name']), $_FILES['profile']['name']
         )->post(config('services.api.url').'/users',$validate);
-        
         if ($res->successful()) {
             $json = $res->json();
             return redirect('/admin/account/'.$request->role)->with('message',$json['message']);
