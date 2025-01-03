@@ -10,13 +10,14 @@ class AuthController extends Controller
 {
     public function login(){
         return view('auth.login');
+
     }
 
     public function dologin(Request $request){
-        $credentials = $request->only(['email', 'password']);
 
+        $credentials = $request->only(['email', 'password']);
         $res=Http::post(env('APP_API_URL').'/login',$credentials);
-        // dd($res->body());
+        
         if ($res->successful()) {
             $json = $res->json();
             $userData=$json['data'];

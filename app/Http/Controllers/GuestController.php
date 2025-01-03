@@ -8,6 +8,7 @@ class GuestController extends Controller
 {
     function landing() {
         $res = Http::get(config('services.api.url').'/events');
+        
         if($res->successful()){
             $json = $res->json();
             $data['events'] = $json['data'];
