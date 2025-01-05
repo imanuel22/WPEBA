@@ -1,33 +1,37 @@
 @extends('organizer.partials.main')
 
 @section('main')
+    <div class="mb-5 border-b-4 border-slate-700 ">
+
+        <h3 class="text-3xl">Documentations</h3>
+    </div>
     @if (count($documentations) < 5)
         <div class="mb-4">
             <!-- Modal toggle -->
             <button data-modal-target="crud-modal" data-modal-toggle="crud-modal"
                 class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                 type="button">
-                Add Informatin
+                Add Documentations
             </button>
         </div>
     @endif
 
-    <div class="">
+    <div class="p-4 text-gray-200 rounded-lg bg-slate-700">
         <table id="documentations-table">
             <thead>
                 <tr>
-                    <th>
+                    <th class="text-black bg-slate-300">
                         <span class="flex items-center">
                             Image
                         </span>
                     </th>
-                    <th>
+                    <th class="text-black bg-slate-300">
                         <span class="flex items-center">
                             description
                         </span>
                     </th>
 
-                    <th>
+                    <th class="text-black bg-slate-300">
                         <span class="flex items-center">
 
                         </span>
@@ -36,9 +40,10 @@
             </thead>
             <tbody>
                 @foreach ($documentations as $row)
-                    <tr>
+                    <tr class="text-black bg-white ">
                         <td class="max-w-sm">
-                            <img src="{{ env('APP_API_IMG_URL') }}/documentations/{{ $row['image'] }}"
+                            <img class="rounded-lg w-52"
+                                src="{{ env('APP_API_IMG_URL') }}/documentations/{{ $row['image'] }}"
                                 alt="{{ $row['image'] }}">
                         </td>
                         <td>{{ $row['description'] ?? '-' }}</td>
@@ -66,11 +71,11 @@
                         class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
                         <div class="relative w-full max-w-md max-h-full p-4">
                             <!-- Modal content -->
-                            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                            <div class="relative rounded-lg shadow bg-slate-700 dark:bg-gray-700">
                                 <!-- Modal header -->
                                 <div
                                     class="flex items-center justify-between p-4 border-b rounded-t md:p-5 dark:border-gray-600">
-                                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                                    <h3 class="text-lg font-semibold text-gray-200">
                                         Update documentations
                                     </h3>
                                     <button type="button"
@@ -95,8 +100,9 @@
                                         <div class="grid grid-cols-2 gap-4 mb-4">
                                             <div class="col-span-2">
                                                 <label for="image"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">image</label>
-                                                <img src="{{ env('APP_API_IMG_URL') }}/tickets/{{ $row['image'] }}"
+                                                    class="block mb-2 text-sm font-medium text-gray-200">image</label>
+                                                <img class="mb-3 rounded-lg"
+                                                    src="{{ env('APP_API_IMG_URL') }}/documentations/{{ $row['image'] }}"
                                                     alt="{{ $row['image'] }}">
                                                 <input name="image"
                                                     class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
@@ -104,7 +110,7 @@
                                             </div>
                                             <div class="col-span-2 ">
                                                 <label for="description"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
+                                                    class="block mb-2 text-sm font-medium text-gray-200">Your
                                                     description</label>
                                                 <textarea name="description" id="description" rows="4"
                                                     class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -138,10 +144,10 @@
         class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
         <div class="relative w-full max-w-md max-h-full p-4">
             <!-- Modal content -->
-            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+            <div class="relative rounded-lg shadow bg-slate-700 dark:bg-gray-700">
                 <!-- Modal header -->
                 <div class="flex items-center justify-between p-4 border-b rounded-t md:p-5 dark:border-gray-600">
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                    <h3 class="text-lg font-semibold text-gray-200">
                         Create New documentations
                     </h3>
                     <button type="button"
@@ -161,15 +167,13 @@
                     @csrf
                     <div class="grid grid-cols-2 gap-4 mb-4">
                         <div class="col-span-2">
-                            <label for="image"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">image</label>
+                            <label for="image" class="block mb-2 text-sm font-medium text-gray-200">image</label>
                             <input name="image"
                                 class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                                 id="image" type="file">
                         </div>
                         <div class="col-span-2 ">
-                            <label for="description"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
+                            <label for="description" class="block mb-2 text-sm font-medium text-gray-200">Your
                                 description</label>
                             <textarea name="description" id="description" rows="4"
                                 class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -190,7 +194,20 @@
             </div>
         </div>
     </div>
+    <style>
+        .datatable-wrapper .datatable-top .datatable-dropdown {
+            color: #fff
+        }
 
+        .datatable-wrapper .datatable-bottom .datatable-info {
+            color: #fff
+        }
+
+        .datatable-wrapper .datatable-table .datatable-empty {
+            background: #fff;
+            color: #000
+        }
+    </style>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@9.0.3"></script>
     <script>
         if (document.getElementById("documentations-table") && typeof simpleDatatables.DataTable !== 'undefined') {

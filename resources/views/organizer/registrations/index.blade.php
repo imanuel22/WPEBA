@@ -1,8 +1,12 @@
 @extends('organizer.partials.main')
 
 @section('main')
-    <div class="mb-5">
+    <div class="mb-5 border-b-4 border-slate-700 ">
 
+        <h3 class="text-3xl">Registrations</h3>
+    </div>
+    <div class="flex items-baseline mb-5">
+        <p class="p-3">Status Filter:</p>
         <form class="max-w-sm" method="GET">
             <select id="status" name="status" onchange="this.form.submit()"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -14,36 +18,36 @@
 
 
     </div>
-    <div class="">
+    <div class="p-4 text-gray-200 rounded-lg bg-slate-700">
         <table id="registrations-table">
             <thead>
                 <tr>
-                    <th>
+                    <th class="text-black bg-slate-300">
                         <span class="flex items-center">
                             Name
                         </span>
                     </th>
-                    <th>
+                    <th class="text-black bg-slate-300">
                         <span class="flex items-center">
                             registration_date
                         </span>
                     </th>
-                    <th>
+                    <th class="text-black bg-slate-300">
                         <span class="flex items-center">
                             status
                         </span>
                     </th>
-                    <th>
+                    <th class="text-black bg-slate-300">
                         <span class="flex items-center">
                             total_price
                         </span>
                     </th>
-                    <th>
+                    <th class="text-black bg-slate-300">
                         <span class="flex items-center">
                             image_payment
                         </span>
                     </th>
-                    <th>
+                    <th class="text-black bg-slate-300">
                         <span class="flex items-center">
                             verification
                         </span>
@@ -52,11 +56,11 @@
             </thead>
             <tbody>
                 @foreach ($registrations as $row)
-                    <tr>
-                        <td>{{ $row['name'] ?? '-' }}</td>
-                        <td>{{ $row['price'] ?? '-' }}</td>
-                        <td>{{ $row['quantity'] ?? '-' }}</td>
-                        <td>{{ $row['image'] ?? '-' }}</td>
+                    <tr class="text-black bg-white ">
+                        <td>{{ $row['user']['name'] ?? '-' }}</td>
+                        <td>{{ $row['registration_date'] ?? '-' }}</td>
+                        <td>{{ $row['status'] ?? '-' }}</td>
+                        <td>{{ $row['total_price'] ?? '-' }}</td>
                         <td>
                             <button data-modal-target="image_payment-{{ $row['id'] }}"
                                 data-modal-toggle="image_payment-{{ $row['id'] }}"
@@ -85,12 +89,12 @@
                         class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
                         <div class="relative w-full max-w-lg max-h-full">
                             <!-- Modal content -->
-                            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                            <div class="relative rounded-lg shadow bg-slate-700 dark:bg-gray-700">
                                 <!-- Modal header -->
                                 <div
                                     class="flex items-center justify-between p-4 border-b rounded-t md:p-5 dark:border-gray-600">
-                                    <h3 class="text-xl font-medium text-gray-900 dark:text-white">
-                                        Default modal
+                                    <h3 class="text-xl font-medium text-gray-200">
+                                        Payment
                                     </h3>
                                     <button type="button"
                                         class="inline-flex items-center justify-center w-8 h-8 text-sm text-gray-400 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900 ms-auto dark:hover:bg-gray-600 dark:hover:text-white"
@@ -121,6 +125,20 @@
         </table>
 
     </div>
+    <style>
+        .datatable-wrapper .datatable-top .datatable-dropdown {
+            color: #fff
+        }
+
+        .datatable-wrapper .datatable-bottom .datatable-info {
+            color: #fff
+        }
+
+        .datatable-wrapper .datatable-table .datatable-empty {
+            background: #fff;
+            color: #000
+        }
+    </style>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@9.0.3"></script>
     <script>
         if (document.getElementById("registrations-table") && typeof simpleDatatables.DataTable !== 'undefined') {

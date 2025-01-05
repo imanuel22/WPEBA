@@ -9,11 +9,11 @@
 
 </head>
 
-<body>
+<body class="bg-slate-300">
     @include('organizer.partials.navbar')
     @include('organizer.partials.sidebar')
-    <div class="p-4 sm:ml-64">
-        <div class="p-4 mt-14">
+    <div class="p-4 sm:ml-64 ">
+        <div class="p-4 mt-14 ">
             @yield('main')
         </div>
     </div>
@@ -22,4 +22,3 @@
 </body>
 
 </html>
-

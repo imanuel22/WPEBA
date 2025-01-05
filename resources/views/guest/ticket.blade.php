@@ -33,7 +33,7 @@
                             <figure
                                 class="relative max-w-sm transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0">
                                 <div>
-                                    <img class="rounded-lg w-96 h-96 object-cover"
+                                    <img class="object-cover rounded-lg w-96 h-96"
                                         src="{{ env('APP_API_IMG_URL') }}/documentations/{{ $documentations['image'] }}"
                                         alt="image description">
                                 </div>
@@ -90,35 +90,37 @@
                     </table>
                 </div>
 
-                <a class="flex justify-center mt-10 text-2xl font-bold text-gray-900">TICKET</a>
-                <div class="relative overflow-x-auto">
-                    <table class="w-full text-sm text-left text-gray-900 rtl:text-right ">
-                        <tbody>
-                            <tr class="bg-transparent border-b border-gray-700">
-                                <th scope="row" class="w-1/2 px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
-                                    Price
-                                </th>
-                                <td class="px-6 py-4">
-                                    {{ $event['tickets'][0]['price'] }}
-                                </td>
+                @if ($event['tickets'])
+                    <a class="flex justify-center mt-10 text-2xl font-bold text-gray-900">TICKET</a>
+                    <div class="relative overflow-x-auto">
+                        <table class="w-full text-sm text-left text-gray-900 rtl:text-right ">
+                            <tbody>
+                                <tr class="bg-transparent border-b border-gray-700">
+                                    <th scope="row" class="w-1/2 px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                                        Price
+                                    </th>
+                                    <td class="px-6 py-4">
+                                        {{ $event['tickets'][0]['price'] }}
+                                    </td>
 
-                            </tr>
-                            <tr class="bg-transparent border-b border-gray-700">
-                                <th scope="row" class="w-1/2 px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
-                                    Quantity
-                                </th>
-                                <td class="px-6 py-4">
-                                    {{ $event['tickets'][0]['quantity'] }} Pcs
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="flex justify-center mt-5">
-                        <a href="/login" type="button"
-                            class="text-center text-white w-60 bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Buy
-                            Now</a>
+                                </tr>
+                                <tr class="bg-transparent border-b border-gray-700">
+                                    <th scope="row" class="w-1/2 px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                                        Quantity
+                                    </th>
+                                    <td class="px-6 py-4">
+                                        {{ $event['tickets'][0]['quantity'] }} Pcs
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="flex justify-center mt-5">
+                            <a href="/login" type="button"
+                                class="text-center text-white w-60 bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Buy
+                                Now</a>
+                        </div>
                     </div>
-                </div>
+                @endif
 
 
 
