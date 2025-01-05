@@ -13,6 +13,16 @@ class AuthController extends Controller
 
     }
 
+    public function logout(Request $request){
+        $res=Http::withToken(session('token'))->post(config('services.api.url').'/login');
+        if($res->successful()){
+        session()->flush();
+        
+        return redirect('/');
+    }
+            
+    }
+
     public function dologin(Request $request){
 
         $credentials = $request->only(['email', 'password']);

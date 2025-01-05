@@ -13,6 +13,7 @@ Route::get('/', function () {
 
 
 Route::get('/login',[AuthController::class,'login']);
+Route::delete('/logout',[AuthController::class,'logout']);
 Route::post('/login',[AuthController::class,'dologin'])->name('login');
 
 // admin
@@ -54,7 +55,7 @@ Route::prefix('/admin')->middleware(['role:admin'])->group(function(){
 });
 
 // organizer
-Route::prefix('/organizer')->group(function(){
+Route::prefix('/organizer')->middleware(['role:organizer'])->group(function(){
     Route::get('/',function(){
         return redirect('/organizer/dashboard');
     });
