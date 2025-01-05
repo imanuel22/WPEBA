@@ -67,6 +67,7 @@ Route::prefix('/organizer')->group(function(){
         Route::get('/',[OrganizerController::class,'eventShow']);
         Route::get('/edit',[OrganizerController::class,'eventEdit']);
         Route::put('/edit',[OrganizerController::class,'eventUpdate']);
+        Route::delete('/',[OrganizerController::class,'eventDelete']);
 
         //information
         Route::get('/information',[OrganizerController::class,'informationIndex']);

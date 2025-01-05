@@ -16,7 +16,7 @@ class AuthController extends Controller
     public function dologin(Request $request){
 
         $credentials = $request->only(['email', 'password']);
-        $res=Http::post(env('APP_API_URL').'/login',$credentials);
+        $res=Http::post(config('services.api.url').'/login',$credentials);
         
         if ($res->successful()) {
             $json = $res->json();
@@ -41,7 +41,7 @@ class AuthController extends Controller
                 return redirect('/user/dashboard');
             }
         }else{
-dd($res->body());
+dd($res);
         }
     }
 }

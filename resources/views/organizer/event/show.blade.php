@@ -1,13 +1,26 @@
 @extends('organizer.partials.main')
 
 @section('main')
-    <div class="mb-5">
-        <a href="/organizer/event"
-            class="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-1 mb-2 dark:bg-gray-600 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">back</a>
-        <a href="/organizer/event/{{ request()->route('event_id') }}/edit"
-            class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-1 mb-2 dark:focus:ring-yellow-900">edit</a>
-        <a href=""
-            class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-1 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">delete</a>
+    <div class="flex items-baseline mb-5">
+        <div class="">
+            <a href="/organizer/event"
+                class="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-1 mb-2 dark:bg-gray-600 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">back</a>
+        </div>
+        <div class="">
+            <a href="/organizer/event/{{ request()->route('event_id') }}/edit"
+                class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-1 mb-2 dark:focus:ring-yellow-900">edit</a>
+        </div>
+        <div class="">
+            <form action="/organizer/event/{{ request()->route('event_id') }}" method="post">
+                @csrf
+                @method('DELETE')
+                <button type="submit" onclick="return confirm('kamu yakin?')"
+                    class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-1 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+                    delete
+                </button>
+            </form>
+        </div>
+
     </div>
     <div class="max-w-screen-xl px-4 mx-auto 2xl:px-0">
         <div class="max-w-5xl mx-auto">

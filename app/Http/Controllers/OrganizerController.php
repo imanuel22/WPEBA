@@ -136,27 +136,66 @@ class OrganizerController extends Controller
         return view('organizer.event.edit',$data);
     }
 
-    public function eventUpdate(Request $request,$id){
-        $validate = $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'images.*' => 'nullable|file|mimes:jpeg,png,jpg', // Validasi array gambar
-            'status' => 'nullable|in:upcoming,in_progress,completed',
-            'start_datetime' => 'nullable|date',
-            'duration' => 'nullable|integer',
-            'location' => 'nullable|string',
-            'event_category_ids' => 'nullable|array',
-        ]);
+public function eventUpdate(Request $request, $id)
+{
+    // Validasi input
+    $validate = $request->validate([
+        'title' => 'required|string|max:255',
+        'description' => 'nullable|string',
+        'images.*' => 'nullable|file|mimes:jpeg,png,jpg|max:2048',
+        'status' => 'nullable|in:upcoming,in_progress,completed',
+        'start_datetime' => 'nullable|date',
+        'duration' => 'nullable|integer',
+        'location' => 'nullable|string',
+        'event_category_ids' => 'nullable|array',
+    ]);
 
-        $validate['user_id']=session('id');
-        
-        $res = Http::withToken(session('token'))->patch(config('services.api.url').'/events/'.$id,$validate);
-        if ($res->successful()) {
-            $json = $res->json();
-            return redirect('/organizer/event/'.$id)->with('message',$json['message']);
+    $validate['user_id'] = session('id');
+
+    $http = Http::withToken(session('token'));
+
+    // Mengirim data sebagai JSON jika tidak ada file
+    if (!$request->hasFile('images')) {
+        $res = $http->patch(config('services.api.url') . '/events/' . $id, $validate);
+    } else {
+        // Menggunakan POST dengan _method=PATCH untuk multipart form data
+        $http = $http->attach('_method', 'PATCH');
+
+        foreach ($validate as $key => $value) {
+            if (is_array($value)) {
+                foreach ($value as $arrayValue) {
+                    $http = $http->attach("{$key}[]", (string)$arrayValue);
+                }
+            } else {
+                $http = $http->attach($key, (string)$value);
+            }
         }
+
+        foreach ($request->file('images') as $image) {
+            $http = $http->attach('images[]', file_get_contents($image->getRealPath()), $image->getClientOriginalName());
+        }
+
+        $res = $http->post(config('services.api.url') . '/events/' . $id);
     }
 
+    if ($res->successful()) {
+        $json = $res->json();
+        return redirect('/organizer/event/' . $id)->with(['status' => $json['success'], 'message' => $json['message']]);
+    } else {
+        dd($res->body());
+        return back()->withErrors(['error' => $res->body()])->withInput();
+    }
+}
+
+
+
+    function eventDelete($id) {
+        $res = Http::withToken(session('token'))->delete(config('services.api.url').'/events/'.$id);
+        if ($res->successful()) {
+            $json = $res->json();
+            return redirect('/organizer/event/' )->with('message',$json['message']);
+        }
+    }
 
 
     //information
