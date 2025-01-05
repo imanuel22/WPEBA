@@ -395,7 +395,7 @@ public function eventUpdate(Request $request, $id)
 
     function registrationsIndex(Request $request,$event_id){
         $data = [];
-        $status = $request->get('status');
+        $status = $request->get('status') ?? 'pending';
 
         $res = Http::withToken(session('token'))->get(config('services.api.url').'/registrations');
         if($res->successful()){
