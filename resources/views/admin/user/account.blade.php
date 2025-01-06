@@ -4,6 +4,10 @@
     <!-- Include Simple-DataTables Library -->
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@9.0.3"></script>
 
+    <div class="mb-5 border-b-4 border-slate-700 ">
+        <h3 class="text-3xl">DATA AKUN</h3>
+    </div>
+
     <div class="mb-4">
         <button type="submit" data-modal-target="tambah" data-modal-toggle="tambah"
             class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">

@@ -4,6 +4,10 @@
     <!-- Include Simple-DataTables Library -->
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@9.0.3"></script>
 
+    <div class="mb-5 border-b-4 border-slate-700 ">
+        <h3 class="text-3xl">DATA DOKUMENTASI EVENT</h3>
+    </div>
+
     <div class="p-4 text-gray-200 rounded-lg bg-slate-700">
         <table id="selection-table">
             <thead>

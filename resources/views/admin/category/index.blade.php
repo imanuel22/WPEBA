@@ -1,6 +1,11 @@
 @extends('admin.partials.main')
 
 @section('main')
+
+    <div class="mb-5 border-b-4 border-slate-700 ">
+        <h3 class="text-3xl">DATA CATEGORY EVENT</h3>
+    </div>
+
     <div class="mb-4">
         <!-- Modal toggle -->
         <button data-modal-target="crud-modal" data-modal-toggle="crud-modal"

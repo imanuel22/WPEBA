@@ -5,28 +5,27 @@
         <ul class="space-y-2 font-medium">
             <li>
                 <a href="/admin/dashboard"
-                    class="flex items-center p-2 'text-gray-800 hover:bg-gray-800 hover:text-gray-200 bg-gray-200' : ' text-gray-200 hover:bg-gray-200 hover:text-gray-800' }} rounded-lg group ">
-                    <svg class="w-5 h-5 'text-gray-800 group-hover:text-gray-200' : 'text-gray-200 group-hover:text-gray-800' }}  transition duration-75"
-                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
+                    class="flex items-center p-2 {{ Request::is('admin/dashboard') ? 'text-gray-800 hover:bg-gray-800 hover:text-gray-200 bg-gray-200' : ' text-gray-200 hover:bg-gray-200 hover:text-gray-800' }} rounded-lg group">
+                    <svg class="flex-shrink-0 w-5 h-5 'text-gray-800 group-hover:text-gray-200' : 'text-gray-200 group-hover:text-gray-800' }}  transition duration-75"
+                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                         <path
                             d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z" />
                         <path
                             d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z" />
                     </svg>
-                    <span class="ms-3">Dashboard</span>
+                    <span class="flex-1 ms-3 whitespace-nowrap">Dashboard</span>
                 </a>
             </li>
 
             <li>
                 <a href="/admin/event"
-                    class="flex items-center p-2  {{ Request::is('admin/events') ? 'text-gray-800 hover:bg-gray-800 hover:text-gray-200 bg-gray-200' : ' text-gray-200 hover:bg-gray-200 hover:text-gray-800' }} rounded-lg group ">
+                    class="flex items-center p-2  {{ Request::is('admin/events') ? 'text-gray-800 hover:bg-gray-800 hover:text-gray-200 bg-gray-200' : ' text-gray-200 hover:bg-gray-200 hover:text-gray-800' }} rounded-lg group">
                     <svg class="flex-shrink-0 w-5 h-5 'text-gray-800 group-hover:text-gray-200' : 'text-gray-200 group-hover:text-gray-800' }}  transition duration-75"
                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                         <path
                             d="m17.418 3.623-.018-.008a6.713 6.713 0 0 0-2.4-.569V2h1a1 1 0 1 0 0-2h-2a1 1 0 0 0-1 1v2H9.89A6.977 6.977 0 0 1 12 8v5h-2V8A5 5 0 1 0 0 8v6a1 1 0 0 0 1 1h8v4a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4h6a1 1 0 0 0 1-1V8a5 5 0 0 0-2.582-4.377ZM6 12H4a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Z" />
                     </svg>
                     <span class="flex-1 ms-3 whitespace-nowrap">Events</span>
-
                 </a>
             </li>
             <li>
@@ -63,7 +62,7 @@
             </li>
             <li>
                 <a href="/admin/feedbacks"
-                    class="flex items-center p-2 'text-gray-800 hover:bg-gray-800 hover:text-gray-200 bg-gray-200' : ' text-gray-200 hover:bg-gray-200 hover:text-gray-800' }} rounded-lg group">
+                    class="flex items-center p-2 {{ Request::is('admin/feedbacks') ? 'text-gray-800 hover:bg-gray-800 hover:text-gray-200 bg-gray-200' : ' text-gray-200 hover:bg-gray-200 hover:text-gray-800' }} rounded-lg group">
                     <svg class="flex-shrink-0 w-5 h-5 'text-gray-800 group-hover:text-gray-200' : 'text-gray-200 group-hover:text-gray-800' }}  transition duration-75"
                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M5 5V.13a2.96 2.96 0 0 0-1.293.749L.879 3.707A2.96 2.96 0 0 0 .13 5H5Z" />
@@ -77,7 +76,7 @@
             </li>
             <li>
                 <a href="/admin/ticket"
-                    class="flex items-center p-2 'text-gray-800 hover:bg-gray-800 hover:text-gray-200 bg-gray-200' : ' text-gray-200 hover:bg-gray-200 hover:text-gray-800' }} rounded-lg group">
+                    class="flex items-center p-2 {{ Request::is('admin/ticket') ? 'text-gray-800 hover:bg-gray-800 hover:text-gray-200 bg-gray-200' : ' text-gray-200 hover:bg-gray-200 hover:text-gray-800' }} rounded-lg group">
                     <svg class="flex-shrink-0 w-5 h-5 'text-gray-800 group-hover:text-gray-200' : 'text-gray-200 group-hover:text-gray-800' }}  transition duration-75"
                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M5 5V.13a2.96 2.96 0 0 0-1.293.749L.879 3.707A2.96 2.96 0 0 0 .13 5H5Z" />
@@ -91,7 +90,7 @@
             </li>
             <li>
                 <a href="/admin/category"
-                    class="flex items-center p-2 'text-gray-800 hover:bg-gray-800 hover:text-gray-200 bg-gray-200' : ' text-gray-200 hover:bg-gray-200 hover:text-gray-800' }} rounded-lg group">
+                    class="flex items-center p-2 {{ Request::is('admin/category') ? 'text-gray-800 hover:bg-gray-800 hover:text-gray-200 bg-gray-200' : ' text-gray-200 hover:bg-gray-200 hover:text-gray-800' }} rounded-lg group">
                     <svg class="flex-shrink-0 w-5 h-5 'text-gray-800 group-hover:text-gray-200' : 'text-gray-200 group-hover:text-gray-800' }}  transition duration-75"
                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M5 5V.13a2.96 2.96 0 0 0-1.293.749L.879 3.707A2.96 2.96 0 0 0 .13 5H5Z" />
@@ -105,7 +104,7 @@
             </li>
             <li>
                 <a href="/admin/documentations"
-                    class="flex items-center p-2 'text-gray-800 hover:bg-gray-800 hover:text-gray-200 bg-gray-200' : ' text-gray-200 hover:bg-gray-200 hover:text-gray-800' }} rounded-lg group">
+                    class="flex items-center p-2 {{ Request::is('admin/documentations') ? 'text-gray-800 hover:bg-gray-800 hover:text-gray-200 bg-gray-200' : ' text-gray-200 hover:bg-gray-200 hover:text-gray-800' }} rounded-lg group">
                     <svg class="flex-shrink-0 w-5 h-5 'text-gray-800 group-hover:text-gray-200' : 'text-gray-200 group-hover:text-gray-800' }}  transition duration-75"
                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M5 5V.13a2.96 2.96 0 0 0-1.293.749L.879 3.707A2.96 2.96 0 0 0 .13 5H5Z" />
