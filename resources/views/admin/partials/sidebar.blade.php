@@ -5,8 +5,8 @@
         <ul class="space-y-2 font-medium">
             <li>
                 <a href="/admin/dashboard"
-                    class="flex items-center p-2 {{ Request::is('admin/dashboard') ? 'text-gray-800 hover:bg-gray-800 hover:text-gray-200 bg-gray-200' : ' text-gray-200 hover:bg-gray-200 hover:text-gray-800' }} rounded-lg group">
-                    <svg class="flex-shrink-0 w-5 h-5 'text-gray-800 group-hover:text-gray-200' : 'text-gray-200 group-hover:text-gray-800' }}  transition duration-75"
+                    class="flex items-center p-2 {{ Request::is('admin/dashboard') ? 'text-gray-800 bg-gray-200' : 'text-gray-200 hover:bg-gray-200 hover:text-gray-800' }} rounded-lg group">
+                    <svg class="flex-shrink-0 w-5 h-5 transition duration-75 {{ Request::is('admin/dashboard') ? 'text-gray-800' : 'text-gray-200 group-hover:text-gray-800' }}"
                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                         <path
                             d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z" />
@@ -19,8 +19,8 @@
 
             <li>
                 <a href="/admin/event"
-                    class="flex items-center p-2  {{ Request::is('admin/events') ? 'text-gray-800 hover:bg-gray-800 hover:text-gray-200 bg-gray-200' : ' text-gray-200 hover:bg-gray-200 hover:text-gray-800' }} rounded-lg group">
-                    <svg class="flex-shrink-0 w-5 h-5 'text-gray-800 group-hover:text-gray-200' : 'text-gray-200 group-hover:text-gray-800' }}  transition duration-75"
+                    class="flex items-center p-2 {{ Request::is('admin/event') ? 'text-gray-800 bg-gray-200' : 'text-gray-200 hover:bg-gray-200 hover:text-gray-800' }} rounded-lg group">
+                    <svg class="flex-shrink-0 w-5 h-5 transition duration-75 {{ Request::is('admin/event') ? 'text-gray-800' : 'text-gray-200 group-hover:text-gray-800' }}"
                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                         <path
                             d="m17.418 3.623-.018-.008a6.713 6.713 0 0 0-2.4-.569V2h1a1 1 0 1 0 0-2h-2a1 1 0 0 0-1 1v2H9.89A6.977 6.977 0 0 1 12 8v5h-2V8A5 5 0 1 0 0 8v6a1 1 0 0 0 1 1h8v4a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4h6a1 1 0 0 0 1-1V8a5 5 0 0 0-2.582-4.377ZM6 12H4a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Z" />
@@ -28,17 +28,17 @@
                     <span class="flex-1 ms-3 whitespace-nowrap">Events</span>
                 </a>
             </li>
+
             <li>
                 <button type="button"
-                    class="flex items-center p-2 'text-gray-800 hover:bg-gray-800 hover:text-gray-200 bg-gray-200' : ' text-gray-200 hover:bg-gray-200 hover:text-gray-800' }} rounded-lg group"
-                    aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
-                    <svg class="flex-shrink-0 w-5 h-5 'text-gray-800 group-hover:text-gray-200' : 'text-gray-200 group-hover:text-gray-800' }}  transition duration-75"
+                    class="flex items-center p-2 {{ Request::is('admin/account*') ? 'text-gray-800 bg-gray-200' : 'text-gray-200 hover:bg-gray-200 hover:text-gray-800' }} rounded-lg group"
+                    aria-controls="dropdown-example" data-collapse-toggle="dropdown-example" aria-expanded="false">
+                    <svg class="flex-shrink-0 w-5 h-5 transition duration-75 {{ Request::is('admin/account*') ? 'text-gray-800' : 'text-gray-200 group-hover:text-gray-800' }}"
                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
                         <path
                             d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z" />
                     </svg>
-                    <span class="flex-1 text-left capitalize ms-3 rtl:text-right whitespace-nowrap">account
-                    </span>
+                    <span class="flex-1 text-left capitalize ms-3 rtl:text-right whitespace-nowrap">Account</span>
                     <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                         viewBox="0 0 10 6">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -48,22 +48,28 @@
                 <ul id="dropdown-example" class="hidden py-2 space-y-2">
                     <li>
                         <a href="/admin/account/participant"
-                            class="flex items-center w-full p-2 text-gray-800 transition duration-75 rounded-lg pl-11 group hover:bg-gray-200 text-gray-200 hover:bg-gray-200 hover:text-gray-800">Participant</a>
+                            class="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group {{ Request::is('admin/account/participant') ? 'text-gray-800 bg-gray-200' : 'text-gray-200 hover:bg-gray-200 hover:text-gray-800' }}">
+                            Participant
+                        </a>
                     </li>
                     <li>
                         <a href="/admin/account/organizer"
-                            class="flex items-center w-full p-2 text-gray-800 transition duration-75 rounded-lg pl-11 group hover:bg-gray-200 text-gray-200 hover:bg-gray-200 hover:text-gray-800">Organizer</a>
+                            class="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group {{ Request::is('admin/account/organizer') ? 'text-gray-800 bg-gray-200' : 'text-gray-200 hover:bg-gray-200 hover:text-gray-800' }}">
+                            Organizer
+                        </a>
                     </li>
                     <li>
                         <a href="/admin/account/admin"
-                            class="flex items-center w-full p-2 text-gray-800 transition duration-75 rounded-lg pl-11 group hover:bg-gray-200 text-gray-200 hover:bg-gray-200 hover:text-gray-800">Admin</a>
+                            class="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group {{ Request::is('admin/account/admin') ? 'text-gray-800 bg-gray-200' : 'text-gray-200 hover:bg-gray-200 hover:text-gray-800' }}">
+                            Admin
+                        </a>
                     </li>
                 </ul>
             </li>
             <li>
                 <a href="/admin/feedbacks"
-                    class="flex items-center p-2 {{ Request::is('admin/feedbacks') ? 'text-gray-800 hover:bg-gray-800 hover:text-gray-200 bg-gray-200' : ' text-gray-200 hover:bg-gray-200 hover:text-gray-800' }} rounded-lg group">
-                    <svg class="flex-shrink-0 w-5 h-5 'text-gray-800 group-hover:text-gray-200' : 'text-gray-200 group-hover:text-gray-800' }}  transition duration-75"
+                    class="flex items-center p-2 {{ Request::is('admin/feedbacks') ? 'text-gray-800 bg-gray-200' : 'text-gray-200 hover:bg-gray-200 hover:text-gray-800' }} rounded-lg group">
+                    <svg class="flex-shrink-0 w-5 h-5 transition duration-75 {{ Request::is('admin/feedbacks') ? 'text-gray-800' : 'text-gray-200 group-hover:text-gray-800' }}"
                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M5 5V.13a2.96 2.96 0 0 0-1.293.749L.879 3.707A2.96 2.96 0 0 0 .13 5H5Z" />
                         <path
@@ -74,10 +80,11 @@
                     <span class="flex-1 ms-3 whitespace-nowrap">Feedback</span>
                 </a>
             </li>
+
             <li>
                 <a href="/admin/ticket"
-                    class="flex items-center p-2 {{ Request::is('admin/ticket') ? 'text-gray-800 hover:bg-gray-800 hover:text-gray-200 bg-gray-200' : ' text-gray-200 hover:bg-gray-200 hover:text-gray-800' }} rounded-lg group">
-                    <svg class="flex-shrink-0 w-5 h-5 'text-gray-800 group-hover:text-gray-200' : 'text-gray-200 group-hover:text-gray-800' }}  transition duration-75"
+                    class="flex items-center p-2 {{ Request::is('admin/ticket') ? 'text-gray-800 bg-gray-200' : 'text-gray-200 hover:bg-gray-200 hover:text-gray-800' }} rounded-lg group">
+                    <svg class="flex-shrink-0 w-5 h-5 transition duration-75 {{ Request::is('admin/ticket') ? 'text-gray-800' : 'text-gray-200 group-hover:text-gray-800' }}"
                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M5 5V.13a2.96 2.96 0 0 0-1.293.749L.879 3.707A2.96 2.96 0 0 0 .13 5H5Z" />
                         <path
@@ -88,10 +95,11 @@
                     <span class="flex-1 ms-3 whitespace-nowrap">Tiket</span>
                 </a>
             </li>
+
             <li>
                 <a href="/admin/category"
-                    class="flex items-center p-2 {{ Request::is('admin/category') ? 'text-gray-800 hover:bg-gray-800 hover:text-gray-200 bg-gray-200' : ' text-gray-200 hover:bg-gray-200 hover:text-gray-800' }} rounded-lg group">
-                    <svg class="flex-shrink-0 w-5 h-5 'text-gray-800 group-hover:text-gray-200' : 'text-gray-200 group-hover:text-gray-800' }}  transition duration-75"
+                    class="flex items-center p-2 {{ Request::is('admin/category') ? 'text-gray-800 bg-gray-200' : 'text-gray-200 hover:bg-gray-200 hover:text-gray-800' }} rounded-lg group">
+                    <svg class="flex-shrink-0 w-5 h-5 transition duration-75 {{ Request::is('admin/category') ? 'text-gray-800' : 'text-gray-200 group-hover:text-gray-800' }}"
                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M5 5V.13a2.96 2.96 0 0 0-1.293.749L.879 3.707A2.96 2.96 0 0 0 .13 5H5Z" />
                         <path
@@ -102,10 +110,11 @@
                     <span class="flex-1 ms-3 whitespace-nowrap">Category</span>
                 </a>
             </li>
+
             <li>
                 <a href="/admin/documentations"
-                    class="flex items-center p-2 {{ Request::is('admin/documentations') ? 'text-gray-800 hover:bg-gray-800 hover:text-gray-200 bg-gray-200' : ' text-gray-200 hover:bg-gray-200 hover:text-gray-800' }} rounded-lg group">
-                    <svg class="flex-shrink-0 w-5 h-5 'text-gray-800 group-hover:text-gray-200' : 'text-gray-200 group-hover:text-gray-800' }}  transition duration-75"
+                    class="flex items-center p-2 {{ Request::is('admin/documentations') ? 'text-gray-800 bg-gray-200' : 'text-gray-200 hover:bg-gray-200 hover:text-gray-800' }} rounded-lg group">
+                    <svg class="flex-shrink-0 w-5 h-5 transition duration-75 {{ Request::is('admin/documentations') ? 'text-gray-800' : 'text-gray-200 group-hover:text-gray-800' }}"
                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M5 5V.13a2.96 2.96 0 0 0-1.293.749L.879 3.707A2.96 2.96 0 0 0 .13 5H5Z" />
                         <path
@@ -116,6 +125,7 @@
                     <span class="flex-1 ms-3 whitespace-nowrap">Documentations</span>
                 </a>
             </li>
+
         </ul>
     </div>
 </aside>
