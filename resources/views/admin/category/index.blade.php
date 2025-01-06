@@ -11,7 +11,7 @@
     </div>
 
 
-    <div class="">
+    <div class="p-4 text-gray-200 rounded-lg bg-slate-700">
         <table id="documentations-table">
             <thead>
                 <tr>
@@ -30,8 +30,7 @@
             </thead>
             <tbody>
                 @foreach ($category as $row)
-                    <tr>
-
+                    <tr class="bg-white">
                         <td>{{ $row['name'] ?? '-' }}</td>
                         <td class="flex items-center justify-center">
                             <!-- Modal toggle -->
@@ -165,4 +164,18 @@
             });
         }
     </script>
+    <style>
+        .datatable-wrapper .datatable-top .datatable-dropdown {
+            color: #fff
+        }
+
+        .datatable-wrapper .datatable-bottom .datatable-info {
+            color: #fff
+        }
+
+        .datatable-wrapper .datatable-table .datatable-empty {
+            background: #fff;
+            color: #000
+        }
+    </style>
 @endsection
