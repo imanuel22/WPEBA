@@ -4,29 +4,59 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
-
+use Illuminate\Pagination\LengthAwarePaginator;
 class OrganizerController extends Controller
 {
     function dashboard() {
         return view('organizer.dashboard');        
     }
 
-    function eventIndex(Request $request){
-        $data = [];
-        $search = $request->input('search');
-        $res = Http::withToken(session('token'))->get(config('services.api.url').'/events');
-        if($res->successful()){
-            $json=$res->json();
-            $events = collect($json['data'])->where('user_id',session('id'));
-            if ($search) {
-                $events = $events->filter(function ($event) use ($search) {
-                    return str_contains(strtolower($event['title']), strtolower($search));
-                });
-            }
-            $data['event'] = $events;
+
+
+public function eventIndex(Request $request)
+{
+    $data = [];
+    $search = $request->input('search');
+    $status = $request->input('status', 'all'); // Default ke 'all'
+    $page = $request->input('page', 1); // Halaman default 1
+    $perPage = 10; // Jumlah data per halaman
+
+    $res = Http::withToken(session('token'))->get(config('services.api.url').'/events');
+    
+    if($res->successful()) {
+        $json = $res->json();
+        $events = collect($json['data'])->where('user_id', session('id'));
+        
+        // Filter berdasarkan pencarian jika ada
+        if ($search) {
+            $events = $events->filter(function ($event) use ($search) {
+                return str_contains(strtolower($event['title']), strtolower($search));
+            });
         }
-        return view('organizer.event.index',$data);
+
+        // Filter berdasarkan status jika bukan 'all'
+        if ($status !== 'all') {
+            $events = $events->where('status', $status);
+        }
+
+        // Pagination menggunakan LengthAwarePaginator
+        $currentPageItems = $events->slice(($page - 1) * $perPage, $perPage)->values();
+        $paginator = new LengthAwarePaginator(
+            $currentPageItems, 
+            $events->count(), 
+            $perPage, 
+            $page,
+            ['path' => url()->current(), 'query' => $request->query()]
+        );
+
+        $data['event'] = $paginator;
+        $data['status'] = $status; // Mengirim status ke view
     }
+    
+    return view('organizer.event.index', $data);
+}
+
+
     
     function eventShow($id){
         $data = [];

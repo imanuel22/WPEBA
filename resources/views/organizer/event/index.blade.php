@@ -1,6 +1,9 @@
 @extends('organizer.partials.main')
 
 @section('main')
+    <div class="mb-5 border-b-4 border-slate-700 ">
+        <h3 class="text-3xl">Events</h3>
+    </div>
     @if (session()->has('message') && session()->has('status') && session('status') == true)
         <div id="toast-success"
             class="fixed flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow right-5 bottom-5 dark:text-gray-400 dark:bg-gray-800"
@@ -52,17 +55,23 @@
             </button>
         </div>
     @endif
-
-
-
     <div class="flex items-baseline justify-between">
         <div class="">
             <a href="/organizer/event/create"
                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Create
                 Events</a>
         </div>
-        <div class="">
-            <form class="flex items-center max-w-sm mx-auto">
+        <div class="flex items-baseline gap-4">
+
+            <form class="flex items-center max-w-sm gap-3 mx-auto">
+                <select id="status" name="status" onchange="this.form.submit()"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option value="all" {{ request('status') === 'all' ? 'selected' : '' }}>All status</option>
+                    <option value="upcoming" {{ request('status') === 'upcoming' ? 'selected' : '' }}>upcoming</option>
+                    <option value="in_progress" {{ request('status') === 'in_progress' ? 'selected' : '' }}>in_progress
+                    </option>
+                    <option value="completed" {{ request('status') === 'completed' ? 'selected' : '' }}>completed</option>
+                </select>
                 <label for="simple-search" class="sr-only">Search</label>
                 <input type="search" id="simple-search"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -81,8 +90,7 @@
 
         </div>
     </div>
-    {{-- @dd($event) --}}
-    <div class="grid grid-cols-1 gap-4 mt-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2">
+    {{-- <div class="grid grid-cols-1 gap-4 mt-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2">
         @foreach ($event as $row)
             <div class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <a href="/organizer/event/{{ $row['id'] }}">
@@ -122,5 +130,54 @@
                 </div>
             </div>
         @endforeach
+    </div> --}}
+    <div class="mt-4 ">
+        <div class="relative overflow-x-auto rounded-lg">
+            <table class="w-full text-sm text-left text-gray-500 rtl:text-right dark:text-gray-400">
+                <tbody>
+                    @foreach ($event as $row)
+                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                            <th scope="row"
+                                class="items-center w-40 px-6 py-4 font-medium text-center text-gray-900 whitespace-nowrap dark:text-white">
+                                <div class="rounded-lg ">
+                                    <img class=""
+                                        src="{{ env('APP_API_IMG_URL') }}/event/{{ $row['images'][0]['filename'] }}"
+                                        alt="">
+
+                                </div>
+                                <div class="mt-1 text-xl rounded-sm bg-slate-300">
+                                    {{ $row['title'] }}
+                                </div>
+                            </th>
+                            <td class="w-20 px-6 py-4">
+                                <div
+                                    class="px-3 py-1 text-center text-white rounded-lg {{ $row['status'] === 'upcoming' ? 'bg-red-700' : ($row['status'] === 'in_progress' ? 'bg-yellow-300' : 'bg-green-700') }}">
+                                    {{ $row['status'] }}
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+
+                                {{ $row['description'] }}
+                            </td>
+                            <td class="w-40 px-6 py-4">
+                                <div class="">
+
+                                    <a href="/organizer/event/{{ $row['id'] }}"
+                                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                        View Event
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+
+                </tbody>
+            </table>
+        </div>
+
+        <div class="mt-3 mb-4">
+            {{ $event->links('pagination::tailwind') }}
+        </div>
+
     </div>
 @endsection

@@ -58,8 +58,8 @@
 
                 <li>
                     <a href="/organizer/event/{{ request()->route('event_id') }}/feedback"
-                        class="{{ request()->is('organizer/event/' . request()->route('event_id').'/feedback') ? 'text-gray-800 hover:bg-gray-800 hover:text-gray-200 bg-gray-200' : ' text-gray-200 hover:bg-gray-200 hover:text-gray-800' }} flex items-center p-2 rounded-lg group">
-                        <svg class="flex-shrink-0 w-5 h-5 {{ request()->is('organizer/event/' . request()->route('event_id').'/feedback') ? 'text-gray-800 group-hover:text-gray-200' : 'text-gray-200 group-hover:text-gray-800' }}  transition duration-75   "
+                        class="{{ request()->is('organizer/event/' . request()->route('event_id') . '/feedback') ? 'text-gray-800 hover:bg-gray-800 hover:text-gray-200 bg-gray-200' : ' text-gray-200 hover:bg-gray-200 hover:text-gray-800' }} flex items-center p-2 rounded-lg group">
+                        <svg class="flex-shrink-0 w-5 h-5 {{ request()->is('organizer/event/' . request()->route('event_id') . '/feedback') ? 'text-gray-800 group-hover:text-gray-200' : 'text-gray-200 group-hover:text-gray-800' }}  transition duration-75   "
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                             viewBox="0 0 20 20">
                             <path
@@ -70,8 +70,8 @@
                 </li>
                 <li>
                     <a href="/organizer/event/{{ request()->route('event_id') }}/documentations"
-                        class="{{ request()->is('organizer/event/' . request()->route('event_id').'/documentations') ? 'text-gray-800 hover:bg-gray-800 hover:text-gray-200 bg-gray-200' : ' text-gray-200 hover:bg-gray-200 hover:text-gray-800' }} flex items-center p-2 rounded-lg group">
-                        <svg class="flex-shrink-0 w-5 h-5 {{ request()->is('organizer/event/' . request()->route('event_id').'/documentations') ? 'text-gray-800 group-hover:text-gray-200' : 'text-gray-200 group-hover:text-gray-800' }}  transition duration-75   "
+                        class="{{ request()->is('organizer/event/' . request()->route('event_id') . '/documentations') ? 'text-gray-800 hover:bg-gray-800 hover:text-gray-200 bg-gray-200' : ' text-gray-200 hover:bg-gray-200 hover:text-gray-800' }} flex items-center p-2 rounded-lg group">
+                        <svg class="flex-shrink-0 w-5 h-5 {{ request()->is('organizer/event/' . request()->route('event_id') . '/documentations') ? 'text-gray-800 group-hover:text-gray-200' : 'text-gray-200 group-hover:text-gray-800' }}  transition duration-75   "
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                             viewBox="0 0 20 20">
                             <path
@@ -82,8 +82,8 @@
                 </li>
                 <li>
                     <a href="/organizer/event/{{ request()->route('event_id') }}/ticket"
-                        class="{{ request()->is('organizer/event/' . request()->route('event_id').'/ticket') ? 'text-gray-800 hover:bg-gray-800 hover:text-gray-200 bg-gray-200' : ' text-gray-200 hover:bg-gray-200 hover:text-gray-800' }} flex items-center p-2 rounded-lg group">
-                        <svg class="flex-shrink-0 w-5 h-5 {{ request()->is('organizer/event/' . request()->route('event_id').'/ticket') ? 'text-gray-800 group-hover:text-gray-200' : 'text-gray-200 group-hover:text-gray-800' }}  transition duration-75   "
+                        class="{{ request()->is('organizer/event/' . request()->route('event_id') . '/ticket') ? 'text-gray-800 hover:bg-gray-800 hover:text-gray-200 bg-gray-200' : ' text-gray-200 hover:bg-gray-200 hover:text-gray-800' }} flex items-center p-2 rounded-lg group">
+                        <svg class="flex-shrink-0 w-5 h-5 {{ request()->is('organizer/event/' . request()->route('event_id') . '/ticket') ? 'text-gray-800 group-hover:text-gray-200' : 'text-gray-200 group-hover:text-gray-800' }}  transition duration-75   "
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                             viewBox="0 0 20 20">
                             <path
@@ -94,8 +94,8 @@
                 </li>
                 <li>
                     <a href="/organizer/event/{{ request()->route('event_id') }}/registrations"
-                        class="{{ request()->is('organizer/event/' . request()->route('event_id').'/registrations') ? 'text-gray-800 hover:bg-gray-800 hover:text-gray-200 bg-gray-200' : ' text-gray-200 hover:bg-gray-200 hover:text-gray-800' }} flex items-center p-2 rounded-lg group">
-                        <svg class="flex-shrink-0 w-5 h-5 {{ request()->is('organizer/event/' . request()->route('event_id').'/registrations') ? 'text-gray-800 group-hover:text-gray-200' : 'text-gray-200 group-hover:text-gray-800' }}  transition duration-75   "
+                        class="{{ request()->is('organizer/event/' . request()->route('event_id') . '/registrations') ? 'text-gray-800 hover:bg-gray-800 hover:text-gray-200 bg-gray-200' : ' text-gray-200 hover:bg-gray-200 hover:text-gray-800' }} flex items-center p-2 rounded-lg group">
+                        <svg class="flex-shrink-0 w-5 h-5 {{ request()->is('organizer/event/' . request()->route('event_id') . '/registrations') ? 'text-gray-800 group-hover:text-gray-200' : 'text-gray-200 group-hover:text-gray-800' }}  transition duration-75   "
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                             viewBox="0 0 20 20">
                             <path
