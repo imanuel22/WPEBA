@@ -48,15 +48,15 @@
                 <ul id="dropdown-example" class="hidden py-2 space-y-2">
                     <li>
                         <a href="/admin/account/participant"
-                            class="flex items-center w-full p-2 text-gray-800 transition duration-75 rounded-lg pl-11 group hover:bg-gray-200 text-gray-200 hover:bg-gray-200 hover:text-gray-800">Participant</a>
+                            class="flex items-center w-full p-2 text-gray-200 text-gray-800 transition duration-75 rounded-lg pl-11 group hover:bg-gray-200 hover:text-gray-800">Participant</a>
                     </li>
                     <li>
                         <a href="/admin/account/organizer"
-                            class="flex items-center w-full p-2 text-gray-800 transition duration-75 rounded-lg pl-11 group hover:bg-gray-200 text-gray-200 hover:bg-gray-200 hover:text-gray-800">Organizer</a>
+                            class="flex items-center w-full p-2 text-gray-200 text-gray-800 transition duration-75 rounded-lg pl-11 group hover:bg-gray-200 hover:text-gray-800">Organizer</a>
                     </li>
                     <li>
                         <a href="/admin/account/admin"
-                            class="flex items-center w-full p-2 text-gray-800 transition duration-75 rounded-lg pl-11 group hover:bg-gray-200 text-gray-200 hover:bg-gray-200 hover:text-gray-800">Admin</a>
+                            class="flex items-center w-full p-2 text-gray-200 text-gray-800 transition duration-75 rounded-lg pl-11 group hover:bg-gray-200 hover:text-gray-800">Admin</a>
                     </li>
                 </ul>
             </li>

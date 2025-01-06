@@ -145,7 +145,7 @@
                                         alt="">
 
                                 </div>
-                                <div class="mt-1 text-xl rounded-sm bg-slate-300">
+                                <div class="mt-1 text-xl ">
                                     {{ $row['title'] }}
                                 </div>
                             </th>

@@ -7,9 +7,40 @@ use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 class OrganizerController extends Controller
 {
-    function dashboard() {
-        return view('organizer.dashboard');        
+
+public function dashboard()
+{
+    $data = [];
+    $res = Http::get(config('services.api.url') . '/events');
+
+    if ($res->successful()) {
+        $json = $res->json();
+        
+        // Ambil hanya event yang dimiliki user
+        $events = collect($json['data'])->where('user_id', session('id'));
+
+        // Menghitung jumlah event berdasarkan status
+        $totalEvents = $events->count();
+        $upcomingEvents = $events->where('status', 'upcoming')->count();
+        $inProgressEvents = $events->where('status', 'in_progress')->count();
+        $completedEvents = $events->where('status', 'completed')->count();
+
+        // Urutkan berdasarkan `created_at` terbaru
+        $sortedEvents = $events->sortByDesc('created_at')->take(5);
+
+        // Menyusun data untuk dikirim ke view
+        $data = [
+            'events' => $sortedEvents,
+            'total_events' => $totalEvents,
+            'upcoming_events' => $upcomingEvents,
+            'in_progress_events' => $inProgressEvents,
+            'completed_events' => $completedEvents
+        ];
     }
+    // Return view dengan data
+    return view('organizer.dashboard', $data);
+}
+
 
 
 
@@ -38,6 +69,7 @@ public function eventIndex(Request $request)
         if ($status !== 'all') {
             $events = $events->where('status', $status);
         }
+        $events = $events->sortByDesc('created_at');
 
         // Pagination menggunakan LengthAwarePaginator
         $currentPageItems = $events->slice(($page - 1) * $perPage, $perPage)->values();
