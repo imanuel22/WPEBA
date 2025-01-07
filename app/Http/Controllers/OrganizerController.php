@@ -244,7 +244,6 @@ public function eventUpdate(Request $request, $id)
         $json = $res->json();
         return redirect('/organizer/event/' . $id)->with(['status' => $json['success'], 'message' => $json['message']]);
     } else {
-        dd($res->body());
         return back()->withErrors(['error' => $res->body()])->withInput();
     }
 }

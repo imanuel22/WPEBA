@@ -13,7 +13,6 @@ class CheckTokenMiddleware
         $token = session('token');
 
         if (!$token) {
-            dd($token);
             return redirect()->route('login')->withErrors('silakan login kembali.');
         }
 

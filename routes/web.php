@@ -13,6 +13,7 @@ Route::get('/', function () {
 
 
 Route::get('/login',[AuthController::class,'login']);
+Route::get('/register',[AuthController::class,'login']);
 Route::delete('/logout',[AuthController::class,'logout']);
 Route::post('/login',[AuthController::class,'dologin'])->name('login');
 

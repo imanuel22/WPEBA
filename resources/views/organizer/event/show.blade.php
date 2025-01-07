@@ -22,23 +22,23 @@
         </div>
 
     </div>
+
     <div class="max-w-screen-xl px-4 mx-auto 2xl:px-0">
         <div class="max-w-5xl mx-auto">
             <h1 class="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">{{ $event['title'] }}</h1>
             <div class="flex my-8 xl:mb-16 xl:mt-12">
-                <div id="gallery" class="relative w-full max-w-sm" data-carousel="slide">
+                <div id="custom-controls-gallery" class="relative w-full" data-carousel="slide">
                     <!-- Carousel wrapper -->
-                    <div class="relative overflow-hidden h-96">
-                        @if ($event['images'])
-                            @foreach ($event['images'] as $image)
-                                <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                                    <img src="{{ env('APP_API_IMG_URL') }}/event/{{ $image['filename'] }}"
-                                        class="absolute block h-auto max-w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                                        alt="{{ $image['filename'] }}">
-                                </div>
-                            @endforeach
-                        @endif
+                    <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
+                        @foreach ($event['images'] as $image)
+                            <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                                <img src="{{ env('APP_API_IMG_URL') }}/event/{{ $image['filename'] }}"
+                                    class="absolute block h-auto max-w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                                    alt="">
+                            </div>
+                        @endforeach
                     </div>
+
                 </div>
             </div>
             <div class="max-w-2xl mx-auto space-y-6">
