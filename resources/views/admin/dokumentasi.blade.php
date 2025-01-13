@@ -4,75 +4,80 @@
     <!-- Include Simple-DataTables Library -->
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@9.0.3"></script>
 
+    <div class="mb-5 border-b-4 border-slate-700 ">
+        <h3 class="text-3xl">DATA DOKUMENTASI EVENT</h3>
+    </div>
 
-    <table id="selection-table">
-        <thead>
-            <tr>
-                <th>
-                    <span class="flex items-center">
-                        Gambar
-                        <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
-                            height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m8 15 4 4 4-4m0-6-4-4-4 4" />
-                        </svg>
-                    </span>
-                </th>
-                <th data-type="date" data-format="YYYY/DD/MM">
-                    <span class="flex items-center">
-                        Deskripsi
-                        <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
-                            height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m8 15 4 4 4-4m0-6-4-4-4 4" />
-                        </svg>
-                    </span>
-                </th>
-                <th data-type="date" data-format="YYYY/DD/MM">
-                    <span class="flex items-center">
-                        Event name
-                        <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
-                            height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m8 15 4 4 4-4m0-6-4-4-4 4" />
-                        </svg>
-                    </span>
-                </th>
-                <th>
-                    <span class="flex items-center">
-                        Aksi
-                        <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
-                            height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m8 15 4 4 4-4m0-6-4-4-4 4" />
-                        </svg>
-                    </span>
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($documentation as $row)
-                <tr class="cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800">
-                    <td><img src="{{ env('APP_API_IMG_URL') }}/documentations/{{ $row['image'] }}"
-                            alt="{{ $row['event']['title'] }}"></td>
-                    <td>{{ $row['description'] }}</td>
-                    <th>{{ $row['event']['title'] }}</th>
-                    <td>
-                        <form action="/admin/documentations/{{ $row['id'] }}" method="post">
-                            <button type="submit"
-                                class="focus:outline-none text-white bg-red-500 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
-                                onclick="return confirm('Apakah anda ingin menghapus dokumentasi ini?')">
-                                Hapus
-                            </button>
-                            @csrf
-                            @method('DELETE')
-                        </form>
-                    </td>
+    <div class="p-4 text-gray-200 rounded-lg bg-slate-700">
+        <table id="selection-table">
+            <thead>
+                <tr>
+                    <th>
+                        <span class="flex items-center">
+                            Gambar
+                            <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="m8 15 4 4 4-4m0-6-4-4-4 4" />
+                            </svg>
+                        </span>
+                    </th>
+                    <th data-type="date" data-format="YYYY/DD/MM">
+                        <span class="flex items-center">
+                            Deskripsi
+                            <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="m8 15 4 4 4-4m0-6-4-4-4 4" />
+                            </svg>
+                        </span>
+                    </th>
+                    <th data-type="date" data-format="YYYY/DD/MM">
+                        <span class="flex items-center">
+                            Event name
+                            <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="m8 15 4 4 4-4m0-6-4-4-4 4" />
+                            </svg>
+                        </span>
+                    </th>
+                    <th>
+                        <span class="flex items-center">
+                            Aksi
+                            <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="m8 15 4 4 4-4m0-6-4-4-4 4" />
+                            </svg>
+                        </span>
+                    </th>
                 </tr>
-            @endforeach
+            </thead>
+            <tbody>
+                @foreach ($documentation as $row)
+                    <tr class="cursor-pointer bg-white">
+                        <td><img src="{{ env('APP_API_IMG_URL') }}/documentations/{{ $row['image'] }}"
+                                alt="{{ $row['event']['title'] }}"></td>
+                        <td>{{ $row['description'] }}</td>
+                        <th>{{ $row['event']['title'] }}</th>
+                        <td>
+                            <form action="/admin/documentations/{{ $row['id'] }}" method="post">
+                                <button type="submit"
+                                    class="focus:outline-none text-white bg-red-500 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+                                    onclick="return confirm('Apakah anda ingin menghapus dokumentasi ini?')">
+                                    Hapus
+                                </button>
+                                @csrf
+                                @method('DELETE')
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
 
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 
     {{-- Start Modal Tambah --}}
     <div id="tambah" tabindex="-1" aria-hidden="true"
@@ -256,4 +261,18 @@
             resetTable();
         }
     </script>
+    <style>
+        .datatable-wrapper .datatable-top .datatable-dropdown {
+            color: #fff
+        }
+
+        .datatable-wrapper .datatable-bottom .datatable-info {
+            color: #fff
+        }
+
+        .datatable-wrapper .datatable-table .datatable-empty {
+            background: #fff;
+            color: #000
+        }
+    </style>
 @endsection

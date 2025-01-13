@@ -3,173 +3,118 @@
 @section('main')
     <!-- Include Simple-DataTables Library -->
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@9.0.3"></script>
+    <div class="mb-5 border-b-4 border-slate-700 ">
+        <h3 class="text-3xl">DATA EVENT</h3>
+    </div>
 
-
-    <table id="selection-table">
-        <thead>
-            <tr>
-                <th>
-                    <span class="flex items-center">
-                        Image
-                        <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
-                            height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m8 15 4 4 4-4m0-6-4-4-4 4" />
-                        </svg>
-                    </span>
-                </th>
-                <th data-type="date" data-format="YYYY/DD/MM">
-                    <span class="flex items-center">
-                        Nama Event
-                        <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
-                            height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m8 15 4 4 4-4m0-6-4-4-4 4" />
-                        </svg>
-                    </span>
-                </th>
-                <th>
-                    <span class="flex items-center">
-                        Status
-                        <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
-                            height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m8 15 4 4 4-4m0-6-4-4-4 4" />
-                        </svg>
-                    </span>
-                </th>
-                <th>
-                    <span class="flex items-center">
-                        Durasi
-                        <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
-                            height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m8 15 4 4 4-4m0-6-4-4-4 4" />
-                        </svg>
-                    </span>
-                </th>
-                <th>
-                    <span class="flex items-center">
-                        Organizer
-                        <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
-                            height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m8 15 4 4 4-4m0-6-4-4-4 4" />
-                        </svg>
-                    </span>
-                </th>
-                <th>
-                    <span class="flex items-center">
-                        Deskripsi
-                        <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
-                            height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m8 15 4 4 4-4m0-6-4-4-4 4" />
-                        </svg>
-                    </span>
-                </th>
-                <th>
-                    <span class="flex items-center">
-                        Aksi
-                        <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
-                            height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m8 15 4 4 4-4m0-6-4-4-4 4" />
-                        </svg>
-                    </span>
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($events as $row)
-                <tr class="cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800">
-                    <td><img src="{{ env('APP_API_IMG_URL') }}/events/{{ $row['image'] }}" alt="{{ $row['title'] }}"></td>
-                    <td>{{ $row['title'] }}</td>
-                    <td>{{ $row['status'] }}</td>
-                    <td>{{ $row['duration'] }}</td>
-                    <td>{{ $row['user']['name'] }}</td>
-                    <td>{{ $row['description'] }}</td>
-                    <td>
-                        <form action="/admin/event/{{ $row['id'] }}" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit"
-                                class="focus:outline-none text-white bg-red-500 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
-                                onclick="return confirm('Apakah anda ingin menghapus event ini?')">
-                                Hapus
-                            </button>
-                        </form>
-                    </td>
+    <div class="p-4 text-gray-200 rounded-lg bg-slate-700">
+        <table id="selection-table">
+            <thead>
+                <tr>
+                    <th>
+                        <span class="flex items-center">
+                            Image
+                            <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="m8 15 4 4 4-4m0-6-4-4-4 4" />
+                            </svg>
+                        </span>
+                    </th>
+                    <th data-type="date" data-format="YYYY/DD/MM">
+                        <span class="flex items-center">
+                            Nama Event
+                            <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="m8 15 4 4 4-4m0-6-4-4-4 4" />
+                            </svg>
+                        </span>
+                    </th>
+                    <th>
+                        <span class="flex items-center">
+                            Status
+                            <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="m8 15 4 4 4-4m0-6-4-4-4 4" />
+                            </svg>
+                        </span>
+                    </th>
+                    <th>
+                        <span class="flex items-center">
+                            Durasi
+                            <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="m8 15 4 4 4-4m0-6-4-4-4 4" />
+                            </svg>
+                        </span>
+                    </th>
+                    <th>
+                        <span class="flex items-center">
+                            Organizer
+                            <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="m8 15 4 4 4-4m0-6-4-4-4 4" />
+                            </svg>
+                        </span>
+                    </th>
+                    <th>
+                        <span class="flex items-center">
+                            Deskripsi
+                            <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="m8 15 4 4 4-4m0-6-4-4-4 4" />
+                            </svg>
+                        </span>
+                    </th>
+                    <th>
+                        <span class="flex items-center">
+                            Aksi
+                            <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="m8 15 4 4 4-4m0-6-4-4-4 4" />
+                            </svg>
+                        </span>
+                    </th>
                 </tr>
-                {{-- Start Modal Edit --}}
-                {{-- <div id="edit" tabindex="-1" aria-hidden="true"
-                    class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                    <div class="relative w-full max-w-md max-h-full p-4">
-                        <!-- Modal content -->
-                        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                            <!-- Modal header -->
-                            <div
-                                class="flex items-center justify-between p-4 border-b rounded-t md:p-5 dark:border-gray-600">
-                                <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                                    Tambah Akun
-                                </h3>
-                                <button type="button"
-                                    class="end-2.5 text-yellow-400 bg-transparent hover:bg-yellow-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                                    data-modal-hide="edit">
-                                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                        fill="none" viewBox="0 0 14 14">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                                    </svg>
-                                    <span class="sr-only">Close modal</span>
+            </thead>
+            <tbody>
+                @foreach ($events as $row)
+                    <tr class="cursor-pointer bg-white">
+                        <td><img src="{{ env('APP_API_IMG_URL') }}/events/{{ $row['image'] }}" alt="{{ $row['title'] }}"></td>
+                        <td>{{ $row['title'] }}</td>
+                        <td>{{ $row['status'] }}</td>
+                        <td>{{ $row['duration'] }}</td>
+                        <td>{{ $row['user']['name'] }}</td>
+                        <td>{{ $row['description'] }}</td>
+                        <td>
+                            <form action="/admin/event/{{ $row['id'] }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit"
+                                    class="focus:outline-none text-white bg-red-500 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+                                    onclick="return confirm('Apakah anda ingin menghapus event ini?')">
+                                    Hapus
                                 </button>
-                            </div>
-                            <!-- Modal body -->
-                            <div class="p-4 md:p-5">
-                                <form class="space-y-4" action="#">
-                                    <div>
-                                        <label for="name"
-                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama</label>
-                                        <input type="name" name="name" id="email"
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                            placeholder="nama" required />
-                                    </div>
-                                    <div>
-                                        <label for="email"
-                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
-                                        <input type="email" name="email" id="email"
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                            placeholder="email@gmail.com" required />
-                                    </div>
-                                    <div>
-                                        <label for="profile"
-                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                            for="file_input">Foto Profile</label>
-                                        <input
-                                            class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                                            id="file_input" type="file">
-                                    </div>
-                                    <button
-                                        class="text-white inline-flex w-full justify-center bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                        Edit Akun
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div> --}}
-                {{-- End Modal Edit --}}
-            @endforeach
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
 
-        </tbody>
-    </table>
-
+            </tbody>
+        </table>
+    </div>
     {{-- Start Modal Tambah --}}
     <div id="tambah" tabindex="-1" aria-hidden="true"
         class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
         <div class="relative w-full max-w-md max-h-full p-4">
             <!-- Modal content -->
-            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+            <div class="relative rounded-lg shadow bg-slate-700">
                 <!-- Modal header -->
                 <div class="flex items-center justify-between p-4 border-b rounded-t md:p-5 dark:border-gray-600">
                     <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
@@ -291,4 +236,19 @@
             resetTable();
         }
     </script>
+
+<style>
+    .datatable-wrapper .datatable-top .datatable-dropdown {
+        color: #fff
+    }
+
+    .datatable-wrapper .datatable-bottom .datatable-info {
+        color: #fff
+    }
+
+    .datatable-wrapper .datatable-table .datatable-empty {
+        background: #fff;
+        color: #000
+    }
+</style>
 @endsection

@@ -1,21 +1,24 @@
 @extends('organizer.partials.main')
 
 @section('main')
-    <div class="">
+    <div class="mb-5 border-b-4 border-slate-700 ">
+        <h3 class="text-3xl">Feedback</h3>
+    </div>
+    <div class="p-4 rounded-lg bg-slate-700">
         <table id="information-table">
             <thead>
                 <tr>
-                    <th>
+                    <th class="text-black bg-slate-300">
                         <span class="flex items-center">
                             User
                         </span>
                     </th>
-                    <th>
+                    <th class="text-black bg-slate-300">
                         <span class="flex items-center">
-                            feedback_text
+                            feedback
                         </span>
                     </th>
-                    <th>
+                    <th class="text-black bg-slate-300">
                         <span class="flex items-center">
                             rating
                         </span>
@@ -25,7 +28,7 @@
             </thead>
             <tbody>
                 @foreach ($feedback as $row)
-                    <tr>
+                    <tr class="text-black bg-white ">
                         <td>
                             <div class="flex justify-center">
                                 <img class="w-24 rounded-full"
@@ -60,6 +63,20 @@
         </table>
 
     </div>
+    <style>
+        .datatable-wrapper .datatable-top .datatable-dropdown {
+            color: #fff
+        }
+
+        .datatable-wrapper .datatable-bottom .datatable-info {
+            color: #fff
+        }
+
+        .datatable-wrapper .datatable-table .datatable-empty {
+            background: #fff;
+            color: #000
+        }
+    </style>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@9.0.3"></script>
     <script>
         if (document.getElementById("information-table") && typeof simpleDatatables.DataTable !== 'undefined') {

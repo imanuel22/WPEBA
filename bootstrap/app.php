@@ -15,7 +15,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
             'role'=>CheckRoleMiddleware::class,
-            // 'check.token'=>CheckTokenMiddleware::class
+            'check.token'=>CheckTokenMiddleware::class
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

@@ -1,6 +1,11 @@
 @extends('admin.partials.main')
 
 @section('main')
+
+    <div class="mb-5 border-b-4 border-slate-700 ">
+        <h3 class="text-3xl">DATA CATEGORY EVENT</h3>
+    </div>
+
     <div class="mb-4">
         <!-- Modal toggle -->
         <button data-modal-target="crud-modal" data-modal-toggle="crud-modal"
@@ -11,7 +16,7 @@
     </div>
 
 
-    <div class="">
+    <div class="p-4 text-gray-200 rounded-lg bg-slate-700">
         <table id="documentations-table">
             <thead>
                 <tr>
@@ -30,8 +35,7 @@
             </thead>
             <tbody>
                 @foreach ($category as $row)
-                    <tr>
-
+                    <tr class="bg-white">
                         <td>{{ $row['name'] ?? '-' }}</td>
                         <td class="flex items-center justify-center">
                             <!-- Modal toggle -->
@@ -165,4 +169,18 @@
             });
         }
     </script>
+    <style>
+        .datatable-wrapper .datatable-top .datatable-dropdown {
+            color: #fff
+        }
+
+        .datatable-wrapper .datatable-bottom .datatable-info {
+            color: #fff
+        }
+
+        .datatable-wrapper .datatable-table .datatable-empty {
+            background: #fff;
+            color: #000
+        }
+    </style>
 @endsection

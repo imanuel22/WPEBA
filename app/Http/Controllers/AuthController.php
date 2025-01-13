@@ -12,10 +12,21 @@ class AuthController extends Controller
         return view('auth.login');
 
     }
+
+    public function logout(Request $request){
+        $res=Http::withToken(session('token'))->post(config('services.api.url').'/login');
+        if($res->successful()){
+        session()->flush();
+        
+        return redirect('/');
+    }
+            
+    }
+
     public function dologin(Request $request){
         $credentials = $request->only(['email', 'password']);
-
-        $res=Http::post('http://api-wpeba.test/api/login',$credentials);
+        $res=Http::post(env('APP_API_URL').'/login',$credentials);
+        
         if ($res->successful()) {
             $json = $res->json();
             $userData=$json['data'];
@@ -39,7 +50,7 @@ class AuthController extends Controller
                 return redirect('/user/dashboard');
             }
         }else{
-            dd($res);
+
         }
     }
 }
