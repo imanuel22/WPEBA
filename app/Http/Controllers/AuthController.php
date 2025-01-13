@@ -25,8 +25,7 @@ class AuthController extends Controller
 
     public function dologin(Request $request){
         $credentials = $request->only(['email', 'password']);
-        $res=Http::post(env('APP_API_URL').'/login',$credentials);
-        
+        $res=Http::post('http://api-wpeba.test/api/login',$credentials);
         if ($res->successful()) {
             $json = $res->json();
             $userData=$json['data'];
