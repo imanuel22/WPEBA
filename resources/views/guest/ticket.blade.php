@@ -90,23 +90,18 @@
                                 <th scope="row" class="w-1/2 px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
                                     Category
                                 </th>
-                                <td class="px-6 py-4 flex flex-wrap gap-3">
-                                    <p class="bg-red-600 text-white rounded-2xl w-fit text-center p-2 ">{{ $event['status'] }}</p>
-                                    <p class="bg-red-600 text-white rounded-2xl w-fit text-center p-2 ">{{ $event['status'] }}</p>
-                                    <p class="bg-red-600 text-white rounded-2xl w-fit text-center p-2 ">{{ $event['status'] }}</p>
-                                    <p class="bg-red-600 text-white rounded-2xl w-fit text-center p-2 ">{{ $event['status'] }}</p>
-                                    <p class="bg-red-600 text-white rounded-2xl w-fit text-center p-2 ">{{ $event['status'] }}</p>
-                                    <p class="bg-red-600 text-white rounded-2xl w-fit text-center p-2 ">{{ $event['status'] }}</p>
-                                    <p class="bg-red-600 text-white rounded-2xl w-fit text-center p-2 ">{{ $event['status'] }}</p>
-                                    <p class="bg-red-600 text-white rounded-2xl w-fit text-center p-2 ">{{ $event['status'] }}</p>
-                                    <p class="bg-red-600 text-white rounded-2xl w-fit text-center p-2 ">{{ $event['status'] }}</p>
-                                    <p class="bg-red-600 text-white rounded-2xl w-fit text-center p-2 ">{{ $event['status'] }}</p>
+                                <td class="flex flex-wrap gap-3 px-6 py-4">
+                                    @foreach ($event['categories'] as $category)
+                                        <p class="p-2 text-center text-white bg-red-600 rounded-2xl w-fit ">
+                                            {{ $category['name'] }}
+                                        </p>
+                                    @endforeach
+
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-
                 @if ($event['tickets'])
                     <a class="flex justify-center mt-10 text-2xl font-bold text-gray-900">TICKET</a>
                     <div class="relative overflow-x-auto">
@@ -134,72 +129,148 @@
                                         Payment
                                     </th>
                                     <td class="px-6 py-4">
-                                        {{ $event['tickets'][0]['payment_method'] }} {{ $event['tickets'][0]['payment_number'] }} ( {{ $event['tickets'][0]['payment_name'] }} )
+                                        {{ $event['tickets'][0]['payment_method'] }}
+                                        {{ $event['tickets'][0]['payment_number'] }}
+                                        {{ $event['tickets'][0]['payment_name'] }}
                                     </td>
                                 </tr>
-                                
+
                             </tbody>
                         </table>
-                        <div class="flex justify-center mt-5">
-                            <a href="/login" type="button"
-                                class="text-center text-white w-60 bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Buy
-                                Now</a>
-                        </div>
+                        @if (!session('id'))
+                            <div class="flex justify-center mt-5">
+                                <a href="/login" type="button"
+                                    class="text-center text-white w-60 bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Buy
+                                    Now</a>
+                            </div>
+                        @else
+                            {{-- Start Modal buy --}}
+                            <div id="buy" tabindex="-1" aria-hidden="true"
+                                class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                                <div class="relative w-full max-w-md max-h-full p-4">
+                                    <!-- Modal content -->
+                                    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                                        <!-- Modal header -->
+                                        <div
+                                            class="flex items-center justify-between p-4 border-b rounded-t md:p-5 dark:border-gray-600">
+                                            <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                                                Buy Ticket
+                                            </h3>
+                                            <button type="button"
+                                                class="end-2.5 text-yellow-400 bg-transparent hover:bg-yellow-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                                                data-modal-hide="buy">
+                                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                                    fill="none" viewBox="0 0 14 14">
+                                                    <path stroke="currentColor" stroke-linecap="round"
+                                                        stroke-linejoin="round" stroke-width="2"
+                                                        d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                                </svg>
+                                                <span class="sr-only">Close modal</span>
+                                            </button>
+                                        </div>
+                                        <!-- Modal body -->
+                                        <div class="p-4 md:p-5">
+                                            {{-- <form class="space-y-4" action="#">
+                                            <div>
+                                                <label for="name"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price/Pcs</label>
+                                                <input type="text" id="disabled-input" aria-label="disabled input"
+                                                    class="mb-6 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    value="{{ $event['tickets'][0]['price'] }}" disabled>
+                                            </div>
+                                            <div>
+                                                <label for="email"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quantity</label>
+                                                <input type="number" name="Quantity" id="Quantity"
+                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                                    placeholder="Number of Quantity" required />
+                                            </div>
+                                            <div class="">
+                                                <button
+                                                    class="text-white inline-flex w-full justify-center bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                                    cek out
+                                                </button>
+                                            </div>
+                                            <div class="">
+                                                <label for="name"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Total
+                                                    Price</label>
+                                                <input type="text" id="disabled-input" aria-label="disabled input"
+                                                    class="mb-6 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    value="200.000" disabled>
+                                            </div>
+                                            <div class="">
+                                                <label for="name"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Payment</label>
+                                                <input type="text" id="disabled-input" aria-label="disabled input"
+                                                    class="mb-6 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    value="{{ $event['tickets'][0]['payment_method'] }} {{ $event['tickets'][0]['payment_number'] }} {{ $event['tickets'][0]['payment_name'] }}"
+                                                    disabled>
+                                            </div>
+                                            <div>
+                                                <label for="profile"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                                    for="file_input">Payment Prof</label>
+                                                <input
+                                                    class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                                                    id="file_input" type="file">
+                                            </div>
 
-                        {{-- Start Modal buy --}}
-                        <div id="buy" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                            <div class="relative p-4 w-full max-w-md max-h-full">
-                                <!-- Modal content -->
-                                <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                                    <!-- Modal header -->
-                                    <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-                                        <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                                            Buy Ticket
-                                        </h3>
-                                        <button type="button" class="end-2.5 text-yellow-400 bg-transparent hover:bg-yellow-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="buy">
-                                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                                            </svg>
-                                            <span class="sr-only">Close modal</span>
-                                        </button>
-                                    </div>
-                                    <!-- Modal body -->
-                                    <div class="p-4 md:p-5">
-                                        <form class="space-y-4" action="#">
-                                            <div>
-                                                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price/Pcs</label>
-                                                <input type="text" id="disabled-input" aria-label="disabled input" class="mb-6 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" value="200.000" disabled>
-
-                                            </div>
-                                            <div>
-                                                <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quantity</label>
-                                                <input type="number" name="Quantity" id="Quantity" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Number of Quantity" required />
-                                            </div>
-                                            <div>
-                                                <label for="profile" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Payment Prof</label>
-                                                <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file">
-                                            </div>
-                                            <button class="text-white inline-flex w-full justify-center bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                            <button
+                                                class="text-white inline-flex w-full justify-center bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                                 Verify
                                             </button>
-                                        </form>
+                                        </form> --}}
+                                            <form method="POST" action="/buyticket" enctype="multipart/form-data">
+                                                @csrf
+                                                <input type="hidden" name="price"
+                                                    value="{{ $event['tickets'][0]['price'] }}">
+                                                <input type="hidden" name="ticket_id"
+                                                    value="{{ $event['tickets'][0]['id'] }}">
+                                                <input type="hidden" name="event_id" value="{{ $event['id'] }}">
+                                                <div>
+                                                    <label for="name"
+                                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price/Pcs</label>
+                                                    <input type="text" id="disabled-input" aria-label="disabled input"
+                                                        class="mb-6 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        value="{{ $event['tickets'][0]['price'] }}" name="price"
+                                                        disabled>
+                                                </div>
+                                                <div>
+                                                    <label for="name"
+                                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quantity</label>
+                                                    <input type="text" id="disabled-input" aria-label="disabled input"
+                                                        class="mb-6 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        value="1" disabled>
+                                                </div>
+                                                <div class="mb-6">
+                                                    <label for="profile"
+                                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                                        for="file_input">Payment Prof</label>
+                                                    <input name="image_payment"
+                                                        class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                                                        id="file_input" type="file">
+                                                </div>
+                                                <button
+                                                    class="text-white inline-flex w-full justify-center bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                                    Verify
+                                                </button>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        {{-- End Modal Edit --}}
-                        <div class="flex justify-center mt-5">
-                            <button type="button" data-modal-target="buy" data-modal-toggle="buy" class="text-center text-white w-60 bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"">
-                                Buy Now
-                            </button>
-                        </div>
+                            {{-- End Modal Edit --}}
+                            <div class="flex justify-center mt-5">
+                                <button type="button" data-modal-target="buy" data-modal-toggle="buy"
+                                    class="text-center text-white w-60 bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"">
+                                    Buy Now
+                                </button>
+                            </div>
+                        @endif
+
                     </div>
                 @endif
-
-
-
-
-
             </div>
         </div>
 

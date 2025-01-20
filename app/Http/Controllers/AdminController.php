@@ -162,8 +162,7 @@ class AdminController extends Controller
         if ($res->successful()) {
             $json = $res->json();
             return redirect('/admin/account/'.$request->role)->with('message',$json['message']);
-        }
-        else{
+        }else{
             dd($res->body());
         }
 

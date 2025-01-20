@@ -1,5 +1,5 @@
     <div class="navbar">
-        <nav class="fixed top-0 z-20 w-full bg-LightBlue border-gray-200 start-0 dark:border-gray-600">
+        <nav class="fixed top-0 z-20 w-full border-gray-200 bg-LightBlue start-0 dark:border-gray-600">
             <div class="flex items-center justify-between max-w-screen-xl p-4 mx-auto">
                 <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
                     <span
@@ -16,10 +16,12 @@
                             <a href="/events"
                                 class="block px-3 py-2 rounded text-lime-500 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-lime-500 dark:hover:bg-lime-700 dark:hover:text-lime-700 md:dark:hover:bg-transparent">EVENT</a>
                         </li>
-                        <li>
-                            <a href="/login"
-                                class="block px-3 py-2 rounded text-lime-500 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-lime-500 dark:hover:bg-lime-700 dark:hover:text-lime-700 md:dark:hover:bg-transparent">LOGIN</a>
-                        </li>
+                        @if (!session('id'))
+                            <li>
+                                <a href="/login"
+                                    class="block px-3 py-2 rounded text-lime-500 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-lime-500 dark:hover:bg-lime-700 dark:hover:text-lime-700 md:dark:hover:bg-transparent">LOGIN</a>
+                            </li>
+                        @endif
                     </ul>
                 </div>
                 <div class="flex justify-end">

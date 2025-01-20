@@ -93,16 +93,16 @@ Route::prefix('/organizer')->group(function(){
         Route::patch('/registrations/verification/{id}',[OrganizerController::class,'registrationsVerification']);
     });
 });
-// middleware(['role:partisipan'])->
-Route::prefix('/partisipan')->group(function(){
-    Route::get('/',function(){
-        redirect('/partisipan/dashboard');
+
+Route::middleware(['role:partisipan'])->group(function(){
+    Route::prefix('/partisipan')->group(function(){
+        Route::get('/',function(){
+            redirect('/partisipan/dashboard');
+        });
+        Route::get('/dashboard',[PartisipanController::class,'dashboard']);
     });
-    Route::get('/dashboard',[PartisipanController::class,'dashboard']);
-    Route::get('/events',[PartisipanController::class,'events']);
-    Route::get('/tickets',[PartisipanController::class,'tickets']);
-    
 });
+Route::post('/buyticket',[PartisipanController::class,'buyTicket']);
 
 // Route::get('/landing',[GuestController::class,'landing']);
 Route::get('/events',[GuestController::class,'events']);
