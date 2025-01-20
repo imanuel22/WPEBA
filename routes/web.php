@@ -13,8 +13,6 @@ Route::get('/', function () {
 
 
 Route::get('/login',[AuthController::class,'login']);
-Route::get('/register',[AuthController::class,'login']);
-Route::delete('/logout',[AuthController::class,'logout']);
 Route::post('/login',[AuthController::class,'dologin'])->name('login');
 
 // admin
@@ -56,7 +54,7 @@ Route::prefix('/admin')->middleware(['role:admin'])->group(function(){
 });
 
 // organizer
-Route::prefix('/organizer')->middleware(['role:organizer','check.token'])->group(function(){
+Route::prefix('/organizer')->group(function(){
     Route::get('/',function(){
         return redirect('/organizer/dashboard');
     });
@@ -69,7 +67,6 @@ Route::prefix('/organizer')->middleware(['role:organizer','check.token'])->group
         Route::get('/',[OrganizerController::class,'eventShow']);
         Route::get('/edit',[OrganizerController::class,'eventEdit']);
         Route::put('/edit',[OrganizerController::class,'eventUpdate']);
-        Route::delete('/',[OrganizerController::class,'eventDelete']);
 
         //information
         Route::get('/information',[OrganizerController::class,'informationIndex']);
@@ -105,7 +102,7 @@ Route::prefix('/partisipan')->group(function(){
     
 });
 
-Route::get('/landing',[GuestController::class,'landing']);
+// Route::get('/landing',[GuestController::class,'landing']);
 Route::get('/events',[GuestController::class,'events']);
 Route::get('/event/{id}',[GuestController::class,'tickets']);
 
