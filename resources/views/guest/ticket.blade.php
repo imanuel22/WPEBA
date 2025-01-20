@@ -78,12 +78,29 @@
                                     {{ $event['location'] }}
                                 </td>
                             </tr>
-                            <tr class="bg-transparent">
+                            <tr class="bg-transparent border-b border-gray-700">
                                 <th scope="row" class="w-1/2 px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
                                     Statues
                                 </th>
                                 <td class="px-6 py-4">
                                     {{ $event['status'] }}
+                                </td>
+                            </tr>
+                            <tr class="bg-transparent">
+                                <th scope="row" class="w-1/2 px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                                    Category
+                                </th>
+                                <td class="px-6 py-4 flex flex-wrap gap-3">
+                                    <p class="bg-red-600 text-white rounded-2xl w-fit text-center p-2 ">{{ $event['status'] }}</p>
+                                    <p class="bg-red-600 text-white rounded-2xl w-fit text-center p-2 ">{{ $event['status'] }}</p>
+                                    <p class="bg-red-600 text-white rounded-2xl w-fit text-center p-2 ">{{ $event['status'] }}</p>
+                                    <p class="bg-red-600 text-white rounded-2xl w-fit text-center p-2 ">{{ $event['status'] }}</p>
+                                    <p class="bg-red-600 text-white rounded-2xl w-fit text-center p-2 ">{{ $event['status'] }}</p>
+                                    <p class="bg-red-600 text-white rounded-2xl w-fit text-center p-2 ">{{ $event['status'] }}</p>
+                                    <p class="bg-red-600 text-white rounded-2xl w-fit text-center p-2 ">{{ $event['status'] }}</p>
+                                    <p class="bg-red-600 text-white rounded-2xl w-fit text-center p-2 ">{{ $event['status'] }}</p>
+                                    <p class="bg-red-600 text-white rounded-2xl w-fit text-center p-2 ">{{ $event['status'] }}</p>
+                                    <p class="bg-red-600 text-white rounded-2xl w-fit text-center p-2 ">{{ $event['status'] }}</p>
                                 </td>
                             </tr>
                         </tbody>
