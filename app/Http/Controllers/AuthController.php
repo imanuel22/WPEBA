@@ -27,7 +27,7 @@ class AuthController extends Controller
 
         $credentials = $request->only(['email', 'password']);
         $res=Http::post(config('services.api.url').'/login',$credentials);
-        dd($res->body());
+        
         if ($res->successful()) {
             $json = $res->json();
             $userData=$json['data'];
