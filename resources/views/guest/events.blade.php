@@ -1,12 +1,10 @@
 @extends('guest.partials.mainLogin')
 
 @section('mainLogin')
-
-    <div class="grid grid-cols-4 gap-10 py-10 mx-20 mt-20 md:grid-cols-4 ">
+    <div class="grid grid-cols-4 gap-10 py-10 mx-20 mt-20 md:grid-cols-4 bg-LightBlue">
         @foreach ($events as $event)
             <div class="p-0">
-                <div
-                    class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                <div sclass="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                     <a href="/event/{{$event['id']}}">
                         <img class="rounded-t-lg w-96 h-64 object-cover"
                             src="{{ env('APP_API_IMG_URL') }}/event/{{ $event['images'][0]['filename'] ?? '' }}"

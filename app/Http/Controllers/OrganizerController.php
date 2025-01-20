@@ -361,6 +361,8 @@ public function eventUpdate(Request $request, $id)
         if ($res->successful()) {
             $json = $res->json();
             return redirect('/organizer/event/'.$event_id.'/ticket')->with('message',$json['message']);
+        }else{
+            dd($res->body());
         }
     }
     function ticketUpdate(Request $request,$event_id,$id) {

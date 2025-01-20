@@ -56,7 +56,7 @@ Route::prefix('/admin')->middleware(['role:admin'])->group(function(){
 });
 
 // organizer
-Route::prefix('/organizer')->middleware(['role:organizer','check.token'])->group(function(){
+Route::prefix('/organizer')->group(function(){
     Route::get('/',function(){
         return redirect('/organizer/dashboard');
     });
@@ -69,7 +69,6 @@ Route::prefix('/organizer')->middleware(['role:organizer','check.token'])->group
         Route::get('/',[OrganizerController::class,'eventShow']);
         Route::get('/edit',[OrganizerController::class,'eventEdit']);
         Route::put('/edit',[OrganizerController::class,'eventUpdate']);
-        Route::delete('/',[OrganizerController::class,'eventDelete']);
 
         //information
         Route::get('/information',[OrganizerController::class,'informationIndex']);
@@ -94,18 +93,18 @@ Route::prefix('/organizer')->middleware(['role:organizer','check.token'])->group
         Route::patch('/registrations/verification/{id}',[OrganizerController::class,'registrationsVerification']);
     });
 });
-// middleware(['role:partisipan'])->
-Route::prefix('/partisipan')->group(function(){
-    Route::get('/',function(){
-        redirect('/partisipan/dashboard');
-    });
-    Route::get('/dashboard',[PartisipanController::class,'dashboard']);
-    Route::get('/events',[PartisipanController::class,'events']);
-    Route::get('/tickets',[PartisipanController::class,'tickets']);
-    
-});
 
-Route::get('/landing',[GuestController::class,'landing']);
+Route::middleware(['role:partisipan'])->group(function(){
+    Route::prefix('/partisipan')->group(function(){
+        Route::get('/',function(){
+            redirect('/partisipan/dashboard');
+        });
+        Route::get('/dashboard',[PartisipanController::class,'dashboard']);
+    });
+});
+Route::post('/buyticket',[PartisipanController::class,'buyTicket']);
+
+// Route::get('/landing',[GuestController::class,'landing']);
 Route::get('/events',[GuestController::class,'events']);
 Route::get('/event/{id}',[GuestController::class,'tickets']);
 

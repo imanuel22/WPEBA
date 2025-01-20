@@ -24,10 +24,8 @@ class AuthController extends Controller
     }
 
     public function dologin(Request $request){
-
         $credentials = $request->only(['email', 'password']);
-        $res=Http::post(config('services.api.url').'/login',$credentials);
-        
+        $res=Http::post('http://api-wpeba.test/api/login',$credentials);
         if ($res->successful()) {
             $json = $res->json();
             $userData=$json['data'];
@@ -51,7 +49,6 @@ class AuthController extends Controller
                 return redirect('/user/dashboard');
             }
         }else{
-dd($res);
         }
     }
 }

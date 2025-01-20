@@ -151,7 +151,7 @@ class AdminController extends Controller
             'name'=>'required|string',
             'profile'=>'required|image|mimes:png,jpg,jpeg',
             'email'=>'required|email',
-            'password'=>'required',
+            'password'=>'required|min:8',
             'role'=>'required'
 
         ]);
@@ -162,7 +162,11 @@ class AdminController extends Controller
         if ($res->successful()) {
             $json = $res->json();
             return redirect('/admin/account/'.$request->role)->with('message',$json['message']);
+        }else{
+            dd($res->body());
         }
+
+
         
     }
 

@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <div class="w-full">
+    <div class="w-full bg-LightBlue">
         <div class="absolute">
             @include('guest.partials.navbarLogin')
         </div>
