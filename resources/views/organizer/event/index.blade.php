@@ -116,7 +116,7 @@
                                 class="items-center w-40 px-6 py-4 font-medium text-center text-gray-900 whitespace-nowrap dark:text-white">
                                 <div class="rounded-lg ">
                                     <img class=""
-                                        src="{{ env('APP_API_IMG_URL') }}/event/{{ $row['images'][0]['filename'] }}"
+                                        src="{{ env('APP_API_IMG_URL') }}/event/{{ $row['images'][0]['filename']??' ' }}"
                                         alt="">
 
                                 </div>

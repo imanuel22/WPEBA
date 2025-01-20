@@ -13,7 +13,9 @@ Route::get('/', function () {
 
 
 Route::get('/login',[AuthController::class,'login']);
-Route::post('/login',[AuthController::class,'dologin'])->name('login');
+Route::get('/register',[AuthController::class,'login']);
+Route::delete('/logout',[AuthController::class,'logout']);
+Route::middleware('throttle:10,1')->post('/login',[AuthController::class,'dologin'])->name('login');
 
 // admin
 Route::prefix('/admin')->middleware(['role:admin'])->group(function(){

@@ -163,6 +163,11 @@ class AdminController extends Controller
             $json = $res->json();
             return redirect('/admin/account/'.$request->role)->with('message',$json['message']);
         }
+        else{
+            dd($res->body());
+        }
+
+
         
     }
 
