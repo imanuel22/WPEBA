@@ -151,7 +151,7 @@ class AdminController extends Controller
             'name'=>'required|string',
             'profile'=>'required|image|mimes:png,jpg,jpeg',
             'email'=>'required|email',
-            'password'=>'required',
+            'password'=>'required|min:8',
             'role'=>'required'
 
         ]);
