@@ -14,7 +14,7 @@
         <div class="absolute">
             @include('guest.partials.navbarLogin')
         </div>
-        <div class="w-screen bg-slate-300">
+        <div class="w-screen bg-LightBlue">
             <div class="">
                 @yield('mainLogin')
             </div>
