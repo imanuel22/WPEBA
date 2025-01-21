@@ -7,15 +7,30 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\OrganizerController;
 use App\Http\Controllers\PartisipanController;
 
-Route::get('/', function () {
-    return view('guest.landing');
-});
+//guest
+Route::get('/',[GuestController::class,'landing']);
 
+Route::get('/events',[GuestController::class,'events']);
+Route::get('/event/{id}',[GuestController::class,'tickets']);
 
+//auth
 Route::get('/login',[AuthController::class,'login']);
 Route::get('/register',[AuthController::class,'login']);
 Route::delete('/logout',[AuthController::class,'logout']);
 Route::middleware('throttle:10,1')->post('/login',[AuthController::class,'dologin'])->name('login');
+
+//partisipan
+Route::middleware(['role:partisipan'])->group(function(){
+    Route::prefix('/partisipan')->group(function(){
+        Route::get('/',function(){
+            redirect('/partisipan/dashboard');
+        });
+        Route::get('/dashboard',[PartisipanController::class,'dashboard']);
+    });
+    Route::post('/buyticket',[PartisipanController::class,'buyTicket']);
+});
+
+
 
 // admin
 Route::prefix('/admin')->middleware(['role:admin'])->group(function(){
@@ -94,19 +109,6 @@ Route::prefix('/organizer')->group(function(){
     });
 });
 
-Route::middleware(['role:partisipan'])->group(function(){
-    Route::prefix('/partisipan')->group(function(){
-        Route::get('/',function(){
-            redirect('/partisipan/dashboard');
-        });
-        Route::get('/dashboard',[PartisipanController::class,'dashboard']);
-    });
-});
-Route::post('/buyticket',[PartisipanController::class,'buyTicket']);
-
-// Route::get('/landing',[GuestController::class,'landing']);
-Route::get('/events',[GuestController::class,'events']);
-Route::get('/event/{id}',[GuestController::class,'tickets']);
 
 
 // Route::prefix('account')->middleware(['role:admin','role:organizer','role:partisipan'])->group(function(){
