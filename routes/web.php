@@ -15,9 +15,10 @@ Route::get('/event/{id}',[GuestController::class,'tickets']);
 
 //auth
 Route::get('/login',[AuthController::class,'login']);
-Route::get('/register',[AuthController::class,'login']);
-Route::delete('/logout',[AuthController::class,'logout']);
 Route::middleware('throttle:10,1')->post('/login',[AuthController::class,'dologin'])->name('login');
+Route::get('/register',[AuthController::class,'register']);
+Route::post('/register',[AuthController::class,'doregister']);
+Route::delete('/logout',[AuthController::class,'logout']);
 
 //partisipan
 Route::middleware(['role:partisipan'])->group(function(){
