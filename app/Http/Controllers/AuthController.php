@@ -26,6 +26,7 @@ class AuthController extends Controller
     public function dologin(Request $request){
         $credentials = $request->only(['email', 'password']);
         $res=Http::post('http://api-wpeba.test/api/login',$credentials);
+
         if ($res->successful()) {
             $json = $res->json();
             $userData=$json['data'];
@@ -45,8 +46,8 @@ class AuthController extends Controller
             if($userData['role']=='organizer'){
                 return redirect('/organizer/dashboard') ;
             }
-            if($userData['role']=='partisipan'){
-                return redirect('/user/dashboard');
+            if($userData['role']=='participant'){
+                return redirect('/');
             }
         }else{
         }
