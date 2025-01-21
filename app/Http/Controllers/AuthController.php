@@ -34,12 +34,15 @@ class AuthController extends Controller
             'profile'=>'nullable|image|mimes:png,jpg,jpeg'
         ]);
         $credentials = $request->only(['name','email','password']);
+        $credentials['role'] = 'participant';
         $res = Http::attach(
             'profile', file_get_contents($_FILES['profile']['tmp_name']), $_FILES['profile']['name']
         )->post(config('services.api.url').'/register',$credentials);
         if ($res->successful()) {
             redirect('/login');
         }
+                    dd($res->body(),$request);
+
     }
 
     public function dologin(Request $request){
@@ -64,10 +67,11 @@ class AuthController extends Controller
             if($userData['role']=='organizer'){
                 return redirect('/organizer/dashboard') ;
             }
-            if($userData['role']=='partisipan'){
-                return redirect('/user/dashboard');
+            if($userData['role']=='participant'){
+                return redirect('/');
             }
         }else{
+            dd($res->body());
         }
     }
 }
