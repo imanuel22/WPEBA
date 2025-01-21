@@ -37,7 +37,9 @@ class AuthController extends Controller
         $res = Http::attach(
             'profile', file_get_contents($_FILES['profile']['tmp_name']), $_FILES['profile']['name']
         )->post(config('services.api.url').'/register',$credentials);
-        dd($request,$res);
+        if ($res->successful()) {
+            redirect('/login');
+        }
     }
 
     public function dologin(Request $request){
