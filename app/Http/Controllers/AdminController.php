@@ -27,6 +27,8 @@ class AdminController extends Controller
         if ($res->successful()) {
             $json = $res->json();
             return redirect('/admin/event')->with('message',$json['message']);
+        }else {
+            return redirect()->back()->withErrors(['delete'=>'Event Not Found']);
         }
 
     }
@@ -52,6 +54,21 @@ class AdminController extends Controller
         if ($res->successful()) {
             $json = $res->json();
             return redirect('/admin/category')->with('message',$json['message']);
+        }else {
+        $errorMessage = $res->json('message') ?? 'An error occurred. Please try again.';
+        $errors = $res->json('errors') ?? [];
+        // Gabungkan pesan error tambahan (jika ada)
+        $errorDetails = '';
+        if (!empty($errors) && is_array($errors)) {
+            foreach ($errors as $field => $messages) {
+                $errorDetails .= implode(' ', (array)$messages) . ' ';
+            }
+        }
+        // Redirect kembali dengan error
+        return back()->withErrors([
+            'error' => $errorMessage,
+            'details' => $errorDetails
+        ])->withInput();
         }
 
     }
@@ -64,6 +81,21 @@ class AdminController extends Controller
         if ($res->successful()) {
             $json = $res->json();
             return redirect('/admin/category')->with('message',$json['message']);
+        }else {
+        $errorMessage = $res->json('message') ?? 'An error occurred. Please try again.';
+        $errors = $res->json('errors') ?? [];
+        // Gabungkan pesan error tambahan (jika ada)
+        $errorDetails = '';
+        if (!empty($errors) && is_array($errors)) {
+            foreach ($errors as $field => $messages) {
+                $errorDetails .= implode(' ', (array)$messages) . ' ';
+            }
+        }
+        // Redirect kembali dengan error
+        return back()->withErrors([
+            'error' => $errorMessage,
+            'details' => $errorDetails
+        ])->withInput();
         }
     }
     function  categoryDelete($id)  {
@@ -71,6 +103,8 @@ class AdminController extends Controller
         if ($res->successful()) {
             $json = $res->json();
             return redirect('/admin/category')->with('message',$json['message']);
+        }else {
+            return redirect()->back()->withErrors(['delete'=>'Event Not Found']);
         }
     }
 
@@ -91,6 +125,8 @@ class AdminController extends Controller
         if ($res->successful()) {
             $json = $res->json();
             return redirect('/admin/documentation')->with('message',$json['message']);
+        }else {
+            return redirect()->back()->withErrors(['delete'=>'Event Not Found']);
         }
     }
 
@@ -108,6 +144,8 @@ class AdminController extends Controller
         if ($res->successful()) {
             $json = $res->json();
             return redirect('/admin/ticket')->with('message',$json['message']);
+        }else {
+            return redirect()->back()->withErrors(['delete'=>'Event Not Found']);
         }
 
     }
@@ -125,6 +163,8 @@ class AdminController extends Controller
         if ($res->successful()) {
             $json = $res->json();
             return redirect('/admin/feedbacks')->with('message',$json['message']);
+        }else {
+            return redirect()->back()->withErrors(['delete'=>'Event Not Found']);
         }
 
     }
@@ -162,8 +202,21 @@ class AdminController extends Controller
         if ($res->successful()) {
             $json = $res->json();
             return redirect('/admin/account/'.$request->role)->with('message',$json['message']);
-        }else{
-            dd($res->body());
+        }else {
+        $errorMessage = $res->json('message') ?? 'An error occurred. Please try again.';
+        $errors = $res->json('errors') ?? [];
+        // Gabungkan pesan error tambahan (jika ada)
+        $errorDetails = '';
+        if (!empty($errors) && is_array($errors)) {
+            foreach ($errors as $field => $messages) {
+                $errorDetails .= implode(' ', (array)$messages) . ' ';
+            }
+        }
+        // Redirect kembali dengan error
+        return back()->withErrors([
+            'error' => $errorMessage,
+            'details' => $errorDetails
+        ])->withInput();
         }
 
 
@@ -181,6 +234,21 @@ class AdminController extends Controller
         if ($res->successful()) {
             $json = $res->json();
             return redirect('/admin/account/'.$request->role)->with('message',$json['message']);
+        }else {
+        $errorMessage = $res->json('message') ?? 'An error occurred. Please try again.';
+        $errors = $res->json('errors') ?? [];
+        // Gabungkan pesan error tambahan (jika ada)
+        $errorDetails = '';
+        if (!empty($errors) && is_array($errors)) {
+            foreach ($errors as $field => $messages) {
+                $errorDetails .= implode(' ', (array)$messages) . ' ';
+            }
+        }
+        // Redirect kembali dengan error
+        return back()->withErrors([
+            'error' => $errorMessage,
+            'details' => $errorDetails
+        ])->withInput();
         }
     }
     function userDelete(Request $request,$id)  {
@@ -188,6 +256,8 @@ class AdminController extends Controller
         if ($res->successful()) {
             $json = $res->json();
             return redirect('/admin/account/'.$request->role)->with('message',$json['message']);
+        }else {
+            return redirect()->back()->withErrors(['delete'=>'Event Not Found']);
         }
 
     }

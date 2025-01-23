@@ -415,7 +415,7 @@ public function eventUpdate(Request $request, $id)
             'quantity'=>'required|numeric',
             'payment_method'=>'required|string',
             'payment_number'=>'required|string',
-            'payment_name'=>'required|string',
+            'payment_name'=>'required|string|',
             'image'=>'required|image|mimes:png,jpg,jpeg',
         ]);
         

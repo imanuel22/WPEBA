@@ -4,7 +4,88 @@
     <div class="mb-5 border-b-4 border-slate-700 ">
         <h3 class="text-3xl">Ticket</h3>
     </div>
-    @if (empty($ticket[0]))
+    @if (session()->has('message'))
+        <div id="alert-3"
+            class="flex items-center p-4 mb-4 text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
+            role="alert">
+            <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                viewBox="0 0 20 20">
+                <path
+                    d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+            </svg>
+            <span class="sr-only">Info</span>
+            <div class="text-sm font-medium ms-3">
+                {{ session('message') }}
+            </div>
+            <button type="button"
+                class="ms-auto -mx-1.5 -my-1.5 bg-green-50 text-green-500 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-green-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800 dark:text-green-400 dark:hover:bg-gray-700"
+                data-dismiss-target="#alert-3" aria-label="Close">
+                <span class="sr-only">Close</span>
+                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 14 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                </svg>
+            </button>
+        </div>
+    @endif
+    @error('delete')
+        <div id="alert-2"
+            class="flex items-center p-4 mb-4 text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+            role="alert">
+            <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                viewBox="0 0 20 20">
+                <path
+                    d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+            </svg>
+            <span class="sr-only">Info</span>
+            <div class="text-sm font-medium ms-3">
+                {{ $message }}
+            </div>
+            <button type="button"
+                class="ms-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800 dark:text-red-400 dark:hover:bg-gray-700"
+                data-dismiss-target="#alert-2" aria-label="Close">
+                <span class="sr-only">Close</span>
+                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                </svg>
+            </button>
+        </div>
+    @enderror
+    @if ($errors->has('error'))
+        <div id="alert-2"
+            class="flex items-center p-4 mb-4 text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+            role="alert">
+            <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                viewBox="0 0 20 20">
+                <path
+                    d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+            </svg>
+            <span class="sr-only">Info</span>
+            <div class="text-sm font-medium ms-3">
+                {{ $errors->first('error') }}
+                @if ($errors->has('details'))
+                    <ul class="mt-2 list-disc list-inside">
+                        @foreach (explode(' ', $errors->first('details')) as $detail)
+                            <li>{{ $detail }}</li>
+                        @endforeach
+                    </ul>
+                @endif
+            </div>
+            <button type="button"
+                class="ms-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800 dark:text-red-400 dark:hover:bg-gray-700"
+                data-dismiss-target="#alert-2" aria-label="Close">
+                <span class="sr-only">Close</span>
+                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 14 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                </svg>
+            </button>
+        </div>
+    @endif
+    @if (count($ticket) == 0)
         <div class="mb-4">
             <!-- Modal toggle -->
             <button data-modal-target="crud-modal" data-modal-toggle="crud-modal"
@@ -123,6 +204,10 @@
                                                     id="name"value="{{ $row['name'] }}"
                                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                                     placeholder="name">
+                                                @error('name')
+                                                    <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}
+                                                    </p>
+                                                @enderror
                                             </div>
                                             <div class="col-span-3 md:col-span-2">
                                                 <label for="price"
@@ -131,6 +216,10 @@
                                                     id="price"value="{{ $row['price'] }}"
                                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                                     placeholder="price">
+                                                @error('price')
+                                                    <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}
+                                                    </p>
+                                                @enderror
                                             </div>
                                             <div class="col-span-3 md:col-span-1 ">
                                                 <label for="quantity"
@@ -139,6 +228,10 @@
                                                     value="{{ $row['quantity'] }}"
                                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                                     placeholder="quantity">
+                                                @error('quantity')
+                                                    <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}
+                                                    </p>
+                                                @enderror
                                             </div>
                                             <div class="col-span-3 md:col-span-1">
                                                 <label for="payment_method"
@@ -146,6 +239,10 @@
                                                 <input type="text" name="payment_method" id="payment_method"
                                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                                     placeholder="payment_method" value="{{ $row['payment_method'] }}">
+                                                @error('payment_method')
+                                                    <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}
+                                                    </p>
+                                                @enderror
                                             </div>
                                             <div class="col-span-3 md:col-span-1">
                                                 <label for="payment_number"
@@ -153,6 +250,10 @@
                                                 <input type="text" name="payment_number" id="payment_number"
                                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                                     placeholder="payment_number" value="{{ $row['payment_number'] }}">
+                                                @error('payment_number')
+                                                    <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}
+                                                    </p>
+                                                @enderror
                                             </div>
                                             <div class="col-span-3 md:col-span-1">
                                                 <label for="payment_name"
@@ -160,6 +261,10 @@
                                                 <input type="text" name="payment_name" id="payment_name"
                                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                                     placeholder="payment_name" value="{{ $row['payment_name'] }}">
+                                                @error('payment_name')
+                                                    <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}
+                                                    </p>
+                                                @enderror
                                             </div>
                                             <div class="col-span-3">
                                                 <label for="image"
@@ -170,6 +275,10 @@
                                                 <input name="image"
                                                     class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:border-gray-600 dark:placeholder-gray-400"
                                                     id="image" type="file">
+                                                @error('image')
+                                                    <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}
+                                                    </p>
+                                                @enderror
 
                                             </div>
 
@@ -229,6 +338,10 @@
                             <input type="text" name="name" id="name"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 placeholder="name">
+                            @error('name')
+                                <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}
+                                </p>
+                            @enderror
                         </div>
                         <div class="col-span-3 md:col-span-2">
                             <label for="price"
@@ -236,6 +349,10 @@
                             <input type="text" name="price" id="price"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 placeholder="price">
+                            @error('price')
+                                <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}
+                                </p>
+                            @enderror
                         </div>
                         <div class="col-span-2 md:col-span-1">
                             <label for="quantity"
@@ -243,6 +360,10 @@
                             <input type="text" name="quantity" id="quantity"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 placeholder="quantity">
+                            @error('quantity')
+                                <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}
+                                </p>
+                            @enderror
                         </div>
                         <div class="col-span-3 md:col-span-1">
                             <label for="payment_method"
@@ -250,6 +371,10 @@
                             <input type="text" name="payment_method" id="payment_method"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 placeholder="payment_method">
+                            @error('payment_method')
+                                <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}
+                                </p>
+                            @enderror
                         </div>
                         <div class="col-span-3 md:col-span-1">
                             <label for="payment_number"
@@ -257,6 +382,10 @@
                             <input type="text" name="payment_number" id="payment_number"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 placeholder="payment_number">
+                            @error('payment_number')
+                                <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}
+                                </p>
+                            @enderror
                         </div>
                         <div class="col-span-3 md:col-span-1">
                             <label for="payment_name"
@@ -264,6 +393,10 @@
                             <input type="text" name="payment_name" id="payment_name"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 placeholder="payment_name">
+                            @error('payment_name')
+                                <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}
+                                </p>
+                            @enderror
                         </div>
                         <div class="col-span-3">
                             <label for="image"
@@ -271,6 +404,10 @@
                             <input name="image"
                                 class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:border-gray-600 dark:placeholder-gray-400"
                                 id="image" type="file">
+                            @error('image')
+                                <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}
+                                </p>
+                            @enderror
 
                         </div>
 
