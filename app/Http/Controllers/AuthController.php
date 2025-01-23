@@ -48,7 +48,7 @@ class AuthController extends Controller
 
     public function dologin(Request $request){
         $request->validate([
-            'email'=>'required|email',
+            'email'=>'required|email:rfc,dns|unique:users,email',
             'password'=>'required|min:8'
         ]);
         $credentials = $request->only(['email', 'password']);
@@ -79,7 +79,7 @@ class AuthController extends Controller
             }
         }else{
             $errorMessage = $res->json('message') ?? 'Login failed. Please check your credentials.';
-            return redirect()->back()->withErrors(['login_error' => $errorMessage])->withInput();
+            return redirect()->back()->withErrors(['login_error' => $errorMessage]);
         }
     }
 }
