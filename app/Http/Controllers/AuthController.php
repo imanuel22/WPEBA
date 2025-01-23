@@ -17,11 +17,13 @@ class AuthController extends Controller
         $res=Http::withToken(session('token'))->post(config('services.api.url').'/login');
         if($res->successful()){
         session()->flush();
-        
+
         return redirect('/');
-        }
-            
     }
+
+        }
+
+    
     public function register(){
         return view('auth.register');
     }
@@ -51,6 +53,7 @@ class AuthController extends Controller
         ]);
         $credentials = $request->only(['email', 'password']);
         $res=Http::post('http://api-wpeba.test/api/login',$credentials);
+
         if ($res->successful()) {
             $json = $res->json();
             $userData=$json['data'];

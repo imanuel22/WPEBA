@@ -14,7 +14,7 @@
         <div class=" relative">
             @include('guest.partials.navbar')
         </div>
-        <div class="bg-slate-300 w-screen">
+        <div class="bg-LightBlue w-screen">
             <div class="s">
                 @yield('main')
             </div>
