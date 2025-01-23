@@ -77,7 +77,10 @@
             <tbody>
                 @foreach ($ticket as $row)
                     <tr class="cursor-pointer bg-white">
-                        <td><img src="{{ env('APP_API_IMG_URL') }}/ticket/{{ $row['image'] }}" alt="{{ $row['name'] }}"></td>
+                        {{-- <td><img src="{{ env('APP_API_IMG_URL') }}/ticket/{{ $row['image'] }}" alt="{{ $row['name'] }}"></td> --}}
+                        <td class="max-w-sm "><img class="w-56 rounded-lg"
+                            src="{{ config('services.api.img') }}/tickets/{{ $row['image'] }}" alt="{{ $row['image'] }}">
+                        </td>
                         <td>{{ $row['name'] }}</td>
                         <td>{{ $row['price'] }}</td>
                         <td>{{ $row['quantity'] }}</td>
