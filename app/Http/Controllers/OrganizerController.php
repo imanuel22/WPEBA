@@ -416,7 +416,7 @@ public function eventUpdate(Request $request, $id)
             'payment_method'=>'required|string',
             'payment_number'=>'required|string',
             'payment_name'=>'required|string|',
-            'image'=>'required|image|mimes:png,jpg,jpeg',
+            'image'=>'nullable|image|mimes:png,jpg,jpeg',
         ]);
         
         $validate['event_id']=$event_id;

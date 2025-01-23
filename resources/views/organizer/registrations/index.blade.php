@@ -194,7 +194,7 @@
                                 <div class="p-4 space-y-4 md:p-5">
                                     <div class="flex items-center justify-center">
                                         <img class="w-full h-auto max-w-xl"
-                                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHvIzoXdEJJU5cxiZxagdF50ypCObJ_nowqw&s"
+                                            src="{{ config('services.api.img') }}/payments/{{ $row['image_payment'] }}"
                                             alt="">
                                     </div>
                                 </div>
