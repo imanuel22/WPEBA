@@ -124,12 +124,13 @@ public function eventIndex(Request $request)
     // Validasi input
     $validate = $request->validate([
         'title' => 'required|string|max:255',
-        'description' => 'nullable|string',
-        'images.*' => 'nullable|file|mimes:jpeg,png,jpg|max:2048', // Validasi array gambar
-        'start_datetime' => 'nullable|date',
-        'duration' => 'nullable|integer',
-        'location' => 'nullable|string',
-        'event_category_ids' => 'nullable|array',
+        'description' => 'required|string',
+        'images' => 'required|array|max:5', // Maksimal 5 gambar
+        'images.*' => 'file|mimes:jpeg,png,jpg|max:2048',
+        'start_datetime' => 'required|date',
+        'duration' => 'required|integer',
+        'location' => 'required|string',
+        'event_category_ids' => 'required|array',
     ]);
 
     // Tambahkan data tambahan
@@ -166,11 +167,27 @@ public function eventIndex(Request $request)
     // Tindak lanjut berdasarkan respons
     if ($res->successful()) {
         $json = $res->json();
-        return redirect('/organizer/event')->with(['status'=>$json['success'],'message'=> $json['message']]);
+        return redirect('/organizer/event')->with([
+            'message'=> $json['message']
+        ]);
     } else {
-        // Jika terjadi error, kembalikan ke halaman sebelumnya dengan pesan error
-        return back()->withErrors(['error' => $res->body()])->withInput();
+    $errorMessage = $res->json('message') ?? 'An error occurred. Please try again.';
+    $errors = $res->json('errors') ?? [];
+
+    // Gabungkan pesan error tambahan (jika ada)
+    $errorDetails = '';
+    if (!empty($errors) && is_array($errors)) {
+        foreach ($errors as $field => $messages) {
+            $errorDetails .= implode(' ', (array)$messages) . ' ';
+        }
     }
+
+    // Redirect kembali dengan error
+    return back()->withErrors([
+        'error' => $errorMessage,
+        'details' => $errorDetails
+    ])->withInput();
+}
 }
 
 
@@ -202,9 +219,10 @@ public function eventUpdate(Request $request, $id)
 {
     // Validasi input
     $validate = $request->validate([
-        'title' => 'required|string|max:255',
+        'title' => 'nullable|string|max:255',
         'description' => 'nullable|string',
-        'images.*' => 'nullable|file|mimes:jpeg,png,jpg|max:2048',
+        'images' => 'nullable|array|max:5', // Maksimal 5 gambar
+        'images.*' => 'file|mimes:jpeg,png,jpg|max:2048',
         'status' => 'nullable|in:upcoming,in_progress,completed',
         'start_datetime' => 'nullable|date',
         'duration' => 'nullable|integer',
@@ -242,9 +260,24 @@ public function eventUpdate(Request $request, $id)
 
     if ($res->successful()) {
         $json = $res->json();
-        return redirect('/organizer/event/' . $id)->with(['status' => $json['success'], 'message' => $json['message']]);
+        return redirect('/organizer/event/' . $id)->with(['message' => $json['message']]);
     } else {
-        return back()->withErrors(['error' => $res->body()])->withInput();
+        $errorMessage = $res->json('message') ?? 'An error occurred. Please try again.';
+    $errors = $res->json('errors') ?? [];
+
+    // Gabungkan pesan error tambahan (jika ada)
+    $errorDetails = '';
+    if (!empty($errors) && is_array($errors)) {
+        foreach ($errors as $field => $messages) {
+            $errorDetails .= implode(' ', (array)$messages) . ' ';
+        }
+    }
+
+    // Redirect kembali dengan error
+    return back()->withErrors([
+        'error' => $errorMessage,
+        'details' => $errorDetails
+    ])->withInput();
     }
 }
 
@@ -255,6 +288,8 @@ public function eventUpdate(Request $request, $id)
         if ($res->successful()) {
             $json = $res->json();
             return redirect('/organizer/event/' )->with('message',$json['message']);
+        } else {
+            return redirect()->back()->withErrors(['delete'=>'Event Not Found']);
         }
     }
 

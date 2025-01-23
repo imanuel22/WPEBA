@@ -14,6 +14,9 @@
                 <input name="title" type="text" id="title"
                     class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                     value="{{ old('title', $event['title']) }}" required />
+                @error('title')
+                    <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="mb-5">
@@ -22,6 +25,9 @@
                 <textarea name="description" id="description" rows="10"
                     class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Leave a comment...">{{ old('description', $event['description']) }}</textarea>
+                @error('description')
+                    <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="mb-5">
@@ -30,6 +36,18 @@
                 <input
                     class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                     id="images" type="file" name="images[]" accept="image/jpeg,image/png,image/jpg" multiple>
+                @error('images')
+                    <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
+                @enderror
+                @if ($errors->has('images.*'))
+                    <ul class="mt-2 text-sm text-red-600 dark:text-red-500">
+                        @foreach ($errors->get('images.*') as $key => $messages)
+                            @foreach ($messages as $message)
+                                <li>{{ $message }}</li>
+                            @endforeach
+                        @endforeach
+                    </ul>
+                @endif
             </div>
             <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4">
 
@@ -47,6 +65,9 @@
                         <option value="completed" {{ old('status', $event['status']) == 'completed' ? 'selected' : '' }}>
                             Completed</option>
                     </select>
+                    @error('status')
+                        <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="mb-5">
@@ -55,6 +76,9 @@
                     <input type="datetime-local" id="start_datetime" name="start_datetime"
                         class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                         value="{{ old('start_datetime', $event['start_datetime'] ? $event['start_datetime'] : '') }}">
+                    @error('start_datetime')
+                        <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="mb-5">
@@ -63,6 +87,9 @@
                     <input type="number" id="duration" name="duration"
                         class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                         value="{{ old('duration', $event['duration']) }}">
+                    @error('duration')
+                        <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="mb-5">
@@ -70,6 +97,9 @@
                     <input type="text" id="location" name="location"
                         class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                         value="{{ old('location', $event['location']) }}">
+                    @error('location')
+                        <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
+                    @enderror
                 </div>
             </div>
             <div class="mb-5">
@@ -89,6 +119,9 @@
                         </div>
                     @endforeach
                 </div>
+                @error('event_category_ids')
+                    <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
+                @enderror
             </div>
 
 

@@ -72,7 +72,7 @@ Route::prefix('/admin')->middleware(['role:admin'])->group(function(){
 });
 
 // organizer
-Route::prefix('/organizer')->group(function(){
+Route::middleware(['role:organizer','check.token'])->prefix('/organizer')->group(function(){
     Route::get('/',function(){
         return redirect('/organizer/dashboard');
     });
@@ -83,6 +83,7 @@ Route::prefix('/organizer')->group(function(){
     Route::prefix('/event/{event_id}')->group(function(){
         //event
         Route::get('/',[OrganizerController::class,'eventShow']);
+        Route::delete('/',[OrganizerController::class,'eventDelete']);
         Route::get('/edit',[OrganizerController::class,'eventEdit']);
         Route::put('/edit',[OrganizerController::class,'eventUpdate']);
 

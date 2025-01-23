@@ -35,6 +35,7 @@ return [
         ],
     ],
     'api'=>[
-        'url'=>env('APP_API_URL')
+        'url'=>env('APP_API_URL'),
+        'img'=>env('APP_API_IMG_URL')
     ],
 ];
