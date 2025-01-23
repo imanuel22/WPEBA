@@ -41,8 +41,11 @@ class AuthController extends Controller
             'profile', file_get_contents($_FILES['profile']['tmp_name']), $_FILES['profile']['name']
         )->post(config('services.api.url').'/register',$credentials);
         if ($res->successful()) {
-            redirect('/login');
+            return redirect('/register')->with(['message'=>$res->json()['message']]);
+        } else{
+           return redirect()->back()->withErrors(['message'=>$res->json()['message']])->withInput();
         }
+        
     }
 
     public function dologin(Request $request){

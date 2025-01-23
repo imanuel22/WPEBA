@@ -117,16 +117,16 @@ Route::middleware(['role:organizer','check.token'])->prefix('/organizer')->group
 
 
 
-// Route::prefix('account')->middleware(['role:admin','role:organizer','role:partisipan'])->group(function(){
-//     Route::get('/profile', function () {
+Route::prefix('account')->middleware(['role:admin','role:organizer','role:partisipan'])->group(function(){
+    Route::get('/profile', function () {
 
-//     });
-//     Route::get('/reset-password', function () {
+    });
+    Route::get('/reset-password', function () {
 
-//     });
-//     Route::get('/edit-profile', function () {
+    });
+    Route::get('/edit-profile', function () {
 
-//     });
+    });
 
-// });
+});
 
