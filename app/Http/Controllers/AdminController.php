@@ -175,7 +175,7 @@ class AdminController extends Controller
         if (!$role || !in_array($role, ['admin', 'organizer', 'participant'])) {
             abort(403);
         }
-        $res = Http::get(config('services.api.url').'/users');
+        $res = Http::withToken(session('token'))->get(config('services.api.url').'/users');
         if($res->successful()){
             $json=$res->json();
             $user = collect($json['data'])->where('role',$role);
@@ -230,7 +230,13 @@ class AdminController extends Controller
             'profile'=>'nullable|image|mimes:png,jpg,jpeg',
             'email'=>'nullable|email',
         ]);
-        $res = Http::withToken(session('token'))->patch(config('services.api.url').'/users/'.$id,$validate);
+        if($_FILES['profile']['error'] === 4){
+            $res = Http::withToken(session('token'))->patch(config('services.api.url').'/users/'.$id,$validate);
+        }else{
+            $res = Http::withToken(session('token'))->attach(
+                'profile', file_get_contents($_FILES['profile']['tmp_name']), $_FILES['profile']['name']
+            )->patch(config('services.api.url').'/users/'.$id,$validate);
+        }
         if ($res->successful()) {
             $json = $res->json();
             return redirect('/admin/account/'.$request->role)->with('message',$json['message']);
