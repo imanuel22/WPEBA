@@ -146,7 +146,7 @@
                             <p>name : {{ $row['payment_name'] }}</p>
                         </td>
                         <td class="max-w-sm "><img class="w-56 rounded-lg"
-                                src="{{ env('APP_API_IMG_URL') }}/tickets/{{ $row['image'] }}" alt="{{ $row['image'] }}">
+                                src="{{ config('services.api.img') }}/tickets/{{ $row['image'] }}" alt="{{ $row['image'] }}">
                         </td>
                         <td class="flex items-center justify-center">
                             <button data-modal-target="crud-modal-{{ $row['id'] }}"
@@ -270,7 +270,7 @@
                                                 <label for="image"
                                                     class="block mb-2 text-sm font-medium text-gray-200 dark:text-white">image</label>
                                                 <img class="mb-3 rounded-lg "
-                                                    src="{{ env('APP_API_IMG_URL') }}/tickets/{{ $row['image'] }}"
+                                                    src="{{ config('services.api.img') }}/tickets/{{ $row['image'] }}"
                                                     alt="{{ $row['image'] }}">
                                                 <input name="image"
                                                     class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:border-gray-600 dark:placeholder-gray-400"

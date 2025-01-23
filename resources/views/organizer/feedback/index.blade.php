@@ -32,7 +32,8 @@
                         <td>
                             <div class="flex justify-center">
                                 <img class="w-24 rounded-full"
-                                    src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="">
+                                    src="{{ config('services.api.img') }}/user/{{ $row['user']['profile'] }}"
+                                    alt="">
                             </div>
                             <h1 class="text-lg text-center">{{ $row['user']['name'] ?? '-' }}</h1>
                         </td>
