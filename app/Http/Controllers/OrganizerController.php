@@ -219,15 +219,15 @@ public function eventUpdate(Request $request, $id)
 {
     // Validasi input
     $validate = $request->validate([
-        'title' => 'nullable|string|max:255',
-        'description' => 'nullable|string',
+        'title' => 'required|string|max:255',
+        'description' => 'required|string',
         'images' => 'nullable|array|max:5', // Maksimal 5 gambar
         'images.*' => 'file|mimes:jpeg,png,jpg|max:2048',
-        'status' => 'nullable|in:upcoming,in_progress,completed',
-        'start_datetime' => 'nullable|date',
-        'duration' => 'nullable|integer',
-        'location' => 'nullable|string',
-        'event_category_ids' => 'nullable|array',
+        'status' => 'required|in:upcoming,in_progress,completed',
+        'start_datetime' => 'required|date',
+        'duration' => 'required|integer',
+        'location' => 'required|string',
+        'event_category_ids' => 'required|array',
     ]);
 
     $validate['user_id'] = session('id');
