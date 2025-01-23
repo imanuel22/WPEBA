@@ -1,9 +1,9 @@
-@extends('guest.partials.mainLogin')
+@extends('guest.partials.main')
 
-@section('mainLogin')
+@section('main')
     <section class="bg-LightBlue dark:bg-gray-900">
         <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-            <div class="w-full rounded-lg shadow bg-slate-700 md:mt-0 sm:max-w-md xl:p-0">
+            <div class="w-full rounded-lg shadow bg-SkyBlue md:mt-0 sm:max-w-md xl:p-0">
                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                     <h1 class="text-xl font-bold leading-tight tracking-tight text-charcoal md:text-2xl dark:text-white">
                         Sign in to your account

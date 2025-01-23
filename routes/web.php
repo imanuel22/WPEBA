@@ -21,15 +21,19 @@ Route::post('/register',[AuthController::class,'doregister']);
 Route::delete('/logout',[AuthController::class,'logout']);
 
 //partisipan
-Route::middleware(['role:partisipan'])->group(function(){
-    Route::prefix('/partisipan')->group(function(){
+Route::middleware(['role:participant'])->group(function(){
+    Route::prefix('/participant')->group(function(){
         Route::get('/',function(){
-            redirect('/partisipan/dashboard');
+            redirect('/participant/dashboard');
         });
         Route::get('/dashboard',[PartisipanController::class,'dashboard']);
     });
 });
 Route::post('/buyticket',[PartisipanController::class,'buyTicket']);
+Route::get('/dashprofile',[PartisipanController::class,'dashProfile']);
+Route::get('/ticket',[PartisipanController::class,'ticketParti']);
+Route::get('/feedback',[PartisipanController::class,'feedbackParti']);
+
 
 
 

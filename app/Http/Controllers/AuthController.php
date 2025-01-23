@@ -70,9 +70,10 @@ class AuthController extends Controller
                 return redirect('/organizer/dashboard') ;
             }
             if($userData['role']=='participant'){
-                return redirect('/participant/dashProfile');
+                return redirect('/');
             }
         }else{
+            dd($res->body());
         }
     }
 }
