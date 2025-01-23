@@ -220,7 +220,7 @@ class AdminController extends Controller
         }
 
 
-        
+
     }
 
     function userUpdate(Request $request,$id) {
@@ -262,5 +262,6 @@ class AdminController extends Controller
 
     }
 
+    
 
 }
