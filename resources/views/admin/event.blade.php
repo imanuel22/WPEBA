@@ -168,7 +168,7 @@
             <tbody>
                 @foreach ($events as $row)
                     <tr class="cursor-pointer bg-white">
-                        <td><img src="{{ env('APP_API_IMG_URL') }}/event/{{ $row['images'][0]['filename']??' ' }}"></td>
+                        <td><img class="rounded-lg w-52" src="{{ env('APP_API_IMG_URL') }}/event/{{ $row['images'][0]['filename']??' ' }}"></td>
                         <td>{{ $row['title'] }}</td>
                         <td>{{ $row['status'] }}</td>
                         <td>{{ $row['duration'] }}</td>
