@@ -43,7 +43,6 @@ class AuthController extends Controller
         if ($res->successful()) {
             redirect('/login');
         }
-                    dd($res->body(),$request);
 
     }
 
@@ -71,10 +70,9 @@ class AuthController extends Controller
                 return redirect('/organizer/dashboard') ;
             }
             if($userData['role']=='participant'){
-                return redirect('/');
+                return redirect('/participant/dashProfile');
             }
         }else{
-            dd($res->body());
         }
     }
 }

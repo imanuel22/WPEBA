@@ -17,6 +17,9 @@ class PartisipanController extends Controller
     function dashboard() {
         return view('participant.dashboard');
     }
+    function dashProfile() {
+        return view('participant.dashProfile');
+    }
 
     function buyTicket(Request $request)  {
         $request->validate([
