@@ -43,7 +43,7 @@ public function dashboard()
 
 
 
-
+//event
 public function eventIndex(Request $request)
 {
     $data = [];
@@ -88,8 +88,6 @@ public function eventIndex(Request $request)
     return view('organizer.event.index', $data);
 }
 
-
-    
     function eventShow($id){
         $data = [];
 
@@ -263,22 +261,20 @@ public function eventUpdate(Request $request, $id)
         return redirect('/organizer/event/' . $id)->with(['message' => $json['message']]);
     } else {
         $errorMessage = $res->json('message') ?? 'An error occurred. Please try again.';
-    $errors = $res->json('errors') ?? [];
-
-    // Gabungkan pesan error tambahan (jika ada)
-    $errorDetails = '';
-    if (!empty($errors) && is_array($errors)) {
-        foreach ($errors as $field => $messages) {
-            $errorDetails .= implode(' ', (array)$messages) . ' ';
+        $errors = $res->json('errors') ?? [];
+        // Gabungkan pesan error tambahan (jika ada)
+        $errorDetails = '';
+        if (!empty($errors) && is_array($errors)) {
+            foreach ($errors as $field => $messages) {
+                $errorDetails .= implode(' ', (array)$messages) . ' ';
+            }
         }
-    }
-
-    // Redirect kembali dengan error
-    return back()->withErrors([
-        'error' => $errorMessage,
-        'details' => $errorDetails
-    ])->withInput();
-    }
+        // Redirect kembali dengan error
+        return back()->withErrors([
+            'error' => $errorMessage,
+            'details' => $errorDetails
+        ])->withInput();
+        }
 }
 
 
@@ -307,7 +303,7 @@ public function eventUpdate(Request $request, $id)
     }
 
     function informationStore(Request $request,$event_id) {
-         $validate = $request->validate([
+        $validate = $request->validate([
             'whatapps'=>'nullable|numeric',
             'telephone'=>'nullable|numeric',
             'facebook'=>'nullable|string|max:100',
@@ -315,12 +311,29 @@ public function eventUpdate(Request $request, $id)
             'email'=>'nullable|string|max:100',
             'website'=>'nullable|string|max:100',
         ]);
+        
 
         $validate['event_id']=$event_id;
         $res = Http::withToken(session('token'))->post(config('services.api.url').'/information',$validate);
         if ($res->successful()) {
             $json = $res->json();
             return redirect('/organizer/event/'.$event_id.'/information')->with('message',$json['message']);
+        }else {
+            
+        $errorMessage = $res->json('message') ?? 'An error occurred. Please try again.';
+        $errors = $res->json('errors') ?? [];
+        // Gabungkan pesan error tambahan (jika ada)
+        $errorDetails = '';
+        if (!empty($errors) && is_array($errors)) {
+            foreach ($errors as $field => $messages) {
+                $errorDetails .= implode(' ', (array)$messages) . ' ';
+            }
+        }
+        // Redirect kembali dengan error
+        return back()->withErrors([
+            'error' => $errorMessage,
+            'details' => $errorDetails
+        ])->withInput();
         }
 
     }
@@ -339,6 +352,21 @@ public function eventUpdate(Request $request, $id)
         if ($res->successful()) {
             $json = $res->json();
             return redirect('/organizer/event/'.$event_id.'/information')->with('message',$json['message']);
+        }else {
+        $errorMessage = $res->json('message') ?? 'An error occurred. Please try again.';
+        $errors = $res->json('errors') ?? [];
+        // Gabungkan pesan error tambahan (jika ada)
+        $errorDetails = '';
+        if (!empty($errors) && is_array($errors)) {
+            foreach ($errors as $field => $messages) {
+                $errorDetails .= implode(' ', (array)$messages) . ' ';
+            }
+        }
+        // Redirect kembali dengan error
+        return back()->withErrors([
+            'error' => $errorMessage,
+            'details' => $errorDetails
+        ])->withInput();
         }
     }
 
@@ -348,6 +376,8 @@ public function eventUpdate(Request $request, $id)
         if ($res->successful()) {
             $json = $res->json();
             return redirect('/organizer/event/'.$event_id.'/information')->with('message',$json['message']);
+        }else {
+            return redirect()->back()->withErrors(['delete'=>'Event Not Found']);
         }
     }
 
@@ -396,8 +426,21 @@ public function eventUpdate(Request $request, $id)
         if ($res->successful()) {
             $json = $res->json();
             return redirect('/organizer/event/'.$event_id.'/ticket')->with('message',$json['message']);
-        }else{
-            dd($res->body());
+        }else {
+        $errorMessage = $res->json('message') ?? 'An error occurred. Please try again.';
+        $errors = $res->json('errors') ?? [];
+        // Gabungkan pesan error tambahan (jika ada)
+        $errorDetails = '';
+        if (!empty($errors) && is_array($errors)) {
+            foreach ($errors as $field => $messages) {
+                $errorDetails .= implode(' ', (array)$messages) . ' ';
+            }
+        }
+        // Redirect kembali dengan error
+        return back()->withErrors([
+            'error' => $errorMessage,
+            'details' => $errorDetails
+        ])->withInput();
         }
     }
     function ticketUpdate(Request $request,$event_id,$id) {
@@ -423,6 +466,21 @@ public function eventUpdate(Request $request, $id)
         if ($res->successful()) {
             $json = $res->json();
             return redirect('/organizer/event/'.$event_id.'/ticket')->with('message',$json['message']);
+        }else {
+        $errorMessage = $res->json('message') ?? 'An error occurred. Please try again.';
+        $errors = $res->json('errors') ?? [];
+        // Gabungkan pesan error tambahan (jika ada)
+        $errorDetails = '';
+        if (!empty($errors) && is_array($errors)) {
+            foreach ($errors as $field => $messages) {
+                $errorDetails .= implode(' ', (array)$messages) . ' ';
+            }
+        }
+        // Redirect kembali dengan error
+        return back()->withErrors([
+            'error' => $errorMessage,
+            'details' => $errorDetails
+        ])->withInput();
         }
     }
 
@@ -431,6 +489,8 @@ public function eventUpdate(Request $request, $id)
         if ($res->successful()) {
             $json = $res->json();
             return redirect('/organizer/event/'.$event_id.'/ticket')->with('message',$json['message']);
+        }else {
+            return redirect()->back()->withErrors(['delete'=>'Event Not Found']);
         }
     }
 
@@ -459,6 +519,21 @@ public function eventUpdate(Request $request, $id)
         if ($res->successful()) {
             $json = $res->json();
             return redirect('/organizer/event/'.$event_id.'/documentations')->with('message',$json['message']);
+        }else {
+        $errorMessage = $res->json('message') ?? 'An error occurred. Please try again.';
+        $errors = $res->json('errors') ?? [];
+        // Gabungkan pesan error tambahan (jika ada)
+        $errorDetails = '';
+        if (!empty($errors) && is_array($errors)) {
+            foreach ($errors as $field => $messages) {
+                $errorDetails .= implode(' ', (array)$messages) . ' ';
+            }
+        }
+        // Redirect kembali dengan error
+        return back()->withErrors([
+            'error' => $errorMessage,
+            'details' => $errorDetails
+        ])->withInput();
         }
 
     }
@@ -479,6 +554,21 @@ public function eventUpdate(Request $request, $id)
         if ($res->successful()) {
             $json = $res->json();
             return redirect('/organizer/event/'.$event_id.'/documentations')->with('message',$json['message']);
+        }else {
+        $errorMessage = $res->json('message') ?? 'An error occurred. Please try again.';
+        $errors = $res->json('errors') ?? [];
+        // Gabungkan pesan error tambahan (jika ada)
+        $errorDetails = '';
+        if (!empty($errors) && is_array($errors)) {
+            foreach ($errors as $field => $messages) {
+                $errorDetails .= implode(' ', (array)$messages) . ' ';
+            }
+        }
+        // Redirect kembali dengan error
+        return back()->withErrors([
+            'error' => $errorMessage,
+            'details' => $errorDetails
+        ])->withInput();
         }
     }
 
@@ -487,6 +577,8 @@ public function eventUpdate(Request $request, $id)
         if ($res->successful()) {
             $json = $res->json();
             return redirect('/organizer/event/'.$event_id.'/documentations')->with('message',$json['message']);
+        }else {
+            return redirect()->back()->withErrors(['delete'=>'Event Not Found']);
         }
     }
     //regostrations
