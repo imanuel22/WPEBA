@@ -28,8 +28,8 @@ Route::middleware(['role:partisipan'])->group(function(){
         });
         Route::get('/dashboard',[PartisipanController::class,'dashboard']);
     });
-    Route::post('/buyticket',[PartisipanController::class,'buyTicket']);
 });
+Route::post('/buyticket',[PartisipanController::class,'buyTicket']);
 
 
 
@@ -38,12 +38,12 @@ Route::prefix('/admin')->middleware(['role:admin'])->group(function(){
     Route::get('/',function(){
         redirect('/admin/dashboard');
     });
-    
+
     Route::get('/dashboard',[AdminController::class,'dashboard']);
     //event
     Route::get('/event',[AdminController::class,'eventIndex']);
     Route::delete('/event/{id}',[AdminController::class,'eventDelete']);
-    
+
     //accounts
     Route::get('/account/{role}',[AdminController::class,'userIndex']);
     Route::patch('/account/{id}',[AdminController::class,'userUpdate']);
@@ -67,8 +67,8 @@ Route::prefix('/admin')->middleware(['role:admin'])->group(function(){
     Route::put('/category/{id}', [AdminController::class, 'categoryUpdate']);
     Route::delete('/category/{id}', [AdminController::class, 'categoryDelete']);
 
-    
-    
+
+
 });
 
 // organizer
