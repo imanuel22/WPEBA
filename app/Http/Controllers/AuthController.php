@@ -43,10 +43,18 @@ class AuthController extends Controller
         if ($res->successful()) {
             redirect('/login');
         }
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 925fae9baefa6a455d37b53e5840f18408080870
     }
 
     public function dologin(Request $request){
+        $request->validate([
+            'email'=>'required|email:rfc,dns|unique:users,email',
+            'password'=>'required|min:8'
+        ]);
         $credentials = $request->only(['email', 'password']);
         $res=Http::post('http://api-wpeba.test/api/login',$credentials);
 
@@ -65,15 +73,17 @@ class AuthController extends Controller
 
             if($userData['role']=='admin'){
                 return redirect('/admin/dashboard');
-            }
-            if($userData['role']=='organizer'){
+            }elseif($userData['role']=='organizer'){
                 return redirect('/organizer/dashboard') ;
-            }
-            if($userData['role']=='participant'){
+            }elseif($userData['role']=='participant'){
                 return redirect('/');
+            }else{
+                Session::forget(['token', 'name', 'email', 'profile', 'role', 'id']);
+                return redirect()->back()->withErrors(['login_error' => 'Role tidak valid. Silakan hubungi administrator.'])->withInput();
             }
         }else{
-            dd($res->body());
+            $errorMessage = $res->json('message') ?? 'Login failed. Please check your credentials.';
+            return redirect()->back()->withErrors(['login_error' => $errorMessage]);
         }
     }
 }
