@@ -7,15 +7,19 @@ use Illuminate\Support\Facades\Http;
 
 class PartisipanController extends Controller
 {
-    function tickets() {
-        return view('participant.ticket');
-    }
-    function events() {
-        return view('participant.events');
-    }
+    
 
     function dashboard() {
-        return view('participant.dashboard');
+        $res = Http::get(config('services.api.url').'/events');
+        
+        if($res->successful()){
+            $json = $res->json();
+            $data['events'] = $json['data'];
+        }
+        return view('participant.dashboard',$data);
+    }
+    function dashProfile() {
+        return view('participant.dashProfile');
     }
 
     function buyTicket(Request $request)  {
@@ -38,6 +42,39 @@ class PartisipanController extends Controller
             }else{
                 dd($res->body());
             }
+    }
+
+     //ticket
+     public function ticketParti() {
+        $res = Http::withToken(session('token'))->get(config('services.api.url').'/tickets');
+        if($res->successful()){
+            $json = $res->json();
+            $data['ticket']=$json['data'];
+        }
+        return view('participant.ticket',$data);
+    }
+ 
+    //feedback
+    function feedbackParti() {
+        $res = Http::get(config('services.api.url').'/feedback');
+        if($res->successful()){
+            $json=$res->json();
+            $data['feedback'] = $json['data'];
+        }
+        $res = Http::get(config('services.api.url').'/events');
+        if($res->successful()){
+            $json=$res->json();
+            $event['events'] = $json['data'];
+        }
+        return view('participant.feedbacks',$data, $event);
+    }
+    function feedbackDelete($id)  {
+        $res = Http::withToken(session('token'))->delete(config('services.api.url').'/feedback/'.$id);
+        if ($res->successful()) {
+            $json = $res->json();
+            return redirect('/participant/feedbacks')->with('message',$json['message']);
+        }
+
     }
 
 }

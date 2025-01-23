@@ -10,16 +10,16 @@
 </head>
 
 <body>
-    <div class="w-full">
+    <div class="w-screen bg-LightBlue">
         <div class=" relative">
             @include('guest.partials.navbar')
         </div>
         <div class="bg-LightBlue w-screen">
-            <div class="s">
+            <div class="">
                 @yield('main')
             </div>
         </div>
-        <div class="sticky top-100vh">
+        <div class="sticky top-100vh mb-0">
             @include('guest.partials.footer')
         </div>
     </div>

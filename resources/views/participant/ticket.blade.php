@@ -1,223 +1,169 @@
-@extends('participant.partials.main')
+@extends('participant.partials.mainProfile')
 
-@section('main')
-    <div class="bg-slate-300 relative mb-auto">
-        <div class="relative w-full">
-            <img src="{{ asset('storage/img/1.jpg') }}" class="object-cover w-full max-w-full h-md md:h-[calc(100vh-200px)]"
-                alt="">
-            <div class="absolute top-0 flex xl:mx-56 p-4 xl:px-0 flex-col justify-center h-full  py-10 text-white space-y-4 ">
-                <h1 class="text-6xl text-lime-400">NAMA</h1>
-                <h1 class="text-6xl">EVENTNYA </h1>
-                <div class=" flex justify-end 2xl:-mr-28">
-                </div>
-            </div>
-        </div>
-        <div class="mx-28 my-10">
-            <div class="">
-                <a class="text-gray-900 font-bold text-3xl ">NAMA EVENT</a>
-            </div>
-            <div class="">
-                <a class="text-gray-400 font-thin text-1xl ">Lokasi Event / Kategori Event</a>
-            </div>
-            <div class="">
-                <a class="text-gray-900 font-normal text-1xl ">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ab saepe quos molestiae aspernatur ducimus laudantium exercitationem quis itaque veniam eveniet quod officiis ad rem esse, voluptates quia nulla sed praesentium quas, delectus nobis. Aut deserunt alias quisquam expedita rerum doloremque sint ducimus magnam? Fugiat ullam sit, tempore minima commodi esse!</a>
-            </div>
-        </div>
+@section('mainProfile')
+    <!-- Include Simple-DataTables Library -->
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@9.0.3"></script>
 
-        <div class="flex">
-            <div id="detailed-pricing" class="mx-28 w-2/4 overflow-x-auto">
-                <div class="overflow-hidden min-w-max flex">
-                    <div class="ml-10 my-10">
-                        <figure class="relative max-w-sm transition-all duration-300 cursor-pointer filter">
-                            <a >
-                            <img class="rounded-lg w-96 h-96 object-cover" src="{{ asset('storage/img/3.jpeg') }}" alt="image description">
-                            </a>
-                        </figure>
-                    </div>
-                    <div class="ml-10 my-10">
-                        <figure class="relative max-w-sm transition-all duration-300 cursor-pointer filter">
-                            <a >
-                            <img class="rounded-lg w-96 h-96 object-cover" src="{{ asset('storage/img/2.jpeg') }}" alt="image description">
-                            </a>
-                        </figure>
-                    </div><div class="ml-10 my-10">
-                        <figure class="relative max-w-sm transition-all duration-300 cursor-pointer filter">
-                            <a >
-                            <img class="rounded-lg w-96 h-96 object-cover" src="{{ asset('storage/img/4.jpeg') }}" alt="image description">
-                            </a>
-                        </figure>
-                    </div>
-                    <div class="ml-10 my-10">
-                        <figure class="relative max-w-sm transition-all duration-300 cursor-pointer filter">
-                            <a >
-                            <img class="rounded-lg w-96 h-96 object-cover" src="{{ asset('storage/img/3.jpeg') }}" alt="image description">
-                            </a>
-                        </figure>
-                    </div>
-                    <div class="ml-10 my-10">
-                        <figure class="relative max-w-sm transition-all duration-300 cursor-pointer filter">
-                            <a >
-                            <img class="rounded-lg w-96 h-96 object-cover" src="{{ asset('storage/img/2.jpeg') }}" alt="image description">
-                            </a>
-                        </figure>
-                    </div>
-                    <div class="ml-10 my-10">
-                        <figure class="relative max-w-sm transition-all duration-300 cursor-pointer filter">
-                            <a >
-                            <img class="rounded-lg w-96 h-96 object-cover" src="{{ asset('storage/img/1.jpg') }}" alt="image description">
-                            </a>
-                        </figure>
-                    </div>
-                    <div class="ml-10 my-10">
-                        <figure class="relative max-w-sm transition-all duration-300 cursor-pointer filter">
-                            <a >
-                            <img class="rounded-lg w-96 h-96 object-cover" src="{{ asset('storage/img/4.jpeg') }}" alt="image description">
-                            </a>
-                        </figure>
-                    </div>
-                    <div class="ml-10 my-10">
-                        <figure class="relative max-w-sm transition-all duration-300 cursor-pointer filter">
-                            <a >
-                            <img class="rounded-lg w-96 h-96 object-cover" src="{{ asset('storage/img/3.jpeg') }}" alt="image description">
-                            </a>
-                        </figure>
-                    </div>
-                    <div class="ml-10 my-10">
-                        <figure class="relative max-w-sm transition-all duration-300 cursor-pointer filter">
-                            <a >
-                            <img class="rounded-lg w-96 h-96 object-cover" src="{{ asset('storage/img/2.jpeg') }}" alt="image description">
-                            </a>
-                        </figure>
-                    </div>
-                </div>
-            </div>
-            <div class=" w-2/4">
-                <a class="flex justify-center text-gray-900 font-bold text-2xl ">EVENT INFO</a>
-                <div class="relative overflow-x-auto">
-                    <table class="w-full text-sm text-left rtl:text-right text-gray-900 ">    
-                        <tbody>
-                            <tr class="bg-transparent border-b border-gray-700">
-                                <th scope="row" class="w-1/2 px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
-                                    Date
-                                </th>
-                                <td class="px-6 py-4">
-                                    1 January 2024
-                                </td>
-                                
-                            </tr>
-                            <tr class="bg-transparent border-b border-gray-700">
-                                <th scope="row" class="w-1/2 px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
-                                    Duration
-                                </th>
-                                <td class="px-6 py-4">
-                                    8.00 Am - 16.00 Pm
-                                </td>
-                                
-                            </tr>
-                            <tr class="bg-transparent border-b border-gray-700">
-                                <th scope="row" class="w-1/2 px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
-                                    Location
-                                </th>
-                                <td class="px-6 py-4">
-                                    Widya Padma Politeknik Negeri Bali
-                                </td> 
-                            </tr>
-                            <tr class="bg-transparent">
-                                <th scope="row" class="w-1/2 px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
-                                    Statues
-                                </th>
-                                <td class="px-6 py-4">
-                                    On Going?
-                                </td> 
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <a class="flex justify-center text-gray-900 font-bold text-2xl mt-10">TICKET</a>
-                <div class="relative overflow-x-auto">
-                    <table class="w-full text-sm text-left rtl:text-right text-gray-900 ">    
-                        <tbody>
-                            <tr class="bg-transparent border-b border-gray-700">
-                                <th scope="row" class="w-1/2 px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
-                                    Price
-                                </th>
-                                <td class="px-6 py-4">
-                                    200.000
-                                </td>
-                                
-                            </tr>
-                            <tr class="bg-transparent border-b border-gray-700">
-                                <th scope="row" class="w-1/2 px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
-                                    Quantity
-                                </th>
-                                <td class="px-6 py-4">
-                                    1 Pcs
-                                </td>  
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="flex justify-center mt-5"> 
-                        <button type="button" class="text-white w-60 bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Buy Now</button>
-                    </div>
-                </div>
-                    
-                    
-                     
-
-                
-            </div>
-        </div>
-        
-
-
-
-        {{-- <div class="flex ">
-            <div class="ml-28 my-10">
-                <figure class="relative max-w-sm transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0">
-                    <a >
-                    <img class="rounded-lg" src="{{ asset('storage/img/3.jpeg') }}" alt="image description">
-                    </a>
-                    <figcaption class="absolute px-4 text-lg text-lime-500 bottom-6">
-                        <p>JUDUL EVENT NYAA/ DETAIL EVENT</p>
-                    </figcaption>
-                </figure>
-            </div>
-            <div class="mx-10 my-10">
-                <figure class="relative max-w-sm transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0">
-                    <a href="#">
-                    <img class="rounded-lg" src="{{ asset('storage/img/3.jpeg') }}" alt="image description">
-                    </a>
-                    <figcaption class="absolute px-4 text-lg text-lime-500 bottom-6">
-                        <p>JUDUL EVENT NYAA/ DETAIL EVENT</p>
-
-                    </figcaption>
-                </figure>
-            </div>
-            <div class="mr-10 my-10">
-                <figure class="relative max-w-sm transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0">
-                    <a href="#">
-                    <img class="rounded-lg" src="{{ asset('storage/img/3.jpeg') }}" alt="image description">
-                    </a>
-                    <figcaption class="absolute px-4 text-lg text-lime-500 bottom-6">
-                        <p>JUDUL EVENT NYAA/ DETAIL EVENT</p>
-
-                    </figcaption>
-                </figure>
-            </div>
-            <div class=" my-10">
-                <figure class="relative max-w-sm transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0">
-                    <a href="#">
-                    <img class="rounded-lg" src="{{ asset('storage/img/3.jpeg') }}" alt="image description">
-                    </a>
-                    <figcaption class="absolute px-4 text-lg text-lime-500 bottom-6">
-                        <p>JUDUL EVENT NYAA/ DETAIL EVENT</p>
-                    </figcaption>
-                </figure>
-            </div>
-        </div> --}}
-        
-            
-
+    <div class="mb-5 border-b-4 border-slate-700 ">
+        <h3 class="text-3xl">DATA TIKET</h3>
     </div>
+
+    <div class="p-4 text-gray-200 rounded-lg bg-slate-700">
+        <table id="selection-table">
+            <thead>
+                <tr>
+                    <th>
+                        <span class="flex items-center">
+                            Gambar Tiket
+                            <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="m8 15 4 4 4-4m0-6-4-4-4 4" />
+                            </svg>
+                        </span>
+                    </th>
+                    <th>
+                        <span class="flex items-center">
+                            Nama tiket
+                            <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="m8 15 4 4 4-4m0-6-4-4-4 4" />
+                            </svg>
+                        </span>
+                    </th>
+                    <th data-type="date" data-format="YYYY/DD/MM">
+                        <span class="flex items-center">
+                            Harga
+                            <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="m8 15 4 4 4-4m0-6-4-4-4 4" />
+                            </svg>
+                        </span>
+                    </th>
+                    <th>
+                        <span class="flex items-center">
+                            QTY
+                            <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="m8 15 4 4 4-4m0-6-4-4-4 4" />
+                            </svg>
+                        </span>
+                    </th>
+                    <th>
+                        <span class="flex items-center">
+                            Event name
+                            <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="m8 15 4 4 4-4m0-6-4-4-4 4" />
+                            </svg>
+                        </span>
+                    </th>
+                    <th>
+                        
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($ticket as $row)
+                    <tr class="cursor-pointer bg-white">
+                        <td><img src="{{ env('APP_API_IMG_URL') }}/ticket/{{ $row['image'] }}" alt="{{ $row['name'] }}"></td>
+                        <td>{{ $row['name'] }}</td>
+                        <td>{{ $row['price'] }}</td>
+                        <td>{{ $row['quantity'] }}</td>
+                        <td>{{ $row['event']['title'] }}</td>
+                        <td>
+                
+                        </td>
+                    </tr>
+                @endforeach
+
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Script Table -->
+    <script>
+        if (document.getElementById("selection-table") && typeof simpleDatatables.DataTable !== 'undefined') {
+
+            let multiSelect = true;
+            let rowNavigation = false;
+            let table = null;
+
+            const resetTable = function() {
+                if (table) {
+                    table.destroy();
+                }
+
+                const options = {
+                    rowRender: (row, tr, _index) => {
+                        if (!tr.attributes) {
+                            tr.attributes = {};
+                        }
+                        if (!tr.attributes.class) {
+                            tr.attributes.class = "";
+                        }
+                        if (row.selected) {
+                            tr.attributes.class += " selected";
+                        } else {
+                            tr.attributes.class = tr.attributes.class.replace(" selected", "");
+                        }
+                        return tr;
+                    }
+                };
+                if (rowNavigation) {
+                    options.rowNavigation = true;
+                    options.tabIndex = 1;
+                }
+
+                table = new simpleDatatables.DataTable("#selection-table", options);
+
+                // Mark all rows as unselected
+                table.data.data.forEach(data => {
+                    data.selected = false;
+                });
+
+                table.on("datatable.selectrow", (rowIndex, event) => {
+                    event.preventDefault();
+                    const row = table.data.data[rowIndex];
+                    if (row.selected) {
+                        row.selected = false;
+                    } else {
+                        if (!multiSelect) {
+                            table.data.data.forEach(data => {
+                                data.selected = false;
+                            });
+                        }
+                        row.selected = true;
+                    }
+                    table.update();
+                });
+            };
+
+            // Row navigation makes no sense on mobile, so we deactivate it and hide the checkbox.
+            const isMobile = window.matchMedia("(any-pointer:coarse)").matches;
+            if (isMobile) {
+                rowNavigation = false;
+            }
+
+            resetTable();
+        }
+    </script>
+    <style>
+        .datatable-wrapper .datatable-top .datatable-dropdown {
+            color: #fff
+        }
+
+        .datatable-wrapper .datatable-bottom .datatable-info {
+            color: #fff
+        }
+
+        .datatable-wrapper .datatable-table .datatable-empty {
+            background: #fff;
+            color: #000
+        }
+    </style>
 @endsection

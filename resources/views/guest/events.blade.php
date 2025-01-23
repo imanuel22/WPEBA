@@ -1,7 +1,7 @@
-@extends('guest.partials.mainLogin')
+@extends('guest.partials.main')
 
-@section('mainLogin')
-    <div class="grid grid-cols-4 gap-10 py-10 mx-20 mt-20 md:grid-cols-4 bg-LightBlue">
+@section('main')
+    <div class="grid grid-cols-4 gap-10 py-10 mx-20 mt-24 md:grid-cols-4 bg-LightBlue">
         @foreach ($events as $event)
             <div class="p-0">
                 <div sclass="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">

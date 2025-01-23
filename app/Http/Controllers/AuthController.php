@@ -43,7 +43,11 @@ class AuthController extends Controller
         if ($res->successful()) {
             redirect('/login');
         }
+<<<<<<< HEAD
+
+=======
         
+>>>>>>> 925fae9baefa6a455d37b53e5840f18408080870
     }
 
     public function dologin(Request $request){

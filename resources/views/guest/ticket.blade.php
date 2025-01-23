@@ -1,17 +1,14 @@
-@extends('guest.partials.mainLogin')
+@extends('guest.partials.main')
 
-@section('mainLogin')
-    <div class="relative mb-auto bg-slate-300">
+@section('main')
+    <div class="relative bg-LightBlue mb-10">
         <div class="relative w-full">
 
             <img src="{{ env('APP_API_IMG_URL') }}/event/{{ $event['images'][0]['filename'] }}"
                 class="object-cover w-full max-w-full h-md md:h-[calc(100vh-200px)]" alt="">
-            <div class="absolute top-0 flex flex-col justify-center h-full p-4 py-10 space-y-4 text-white xl:mx-56 xl:px-0 ">
-                <h1 class="text-6xl text-SkyBlue">NAMA</h1>
-                <h1 class="text-6xl text-LightBlue">EVENTNYA </h1>
-                <div class="flex justify-end 2xl:-mr-28">
-                </div>
-            </div>
+            {{-- <div class="absolute top-0 flex items-center justify-center h-full p-4 py-10 space-y-4 xl:mx-56 xl:px-0 ">
+                <h1 class="text-6xl text-SkyBlue font-bold text-center">{{ $event['title'] }}</h1>
+            </div> --}}
         </div>
         <div class="my-10 mx-28">
             <div class="">
@@ -170,57 +167,6 @@
                                         </div>
                                         <!-- Modal body -->
                                         <div class="p-4 md:p-5">
-                                            {{-- <form class="space-y-4" action="#">
-                                            <div>
-                                                <label for="name"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price/Pcs</label>
-                                                <input type="text" id="disabled-input" aria-label="disabled input"
-                                                    class="mb-6 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    value="{{ $event['tickets'][0]['price'] }}" disabled>
-                                            </div>
-                                            <div>
-                                                <label for="email"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quantity</label>
-                                                <input type="number" name="Quantity" id="Quantity"
-                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                                    placeholder="Number of Quantity" required />
-                                            </div>
-                                            <div class="">
-                                                <button
-                                                    class="text-white inline-flex w-full justify-center bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                                    cek out
-                                                </button>
-                                            </div>
-                                            <div class="">
-                                                <label for="name"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Total
-                                                    Price</label>
-                                                <input type="text" id="disabled-input" aria-label="disabled input"
-                                                    class="mb-6 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    value="200.000" disabled>
-                                            </div>
-                                            <div class="">
-                                                <label for="name"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Payment</label>
-                                                <input type="text" id="disabled-input" aria-label="disabled input"
-                                                    class="mb-6 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    value="{{ $event['tickets'][0]['payment_method'] }} {{ $event['tickets'][0]['payment_number'] }} {{ $event['tickets'][0]['payment_name'] }}"
-                                                    disabled>
-                                            </div>
-                                            <div>
-                                                <label for="profile"
-                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                                    for="file_input">Payment Prof</label>
-                                                <input
-                                                    class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                                                    id="file_input" type="file">
-                                            </div>
-
-                                            <button
-                                                class="text-white inline-flex w-full justify-center bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                                Verify
-                                            </button>
-                                        </form> --}}
                                             <form method="POST" action="/buyticket" enctype="multipart/form-data">
                                                 @csrf
                                                 <input type="hidden" name="price"
@@ -268,61 +214,70 @@
                                 </button>
                             </div>
                         @endif
-
                     </div>
                 @endif
             </div>
         </div>
-
-
-
-
-        {{-- <div class="flex ">
-            <div class="my-10 ml-28">
-                <figure class="relative max-w-sm transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0">
-                    <a href="#">
-                    <img class="rounded-lg" src="storage/img/3.jpeg" alt="image description">
-                    </a>
-                    <figcaption class="absolute px-4 text-lg text-lime-500 bottom-6">
-                        <p>JUDUL EVENT NYAA/ DETAIL EVENT</p>
-                    </figcaption>
-                </figure>
+        
+        <div class="m-20 flex flex-col">
+            <div class="my-10">
+                <p class="font-bold text-2xl">Event Review</p>
             </div>
-            <div class="mx-10 my-10">
-                <figure class="relative max-w-sm transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0">
-                    <a href="#">
-                    <img class="rounded-lg" src="storage/img/3.jpeg" alt="image description">
-                    </a>
-                    <figcaption class="absolute px-4 text-lg text-lime-500 bottom-6">
-                        <p>JUDUL EVENT NYAA/ DETAIL EVENT</p>
+            <div class="ml-10">
+                <form class="max-w-sm ">
+                    <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your message</label>
+                    <textarea id="message" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Leave a comment..."></textarea>
+                    <div class="rating">
+                        <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+                        <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+                        <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+                        <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+                        <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+                    </div>
 
-                    </figcaption>
-                </figure>
+                    <input type="submit"> 
+                </form>  
             </div>
-            <div class="my-10 mr-10">
-                <figure class="relative max-w-sm transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0">
-                    <a href="#">
-                    <img class="rounded-lg" src="storage/img/3.jpeg" alt="image description">
-                    </a>
-                    <figcaption class="absolute px-4 text-lg text-lime-500 bottom-6">
-                        <p>JUDUL EVENT NYAA/ DETAIL EVENT</p>
-
-                    </figcaption>
-                </figure>
+            <div class="p-11">
+                <article>
+                    <div class="flex items-center mb-4">
+                        <img class="w-10 h-10 me-4 rounded-full" src="/docs/images/people/profile-picture-5.jpg" alt="">
+                        <div class="font-medium dark:text-white">
+                            <p>Jese Leos <time datetime="2014-08-16 19:00" class="block text-sm text-gray-500 dark:text-gray-400">Joined on August 2014</time></p>
+                        </div>
+                    </div>
+                    <div class="flex items-center mb-1 space-x-1 rtl:space-x-reverse">
+                        <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                        </svg>
+                        <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                        </svg>
+                        <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                        </svg>
+                        <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                        </svg>
+                        <svg class="w-4 h-4 text-gray-300 dark:text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                        </svg>
+                        <h3 class="ms-2 text-sm font-semibold text-gray-900 dark:text-white">Thinking to buy another one!</h3>
+                    </div>
+                    <footer class="mb-5 text-sm text-gray-500 dark:text-gray-400"><p>Reviewed in the United Kingdom on <time datetime="2017-03-03 19:00">March 3, 2017</time></p></footer>
+                    <p class="mb-2 text-gray-500 dark:text-gray-400">This is my third Invicta Pro Diver. They are just fantastic value for money. This one arrived yesterday and the first thing I did was set the time, popped on an identical strap from another Invicta and went in the shower with it to test the waterproofing.... No problems.</p>
+                    <p class="mb-3 text-gray-500 dark:text-gray-400">It is obviously not the same build quality as those very expensive watches. But that is like comparing a Citroën to a Ferrari. This watch was well under £100! An absolute bargain.</p>
+                    <a href="#" class="block mb-5 text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">Read more</a>
+                    <aside>
+                        <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">19 people found this helpful</p>
+                        <div class="flex items-center mt-3">
+                            <a href="#" class="px-2 py-1.5 text-xs font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Helpful</a>
+                            <a href="#" class="ps-4 text-sm font-medium text-blue-600 hover:underline dark:text-blue-500 border-gray-200 ms-4 border-s md:mb-0 dark:border-gray-600">Report abuse</a>
+                        </div>
+                    </aside>
+                </article>
             </div>
-            <div class="my-10 ">
-                <figure class="relative max-w-sm transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0">
-                    <a href="#">
-                    <img class="rounded-lg" src="storage/img/3.jpeg" alt="image description">
-                    </a>
-                    <figcaption class="absolute px-4 text-lg text-lime-500 bottom-6">
-                        <p>JUDUL EVENT NYAA/ DETAIL EVENT</p>
-                    </figcaption>
-                </figure>
-            </div>
-        </div> --}}
-
-
+        </div>
 
     </div>
 @endsection
