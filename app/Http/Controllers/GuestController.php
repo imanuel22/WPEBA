@@ -17,12 +17,20 @@ class GuestController extends Controller
     }
     function tickets($id) {
         $res = Http::get(config('services.api.url') . '/events/'.$id);
-        $res2 = Http::get(config('services.api.url'). '/registrations/'.session('id'));
-        if($res->successful()&&$res2->successful()){
+        if(session('id') != null){
+            $res2 = Http::get(config('services.api.url'). '/registrations/'.session('id'));
+            if($res2->successful()){
+                $json2 = $res2->json()['data'];
+                $data['isbuying'] = $json2['ticket']['event_id']==$id;
+            }else{
+            $data['isbuying'] = false;
+            }
+        }else{
+            $data['isbuying'] = false;
+        }
+        if($res->successful()){
             $json = $res->json();
             $data['event'] = $json['data'];
-            $json2 = $res2->json()['data'];
-            $data['isbuying'] = $json2['ticket']['event_id']==$id;
         }
         return view('guest.ticket',$data);
     }
